@@ -741,75 +741,75 @@ var app_demo = {
     },
     settings: function(){
         
-        var box = $("<div></div>").addClass("app-settings")
-            .append($("<div></div>").addClass("app-settings-button").html("<span class=\"icon-magic-wand\"></span>"));
+        // var box = $("<div></div>").addClass("app-settings")
+        //     .append($("<div></div>").addClass("app-settings-button").html("<span class=\"icon-magic-wand\"></span>"));
             
-        var themesHeaderContainer = $("<div></div>").addClass("app-settings-themes-header").append("<span>Header themes</span>");
-        var themesNavigationContainer = $("<div></div>").addClass("app-settings-themes-navigation").append("<span>Navigation themes</span>");
-        var themesFooterContainer = $("<div></div>").addClass("app-settings-themes-footer").append("<span>Footer themes</span>");        
+        // var themesHeaderContainer = $("<div></div>").addClass("app-settings-themes-header").append("<span>Header themes</span>");
+        // var themesNavigationContainer = $("<div></div>").addClass("app-settings-themes-navigation").append("<span>Navigation themes</span>");
+        // var themesFooterContainer = $("<div></div>").addClass("app-settings-themes-footer").append("<span>Footer themes</span>");        
         
         
-        var themes = new Array();
-            themes.header = themes.navigation = themes.footer = new Array();
-            themes.header = ["app-header-design-default","app-header-design-dark","app-header-design-lightblue","app-header-design-orange","app-header-design-blue"];
-            themes.navigation = ["app-navigation-style-default","app-navigation-style-light","app-navigation-style-lightblue","app-navigation-style-purple","app-navigation-style-blue"];
-            themes.footer = ["app-footer-default","app-footer-dark","app-footer-light","app-footer-purple","app-footer-blue"];
+        // var themes = new Array();
+        //     themes.header = themes.navigation = themes.footer = new Array();
+        //     themes.header = ["app-header-design-default","app-header-design-dark","app-header-design-lightblue","app-header-design-orange","app-header-design-blue"];
+        //     themes.navigation = ["app-navigation-style-default","app-navigation-style-light","app-navigation-style-lightblue","app-navigation-style-purple","app-navigation-style-blue"];
+        //     themes.footer = ["app-footer-default","app-footer-dark","app-footer-light","app-footer-purple","app-footer-blue"];
                         
-        for(var i=0; i < themes.header.length; i++){
-            var active = i === 0 ? " active" : "";
-            themesHeaderContainer.append($("<div></div>").addClass(themes.header[i] + active));
-        }
-        for(var i=0; i < themes.navigation.length; i++){
-            var active = i === 0 ? " active" : "";        
-            themesNavigationContainer.append($("<div></div>").addClass(themes.navigation[i] + active));
-        }
-        for(var i=0; i < themes.footer.length; i++){
-            var active = i === 0 ? " active" : "";
-            themesFooterContainer.append($("<div></div>").addClass(themes.footer[i] + active));
-        }
+        // for(var i=0; i < themes.header.length; i++){
+        //     var active = i === 0 ? " active" : "";
+        //     themesHeaderContainer.append($("<div></div>").addClass(themes.header[i] + active));
+        // }
+        // for(var i=0; i < themes.navigation.length; i++){
+        //     var active = i === 0 ? " active" : "";        
+        //     themesNavigationContainer.append($("<div></div>").addClass(themes.navigation[i] + active));
+        // }
+        // for(var i=0; i < themes.footer.length; i++){
+        //     var active = i === 0 ? " active" : "";
+        //     themesFooterContainer.append($("<div></div>").addClass(themes.footer[i] + active));
+        // }
                 
-        box.append(themesHeaderContainer);
-        box.append(themesNavigationContainer);
-        box.append(themesFooterContainer);
+        // box.append(themesHeaderContainer);
+        // box.append(themesNavigationContainer);
+        // box.append(themesFooterContainer);
         
-        box.append($("<p><span>Notice</span><br>It's easy to customize our template. Use /dev/css/<strong>variables.less</strong> file to make Boooya more unique.</p>"));
+        // box.append($("<p><span>Notice</span><br>It's easy to customize our template. Use /dev/css/<strong>variables.less</strong> file to make Boooya more unique.</p>"));
         
         
-        $("body").append(box);
+        // $("body").append(box);
         
-        $("body").on("click",".app-settings-themes-header > div",function(){
-            for(var i=0; i < themes.header.length; i++){
-                $(".app-header").removeClass(themes.header[i]);
-            }
-            $(".app-header").addClass($(this).attr("class"));
+        // $("body").on("click",".app-settings-themes-header > div",function(){
+        //     for(var i=0; i < themes.header.length; i++){
+        //         $(".app-header").removeClass(themes.header[i]);
+        //     }
+        //     $(".app-header").addClass($(this).attr("class"));
             
-            $(".app-settings-themes-header > div").removeClass("active");
-            $(this).addClass("active");            
-        });
+        //     $(".app-settings-themes-header > div").removeClass("active");
+        //     $(this).addClass("active");            
+        // });
         
-        $("body").on("click",".app-settings-themes-navigation > div",function(){            
-            for(var i=0; i < themes.navigation.length; i++){
-                $(".app-navigation").removeClass(themes.navigation[i]);
-            }
-            $(".app-navigation").addClass($(this).attr("class"));
+        // $("body").on("click",".app-settings-themes-navigation > div",function(){            
+        //     for(var i=0; i < themes.navigation.length; i++){
+        //         $(".app-navigation").removeClass(themes.navigation[i]);
+        //     }
+        //     $(".app-navigation").addClass($(this).attr("class"));
             
-            $(".app-settings-themes-navigation > div").removeClass("active");
-            $(this).addClass("active");            
-        });
+        //     $(".app-settings-themes-navigation > div").removeClass("active");
+        //     $(this).addClass("active");            
+        // });
         
-        $("body").on("click",".app-settings-themes-footer > div",function(){            
-            for(var i=0; i < themes.footer.length; i++){
-                $(".app-footer").removeClass(themes.footer[i]);
-            }
-            $(".app-footer").addClass($(this).attr("class"));
+        // $("body").on("click",".app-settings-themes-footer > div",function(){            
+        //     for(var i=0; i < themes.footer.length; i++){
+        //         $(".app-footer").removeClass(themes.footer[i]);
+        //     }
+        //     $(".app-footer").addClass($(this).attr("class"));
             
-            $(".app-settings-themes-footer > div").removeClass("active");
-            $(this).addClass("active");
-        });                              
+        //     $(".app-settings-themes-footer > div").removeClass("active");
+        //     $(this).addClass("active");
+        // });                              
         
-        $("body").on("click",".app-settings-button",function(){
-            $(".app-settings").toggleClass("open");
-        });
+        // $("body").on("click",".app-settings-button",function(){
+        //     $(".app-settings").toggleClass("open");
+        // });
     }
 };
 

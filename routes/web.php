@@ -16,3 +16,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/utama', 'HomeController@utama')->name('home');
+
+/* Karyawan */
+Route::resource('karyawan', 'MasteregawaiController');
+Route::get('karyawan-hapus/{id}', 'MasteregawaiController@destroy');
+/* Instruktur */
+Route::resource('instruktur', 'MasterinstrukturController');
+Route::get('instruktur-hapus/{id}', 'MasterinstrukturController@destroy');
