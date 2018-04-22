@@ -1,0 +1,12 @@
+@font-face {
+    font-family: aristaRegular;
+    src: url('../fonts/Arista2.0-RegularTrial.ttf');
+}
+@font-face {
+    font-family: aristaLight;
+    src: url('../fonts/Arista2.0-LightTrial.ttf');
+}
+@font-face {
+    font-family: aristaBold;
+    src: url('../fonts/Arista2.0-FatTrial.ttf');
+}

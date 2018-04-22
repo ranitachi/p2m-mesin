@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Masterpeserta;
+use App\Model\Masterpesertadata;
+
 use App\Model\Masterperusahaan;
 use App\Model\Provinsi;
 use App\Model\Kabupatenkota;
@@ -19,7 +21,7 @@ class MasterpesertaController extends Controller
     }
     public function show($id)
     {
-        $det=array();
+        $det=$data=array();
         $agama=array('Islam','Katolik','Protestan','Budha','Hindu','Konghucu','Lainnya');
         $perusahaan=Masterperusahaan::all();
         $prop=Provinsi::all();
@@ -28,7 +30,8 @@ class MasterpesertaController extends Controller
         $kel=array();
         if($id!=-1)
         {
-            $det=Masterpeserta::find($id);
+            $det=Masterpeserta::where('id','=',$id)->with('perusahaan')->get()->first();
+            $data=Masterpesertadata::where('peserta_id','=',$id)->get();
             $prop=Provinsi::all();
             $kota=Kabupatenkota::where('provinsi_id','=',$det->provinsi)->get();
             $kec=Kecamatan::where('kabupatenkota_id','=',$det->kabupaten_kota)->get();
@@ -36,6 +39,7 @@ class MasterpesertaController extends Controller
         }
         return view('pages.peserta.form')
             ->with('det',$det)
+            ->with('data',$data)
             ->with('agama',$agama)
             ->with('perusahaan',$perusahaan)
             ->with('prop',$prop)
@@ -48,30 +52,100 @@ class MasterpesertaController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';
-        // if($data['tanggal_lahir']!='')
-        // {
-        //     list($tg,$bl,$th)=explode('/',$data['tanggal_lahir']);
-        //     $data['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
-        // }
         
-        // $create = Masterpeserta::create($data);
-        // return redirect('peserta')->with('status','Data Peserta Baru Berhasil di Simpan');
-
-
+        foreach($data as $k => $v)
+        {
+            $tbl=strtok($k,'_');
+            $kolom=str_replace($tbl.'_','',$k);
+            if($tbl=='peserta')
+            {
+                $peserta[$kolom]=$v;
+            }
+            else if($tbl=='data')
+            {
+                $pesertadata[$kolom]=$v;
+            }
+            else if($tbl=='perusahaan')
+            {
+                $perusahaan[$kolom]=$v;
+            }
+        }
+        $peserta['flag']=1;
+        if($peserta['tanggal_lahir']!='')
+        {
+            list($tg,$bl,$th)=explode('/',$peserta['tanggal_lahir']);
+            $peserta['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
+        }
+        // echo '<pre>';
+        // print_r($peserta);
+        // print_r($pesertadata);
+        // print_r($perusahaan);
+        // echo '</pre>';
+        $create = Masterpeserta::create($peserta);
+        $peserta_id=$create->id;
+        foreach ($pesertadata as $key => $value) {
+            foreach($value as $k => $v)
+            {
+                $pdata=new Masterpesertadata;
+                $pdata->peserta_id=$peserta_id;
+                $pdata->pendidikan_terakhir=str_replace("'","",$k);
+                $pdata->gelar_pendidikan=$v;
+                $pdata->created_at=date('Y-m-d H:i:s');
+                $pdata->updated_at=date('Y-m-d H:i:s');
+                $pdata->save();
+            }
+        }
+        $pers=Masterperusahaan::find($request->peserta_perusahaan_id)->update($perusahaan);
+        return redirect('peserta')->with('status','Data Peserta Baru Berhasil di Simpan');
     }
     public function update(Request $request,$id)
     {
         $data=$request->all();
-        if($data['tanggal_lahir']!='')
-        {
-            list($tg,$bl,$th)=explode('/',$data['tanggal_lahir']);
-            $data['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
-        }
         
-        $update = Masterpeserta::find($id)->update($data);
+        foreach($data as $k => $v)
+        {
+            $tbl=strtok($k,'_');
+            $kolom=str_replace($tbl.'_','',$k);
+            if($tbl=='peserta')
+            {
+                $peserta[$kolom]=$v;
+            }
+            else if($tbl=='data')
+            {
+                $pesertadata[$kolom]=$v;
+            }
+            else if($tbl=='perusahaan')
+            {
+                $perusahaan[$kolom]=$v;
+            }
+        }
+        $peserta['flag']=1;
+        if($peserta['tanggal_lahir']!='')
+        {
+            list($tg,$bl,$th)=explode('/',$peserta['tanggal_lahir']);
+            $peserta['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
+        }
+        // echo '<pre>';
+        // print_r($peserta);
+        // print_r($pesertadata);
+        // print_r($perusahaan);
+        // echo '</pre>';
+        $update = Masterpeserta::find($id)->update($peserta);
+        Masterpesertadata::where('peserta_id','=',$id)->forceDelete();
+        foreach ($pesertadata as $key => $value) {
+            foreach($value as $k => $v)
+            {
+                $pdata=new Masterpesertadata;
+                $pdata->peserta_id=$id;
+                $pdata->pendidikan_terakhir=str_replace("'","",$k);
+                $pdata->gelar_pendidikan=$v;
+                $pdata->created_at=date('Y-m-d H:i:s');
+                $pdata->updated_at=date('Y-m-d H:i:s');
+                $pdata->save();
+            }
+        }
+        $pers=Masterperusahaan::find($request->peserta_perusahaan_id)->update($perusahaan);
+        // return redirect('peserta')->with('status','Data Peserta Baru Berhasil di Simpan');
         return redirect('peserta')->with('status','Data Peserta Berhasil di Edit');
 
     }

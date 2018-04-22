@@ -21,6 +21,7 @@ class CreateBatchpelatihansTable extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->string('lokasi')->nullable();
+            $table->integer('angkatan')->default(0);
             $table->string('pic')->nullable();
             $table->string('flag')->nullable();
             $table->string('biaya_pelatihan')->nullable();

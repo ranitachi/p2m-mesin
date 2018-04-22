@@ -45,8 +45,9 @@ class MasterperusahaanController extends Controller
         $data=$request->all();
         
         $create = Masterperusahaan::create($data);
-        return redirect('perusahaan')->with('status','Data Perusahaan Baru Berhasil di Simpan');
-
+        $url=$request->url;
+        return redirect($url)->with('status','Data Perusahaan Baru Berhasil di Simpan');
+        // return redirect()->back();
 
     }
     public function update(Request $request,$id)

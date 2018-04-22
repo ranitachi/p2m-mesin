@@ -11,7 +11,7 @@
                 <th>Alamat</th>
                 <th>Asal Perusahaan</th>
                 <th>Jabatan</th>
-                <th>#</th>
+                <th style="width:80px;">#</th>
             </tr>
         </thead>                                    
         <tbody>
@@ -24,9 +24,9 @@
                     <td class="text-left">{{$nama}}</td>    
                     <td class="text-left">{{$item->email}}</td>    
                     <td class="text-center">{{$item->hp}}</td>    
-                    <td class="text-center">{{$item->alamat}}</td>    
-                    <td class="text-center">{{$item->perusahaan->nama_perusahaan}}</td>    
-                    <td class="text-center">{{$item->jabatan}}</td>    
+                    <td class="text-left">{{$item->alamat}}</td>    
+                    <td class="text-left">{{$item->perusahaan->nama_perusahaan}}</td>    
+                    <td class="text-left">{{$item->jabatan}}</td>    
                     <td class="text-center">
                         <a href="{{url('peserta/'.$item->id)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="Edit Data"><i class="fa fa-edit" ></i></a> 
                            
@@ -42,5 +42,6 @@
     .app .table tr td
     {
         padding:5px 10px;
+        font-size:11px !important;
     }
 </style>

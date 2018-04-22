@@ -1,24 +1,4 @@
 
-                    <!-- START APP HEADER -->
-                    
-                    <!-- END APP HEADER  -->
-                    
-                    <!-- START PAGE HEADING -->
-                    <div class="app-heading app-heading-bordered app-heading-page">
-                        <div class="icon icon-lg">
-                            <span class="icon-home"></span>
-                        </div>
-                        <div class="title">
-                            <h1>P2M - Departemen Mesin </h1>
-                            <p>Fakultas Teknik Universitas Indonesia</p>
-                        </div>               
-                        <!--
-                        <div class="heading-elements">
-                            <a href="#" class="btn btn-danger" id="page-like"><span class="app-spinner loading"></span> loading...</a>
-                            <a href="https://themeforest.net/item/boooya-revolution-admin-template/17227946?ref=aqvatarius&license=regular&open_purchase_for_item_id=17227946" class="btn btn-success btn-icon-fixed"><span class="icon-text">$24</span> Purchase</a>
-                        </div>
-                        -->
-                    </div>
                     <div class="app-heading-container app-heading-bordered bottom">
                         <ul class="breadcrumb">
                             <li class="active"><a href="#">Dashboard</a></li>                                                     
@@ -41,54 +21,15 @@
                                                 <div class="title">Jumlah Perusahaan</div>
                                                 <div class="title pull-right">
                                             </div>                                        
-                                            <div class="intval">127</div>                                        
+                                            <div class="intval">{{count($perusahaan)}}</div>                                        
                                             <div class="line">
                                                 <div class="subtitle pull-right text-success"> Total Data Perusahaan</div>
                                             </div>
                                         </div>                                                                        
                                         <!-- END WIDGET -->
                                     </li>
-                                    <li>
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile">
-                                            <div class="line">
-                                                <div class="title">Jumlah Peserta</div>
-                                            </div>                                        
-                                            <div class="intval">834</div>
-                                            <div class="line">
-                                                <div class="subtitle pull-right text-success">Total Data Peserta</div>
-                                            </div>
-                                        </div>                                                                        
-                                        <!-- END WIDGET -->
-                                    </li>
-                                    <li>
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile">
-                                            <div class="line">
-                                                <div class="title">Profit</div>
-                                                <div class="title pull-right text-success">+9.2%</div>
-                                            </div>                                        
-                                            <div class="intval">539,277 <small>usd</small></div>
-                                            <div class="line">
-                                                <div class="subtitle">Frofit for the year</div>                                                
-                                            </div>
-                                        </div>                                                                        
-                                        <!-- END WIDGET -->
-                                    </li>
-                                    <li>
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile">
-                                            <div class="line">
-                                                <div class="title">Outlay</div>
-                                                <div class="title pull-right text-success">-12.7%</div>
-                                            </div>                                        
-                                            <div class="intval">45,385<small>usd</small></div>
-                                            <div class="line">
-                                                <div class="subtitle">Statistic per year</div>                                                
-                                            </div>
-                                        </div>                                                                        
-                                        <!-- END WIDGET -->
-                                    </li>
+
+                                    
                                 </ul>
                                 
                             </div>
@@ -101,57 +42,14 @@
                                             <div class="line">
                                                 <div class="title">Jumlah Peserta</div>
                                             </div>
-                                            <div class="intval">834</div>
+                                            <div class="intval">{{count($peserta)}}</div>
                                             <div class="line">
                                                 <div class="subtitle pull-right text-success">Total Data Peserta</div>
                                             </div>
                                         </div>
                                         <!-- END WIDGET -->
                                     </li>
-                                    <li>
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile app-widget-highlight">
-                                            <div class="line">
-                                                <div class="title">Returned</div>
-                                                <div class="title pull-right text-success">67.1%</div>
-                                            </div>                                        
-                                            <div class="intval">61,488</div>
-                                            <div class="line">
-                                                <div class="subtitle">Returned visitors per month</div>
-                                                <div class="subtitle pull-right text-success"><span class="icon-arrow-up"></span></div>
-                                            </div>
-                                        </div>
-                                        <!-- END WIDGET -->
-                                    </li>
-                                    <li>
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile app-widget-highlight">
-                                            <div class="line">
-                                                <div class="title">New</div>
-                                                <div class="title pull-right text-success">33.9%</div>
-                                            </div>                                        
-                                            <div class="intval">38,085</div>
-                                            <div class="line">
-                                                <div class="subtitle">New visitors per month</div>                                                
-                                                <div class="subtitle pull-right text-success"><span class="icon-arrow-up"></span></div>
-                                            </div>
-                                        </div>
-                                        <!-- END WIDGET -->
-                                    </li>
-                                    <li>
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile app-widget-highlight">
-                                            <div class="line">
-                                                <div class="title">Registred</div>
-                                                <div class="title pull-right">+458</div>
-                                            </div>                                        
-                                            <div class="intval">12,554</div>
-                                            <div class="line">
-                                                <div class="subtitle">Total registred users</div>                                                
-                                            </div>
-                                        </div>
-                                        <!-- END WIDGET -->
-                                    </li>
+                                   
                                 </ul>
                                                                 
                             </div>
@@ -172,7 +70,7 @@
                                                         <div class="title">Jumlah Pelatihan</div>
                                         
                                                     </div>
-                                                    <div class="intval text-left">35</div>
+                                                    <div class="intval text-left">{{count($pelatihan)}}</div>
                                                     <div class="line">
                                                         <div class="subtitle text-info">Total Data Pelatihan</div>
                                                     </div>
@@ -182,73 +80,7 @@
                                         
                                         <!-- END WIDGET -->                                        
                                     </li>
-                                    <li>                                        
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile app-widget-highlight">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="icon icon-lg">
-                                                        <span class="icon-warning"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-8">                                                    
-                                                    <div class="line">
-                                                        <div class="title">Server Notifications</div>                                                        
-                                                    </div>                                        
-                                                    <div class="intval text-left">14 / 631</div>                                        
-                                                    <div class="line">
-                                                        <div class="subtitle"><a href="#">Open all notifications</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- END WIDGET -->                                        
-                                    </li>
-                                    <li>                                        
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile app-widget-highlight">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="icon icon-lg">
-                                                        <span class="icon-envelope"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-8">                                                    
-                                                    <div class="line">
-                                                        <div class="title">Inbox Mail</div>                                                        
-                                                    </div>                                        
-                                                    <div class="intval text-left">2 / 481</div>                                        
-                                                    <div class="line">
-                                                        <div class="subtitle"><a href="#">Open inbox messages</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- END WIDGET -->                                        
-                                    </li>
-                                    <li>                                        
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile app-widget-highlight">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="icon icon-lg">
-                                                        <span class="icon-users"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-8">                                                    
-                                                    <div class="line">
-                                                        <div class="title">Customers</div>             
-                                                        <div class="title pull-right"><span class="label label-danger label-bordered">15 NEW</span></div>
-                                                    </div>                                        
-                                                    <div class="intval text-left">6,233</div>                                        
-                                                    <div class="line">
-                                                        <div class="subtitle"><a href="#">Open contact list</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- END WIDGET -->                                        
-                                    </li>
+                                    
                                 </ul>
                                 
                             </div>
@@ -269,7 +101,7 @@
                                                         <div class="title">Jumlah User</div>
                                                         
                                                     </div>
-                                                    <div class="intval text-left">35</div>
+                                                    <div class="intval text-left">{{count($user)}}</div>
                                                     <div class="line">
                                                         <div class="subtitle text-info">Total Data User</div>
                                                     </div>
@@ -278,75 +110,7 @@
                                         </div>
                                         <!-- END WIDGET -->                                        
                                     </li>
-                                    <li>                                        
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile app-widget-highlight">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="icon icon-lg">
-                                                        <span class="icon-database"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-8">                                                    
-                                                    <div class="line">
-                                                        <div class="title">Database Load</div>
-                                                        <div class="subtitle pull-right text-success"><span class="fa fa-check"></span> UP</div>
-                                                    </div>                                        
-                                                    <div class="intval text-left">43.16%</div>
-                                                    <div class="line">
-                                                        <div class="subtitle">4/10 databases used</div>
-                                                    </div>
-                                                </div>
-                                            </div>                                            
-                                        </div>
-                                        <!-- END WIDGET -->                                        
-                                    </li>
-                                    <li>                                        
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile app-widget-highlight">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="icon icon-lg">
-                                                        <span class="icon-inbox text-danger"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-8">                                                    
-                                                    <div class="line">
-                                                        <div class="title">Disk Space</div>
-                                                        <div class="subtitle pull-right text-danger"><span class="fa fa-times"></span> Critical</div>
-                                                    </div>                                        
-                                                    <div class="intval text-left">99.98%</div>
-                                                    <div class="line">
-                                                        <div class="subtitle">234.2GB / 240GB used</div>
-                                                    </div>
-                                                </div>
-                                            </div>                                            
-                                        </div>
-                                        <!-- END WIDGET -->                                        
-                                    </li>
-                                    <li>                                        
-                                        <!-- START WIDGET -->
-                                        <div class="app-widget-tile app-widget-highlight">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="icon icon-lg">
-                                                        <span class="icon-heart-pulse"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-8">                                                    
-                                                    <div class="line">
-                                                        <div class="title">Proccessor</div>
-                                                        <div class="subtitle pull-right text-success"><span class="fa fa-check"></span> Normal</div>
-                                                    </div>                                        
-                                                    <div class="intval text-left">32.5%</div>
-                                                    <div class="line">
-                                                        <div class="subtitle">Intule Cori P7, 3.6Ghz</div>
-                                                    </div>
-                                                </div>
-                                            </div>                                            
-                                        </div>
-                                        <!-- END WIDGET -->                                        
-                                    </li>
+                                    
                                 </ul>
                                 
                             </div>

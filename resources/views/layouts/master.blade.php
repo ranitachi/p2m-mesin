@@ -13,6 +13,9 @@
         <!-- END META SECTION -->
         <!-- CSS INCLUDE -->        
         <link rel="stylesheet" href="{{asset('build/css/styles.css')}}">
+        <link rel="stylesheet" href="{{asset('css/font.monserat.css')}}">
+        <link rel="stylesheet" href="{{asset('css/font.notosans.css')}}">
+        <link rel="stylesheet" href="{{asset('css/font.roboto.css')}}">
         <!-- EOF CSS INCLUDE -->
     </head>
     <body>        

@@ -52,6 +52,15 @@ Route::get('pelatihan-form/{idkat}/{id}', 'MasterpelatihanController@show');
 Route::resource('provinsi', 'ProvinsiController');
 Route::get('provinsi-hapus/{id}', 'ProvinsiController@destroy');
 Route::get('provinsi-data', 'ProvinsiController@data');
+
+/* Batch Pelatihan/Jadwal */
+Route::resource('jadwal-pelatihan', 'BatchpelatihanController');
+Route::get('jadwal-pelatihan-hapus/{id}', 'BatchpelatihanController@destroy');
+Route::get('jadwal-pelatihan-data', 'BatchpelatihanController@data');
+
+Route::get('batch-detail/{id}/{jenis}', 'BatchpelatihanController@detail');
+
+
 /* Kabupaten Kota */
 Route::resource('kabupatenkota', 'KabupatenkotaController');
 Route::get('kabupatenkota-hapus/{id}', 'KabupatenkotaController@destroy');

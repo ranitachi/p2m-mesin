@@ -22900,7 +22900,7 @@ body .row > div[class^='col-'] {
   background: #2D3349;
 }
 .app-navigation.app-navigation-style-default .app-navigation-logo {
-  background: url(../img/logo.png) left center no-repeat #272c40 ;
+  background: url(../img/boooya.png) left center no-repeat #272c40 ;
 }
 .app-navigation.app-navigation-style-default .app-navigation-logo .app-navigation-logo-button {
   background: #252a3c;
@@ -22910,7 +22910,7 @@ body .row > div[class^='col-'] {
   background: #232839;
 }
 .app-navigation.app-navigation-style-default .app-navigation-logo:hover {
-  background: url(../img/logo.png) left center no-repeat #212636;
+  background: url(../img/boooya.png) left center no-repeat #272c40;
 }
 .app-navigation.app-navigation-style-default nav > ul > li.openable > a:after {
   color: #55698A;
@@ -22965,7 +22965,7 @@ body .row > div[class^='col-'] {
   text-shadow: 1px 2px rgba(0, 0, 0, 0.2);
 }
 .app-navigation.app-navigation-style-default.app-navigation-minimized .app-navigation-logo {
-  background-image: url(../img/logo-sm.png);
+  background-image: url(../img/boooya3.png);
 }
 .app-navigation.app-navigation-style-default.app-navigation-minimized nav > ul > li > a > span {
   color: #C5D1CD;

@@ -32,6 +32,19 @@
                                             <a href="{{url('peserta')}}" class="btn btn-xs btn-primary"><i class="fa fa fa-arrow-left"></i>&nbsp;Data Peserta</a>
                                         </div>
                                     </div>
+                                    @if(Session::has('status'))
+                                        <div class="row">            
+                                            <div class="col-md-12" style="padding:0 30px;">
+                                                <div class="alert alert-success alert-icon-block alert-dismissible" role="alert">
+                                                    <div class="alert-icon">
+                                                        <span class="icon-checkmark-circle"></span> 
+                                                    </div>
+                                                    <strong>Success!</strong> {{ Session::get('status') }} 
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="block-content">
                                     <form id="formPeserta" class="form-horizontal" method="POST" action="{{$id==-1 ? url('peserta') : url('peserta/'.$id) }}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -130,7 +143,7 @@
                                                         <label class="col-md-4 control-label">Provinsi</label>
                                                         <div class="col-md-8">
                                                             <select class="s2-select-search form-control" name="peserta_provinsi" onchange="getwilayah(this.value,'kota')">
-                                                                <option>-Provinsi-</option>
+                                                                <option value="0">-Provinsi-</option>
                                                                 @foreach ($prop as $item)
                                                                     @if ($id!=-1)
                                                                         @if ($det->provinsi==$item->id)
@@ -150,7 +163,7 @@
                                                         <label class="col-md-4 control-label">Kabupaten/Kota</label>
                                                         <div class="col-md-8" id="div_kota">
                                                             <select class="s2-select-search form-control" name="peserta_kabupaten_kota" onchange="getwilayah(this.value,'kecamatan')">
-                                                                <option>-Pilih-</option>
+                                                                <option value="0">-Pilih-</option>
                                                                 @if ($id!=-1)
                                                                     @foreach ($kota as $item)    
                                                                         @if ($det->kabupaten_kota==$item->id)
@@ -167,7 +180,7 @@
                                                         <label class="col-md-4 control-label">Kecamatan</label>
                                                         <div class="col-md-8" id="div_kecamatan">
                                                             <select class="s2-select-search form-control" name="peserta_kecamatan" onchange="getwilayah(this.value,'kelurahan')">
-                                                                <option>-Pilih-</option>
+                                                                <option value="0">-Pilih-</option>
                                                                 @if ($id!=-1)
                                                                     @foreach ($kec as $item)    
                                                                         @if ($det->kecamatan==$item->id)
@@ -184,7 +197,7 @@
                                                         <label class="col-md-4 control-label">Kelurahan</label>
                                                         <div class="col-md-8" id="div_kelurahan">
                                                             <select class="s2-select-search form-control" name="peserta_kelurahan">
-                                                                <option>-Pilih-</option>
+                                                                <option value="0">-Pilih-</option>
                                                                 @if ($id!=-1)
                                                                     @foreach ($kel as $item)    
                                                                         @if ($det->kelurahan==$item->id)
@@ -244,8 +257,9 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Asal Perusahaan</label>
                                                         <div class="col-md-8">
-                                                            <select class="s2-select-search form-control" name="perusahaan_perusahaan" onchange="getperusahaan(this.value)">
-                                                                <option>-Perusahaan-</option>
+                                                            <select class="s2-select-search form-control" name="peserta_perusahaan_id" id="perusahaan" onchange="getperusahaan(this.value)">
+                                                                <option value="">-Perusahaan-</option>
+                                                                <option value="-1">-Tambah Perusahaan Baru-</option>
                                                                 @foreach ($perusahaan as $item)
                                                                     @if ($id!=-1)
                                                                         @if ($det->perusahaan_id==$item->id)
@@ -257,21 +271,22 @@
                                                                         <option value="{{$item->id}}">{{$item->nama_perusahaan}}</option>
                                                                         
                                                                     @endif
-                                                                @endforeach          
+                                                                @endforeach    
+
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jabatan Terakhir</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" name="perusahaan_jabatan" class="form-control" value="{{$id==-1 ? '' : $det->jabatan}}" placeholder="Jabatan Terakhir">
+                                                            <input type="text" name="peserta_jabatan" class="form-control" value="{{$id==-1 ? '' : $det->jabatan}}" placeholder="Jabatan Terakhir">
                                                         </div>
                                                     </div>
                                                     <div id="detail">
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Alamat</label>
                                                             <div class="col-md-8">
-                                                                <textarea name="perusahaan_alamat" class="form-control">{{$id==-1 ? '' : $det->alamat}}</textarea>
+                                                                <textarea name="perusahaan_alamat" class="form-control">{{$id==-1 ? '' : $det->perusahaan->alamat}}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -283,13 +298,13 @@
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Telp</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_telp" class="form-control" value="{{$id==-1 ? '' : $det->telp}}" placeholder="Telp">
+                                                                <input type="text" name="perusahaan_telp" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->telp}}" placeholder="Telp">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Fax</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_fax" class="form-control" value="{{$id==-1 ? '' : $det->fax}}" placeholder="Fax">
+                                                                <input type="text" name="perusahaan_fax" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->fax}}" placeholder="Fax">
                                                             </div>
                                                         </div>
                                                         
@@ -297,19 +312,19 @@
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Jenis Usaha</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_jenis_usaha" class="form-control" value="{{$id==-1 ? '' : $det->jenis_usaha}}" placeholder="Jenis Usaha">
+                                                                <input type="text" name="perusahaan_jenis_usaha" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->jenis_usaha}}" placeholder="Jenis Usaha">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Kontak Person (CP)</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_cp" class="form-control" value="{{$id==-1 ? '' : $det->cp}}" placeholder="Kontak Person">
+                                                                <input type="text" name="perusahaan_cp" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->cp}}" placeholder="Kontak Person">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Nomor CP</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_no_cp" class="form-control" value="{{$id==-1 ? '' : $det->no_cp}}" placeholder="Nomor CP">
+                                                                <input type="text" name="perusahaan_no_cp" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->no_cp}}" placeholder="Nomor CP">
                                                             </div>
                                                         </div>
                                                     
@@ -317,20 +332,20 @@
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Email CP</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_email_cp" class="form-control" value="{{$id==-1 ? '' : $det->email_cp}}" placeholder="Email CP">
+                                                                <input type="text" name="perusahaan_email_cp" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->email_cp}}" placeholder="Email CP">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Bagian CP</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_bagian_cp" class="form-control" value="{{$id==-1 ? '' : $det->bagian_cp}}" placeholder="Bagian CP">
+                                                                <input type="text" name="perusahaan_bagian_cp" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->bagian_cp}}" placeholder="Bagian CP">
                                                             </div>
                                                         </div>
                                                     </div>
                                                             <div class="form-group" style="margin-top:10px;">
                                                                 <label class="col-md-4 control-label">Keterangan Lain </label>
                                                                 <div class="col-md-8">
-                                                                    <textarea name="peserta_desc" class="form-control">{{$id==-1 ? '' : $det->desc}}</textarea>
+                                                                    <textarea name="peserta_desc" class="form-control">{{$id==-1 ? '' : $det->perusahaan->desc}}</textarea>
                                                                 </div>
                                                             </div>
                                                     
@@ -363,25 +378,22 @@
 <script type="text/javascript" src="{{asset('build/js/vendor/multiselect/jquery.multi-select.js')}}"></script>
 <script>
     $(document).ready(function(){
+        setTimeout(function(){
+            $('div.alert-success').fadeOut();
+        },3000);
+
         $('#btnSimpan').on('click',function(){
-            var kode=$('#kode').val();
             var nama=$('#nama').val();
-            var email=$('#email').val();
-            if(kode=='')
-            {
-                var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Kode NIP Harus Diisi,<br>Jika Tidak Ada Isi Dengan 0';
-                pesanNoty(ps,'error');
-                $('#kode').focus();
-            }
-            else if(nama=='')
+            var perusahaan=$('#perusahaan').val();
+            if(nama=='')
             {
                 var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Nama Peserta Harus Diisi';
                 pesanNoty(ps,'error');
                 $('#nama').focus();
             }
-            else if(email=='')
+            else if(perusahaan=='')
             {
-                var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Email Peserta Harus Diisi';
+                var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Asal Perusahaan Harus Dipilih';
                 pesanNoty(ps,'error');
                 $('#email').focus();
             }
@@ -398,9 +410,17 @@
     });
     function getperusahaan(id)
     {
-        $('#detail').load('{{url("by-perusahaan")}}/'+id, function(){
-            $('.s2-select-search').select2();
-        });
+        if(id==-1)
+        {
+            location.href='{{url("perusahaan/-1")}}';
+        }
+        else
+        {
+
+            $('#detail').load('{{url("by-perusahaan")}}/'+id, function(){
+                $('.s2-select-search').select2();
+            });
+        }
     }
 </script>
 @endsection

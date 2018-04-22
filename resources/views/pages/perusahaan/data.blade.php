@@ -34,10 +34,10 @@
         </tbody>
     </table>
 </div>
-                                    
 <style>
     .app .table tr td
     {
         padding:5px 10px;
+        font-size:11px !important;
     }
 </style>

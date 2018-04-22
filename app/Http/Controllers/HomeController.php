@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Model\Masterpeserta;
+use App\Model\Masterperusahaan;
+use App\Model\Masterpelatihan;
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -16,17 +19,20 @@ class HomeController extends Controller
         //$this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('home');
     }
     public function utama()
     {
-        return view('utama');
+        $pelatihan=Masterpelatihan::where('flag','=','1')->get();
+        $peserta=Masterpeserta::all();
+        $perusahaan=Masterperusahaan::all();
+        $user=User::all();
+        return view('utama')
+            ->with('pelatihan',$pelatihan)
+            ->with('peserta',$peserta)
+            ->with('perusahaan',$perusahaan)
+            ->with('user',$user);
     }
 }

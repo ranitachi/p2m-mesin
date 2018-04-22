@@ -35,6 +35,7 @@
                                     <div class="block-content">
                                     <form id="formPerusahaan" class="form-horizontal" method="POST" action="{{$id==-1 ? url('perusahaan') : url('perusahaan/'.$id) }}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="hidden" name="url" value="{{ URL::previous() }}">
                                         @if ($id!=-1)
                                             {{ method_field('PATCH') }}
                                         @endif
@@ -121,7 +122,7 @@
                                                         <label class="col-md-4 control-label">Provinsi</label>
                                                         <div class="col-md-8">
                                                             <select class="s2-select-search form-control" name="provinsi" onchange="getwilayah(this.value,'kota')">
-                                                                <option>-Provinsi-</option>
+                                                                <option value="0">-Provinsi-</option>
                                                                 @foreach ($prop as $item)
                                                                     @if ($id!=-1)
                                                                         @if ($det->provinsi==$item->id)
@@ -141,7 +142,7 @@
                                                         <label class="col-md-4 control-label">Kabupaten/Kota</label>
                                                         <div class="col-md-8" id="div_kota">
                                                             <select class="s2-select-search form-control" name="kabupaten_kota" onchange="getwilayah(this.value,'kecamatan')">
-                                                                <option>-Pilih-</option>
+                                                                <option value="0">-Pilih-</option>
                                                                 @if ($id!=-1)
                                                                     @foreach ($kota as $item)    
                                                                         @if ($det->kabupaten_kota==$item->id)
@@ -158,7 +159,7 @@
                                                         <label class="col-md-4 control-label">Kecamatan</label>
                                                         <div class="col-md-8" id="div_kecamatan">
                                                             <select class="s2-select-search form-control" name="kecamatan" onchange="getwilayah(this.value,'kelurahan')">
-                                                                <option>-Pilih-</option>
+                                                                <option value="0">-Pilih-</option>
                                                                 @if ($id!=-1)
                                                                     @foreach ($kec as $item)    
                                                                         @if ($det->kecamatan==$item->id)
@@ -175,7 +176,7 @@
                                                         <label class="col-md-4 control-label">Kelurahan</label>
                                                         <div class="col-md-8" id="div_kelurahan">
                                                             <select class="s2-select-search form-control" name="kelurahan">
-                                                                <option>-Pilih-</option>
+                                                                <option value="0">-Pilih-</option>
                                                                 @if ($id!=-1)
                                                                     @foreach ($kel as $item)    
                                                                         @if ($det->kelurahan==$item->id)
