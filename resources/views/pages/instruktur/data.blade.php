@@ -10,20 +10,37 @@
                 <th>Email</th>
                 <th>Telp/HP</th>
                 <th>Alamat</th>
-                <th>Status</th>
                 <th>#</th>
             </tr>
         </thead>                                    
         <tbody>
             @foreach ($instruktur as $key=>$item)
+            @php
+                $nama=$item->nama;
+                if($item->gelar_s3!='')
+                {
+                    $nama.=', '.$item->gelar_s3.'.';
+                }
+                if($item->gelar_s1!='')
+                {
+                    $nama.=', '.$item->gelar_s1.'.';
+                }
+                if($item->gelar_s2!='')
+                {
+                    $nama.=', '.$item->gelar_s2.'.';
+                }
+                if($item->gelar_lain!='')
+                {
+                    $nama.=', '.$item->gelar_lain;
+                }
+            @endphp
                 <tr>
                     <td class="text-center">{{(++$key)}}</td>    
                     <td class="text-center">{{$item->nip}}</td>    
-                    <td class="text-left">{{$item->nama}}</td>    
+                    <td class="text-left">{{$nama}}</td>    
                     <td class="text-left">{{$item->email}}</td>    
                     <td class="text-center">{{$item->hp}}</td>    
                     <td class="text-center">{{$item->alamat}}</td>    
-                    <td class="text-center">{!!$item->flag ==1 ? '<span class="label label-success">Aktif</span>':'<span class="label label-warning">Tidak Aktif</span>'!!}</td>    
                     <td class="text-center">
                         <a href="{{url('instruktur/'.$item->id)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="Edit Data"><i class="fa fa-edit" ></i></a> 
                            

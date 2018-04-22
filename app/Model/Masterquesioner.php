@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Masterquesioner extends Model
 {
     use SoftDeletes;
-    private $table = 'master_quisioner';
-    private $protected = 'deleted_at';
-    private $fillable = ['question','flag','created_at','updated_at'];
+    protected $table = 'master_quesioner';
+    protected $protected = 'deleted_at';
+    protected $fillable = ['question','flag','kategori','created_at','updated_at'];
 
 }
 

@@ -55,15 +55,39 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Kode NIP</label>
+                                                        <label class="col-md-4 control-label">NIP</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" name="kode" id="kode" class="form-control" value="{{$id==-1 ? '' : $det->kode}}" placeholder="Kode NIP">
+                                                            <input type="text" name="nip" id="kode" class="form-control" value="{{$id==-1 ? '' : $det->nip}}" placeholder="NIP">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Nama</label>
+                                                        <label class="col-md-4 control-label">Nama Instruktur</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" name="nama" id="nama" class="form-control" value="{{$id==-1 ? '' : $det->nama}}" placeholder="Nama Karyawan">
+                                                            <input type="text" name="nama" id="nama" class="form-control" value="{{$id==-1 ? '' : $det->nama}}" placeholder="Nama Instruktur">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">Gelar S1</label>
+                                                        <div class="col-md-8">
+                                                            <input type="text" name="gelar_s1" id="gelar_s1" class="form-control" value="{{$id==-1 ? '' : $det->gelar_s1}}" placeholder="Gelar S1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">Gelar S2</label>
+                                                        <div class="col-md-8">
+                                                            <input type="text" name="gelar_s2" id="gelar_s2" class="form-control" value="{{$id==-1 ? '' : $det->gelar_s2}}" placeholder="Gelar S2">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">Gelar S3</label>
+                                                        <div class="col-md-8">
+                                                            <input type="text" name="gelar_s3" id="gelar_s3" class="form-control" value="{{$id==-1 ? '' : $det->gelar_s3}}" placeholder="Gelar S3">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">Gelar Lain</label>
+                                                        <div class="col-md-8">
+                                                            <input type="text" name="gelar_lain" id="gelar_lain" class="form-control" value="{{$id==-1 ? '' : $det->gelar_lain}}" placeholder="Gelar Lain">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -72,6 +96,10 @@
                                                             <input type="email" name="email" id="email" class="form-control" value="{{$id==-1 ? '' : $det->email}}" placeholder="Email">
                                                         </div>
                                                     </div>
+                                                    
+                                                    
+                                                </div>
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Telp/HP</label>
                                                         <div class="col-md-8">
@@ -90,8 +118,6 @@
                                                             
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Agama</label>
                                                         <div class="col-md-8">
@@ -121,7 +147,7 @@
                                                         <label class="col-md-4 control-label">Tanggal Lahir</label>
                                                         <div class="col-md-8">
                                                             <div class="input-group bs-datepicker">
-                                                                <input type="text" class="form-control" placeholder="dd/mm/yyyy" name="tanggal_lahir" value="{{$id==-1 ? '' : date('d/m/Y',strtotime($det->tanggal_lahir))}}">
+                                                                <input type="text" class="form-control" placeholder="dd/mm/yyyy" name="tanggal_lahir" value="{{$id==-1 ? '' : ($det->tanggal_lahir!='' ? date('d/m/Y',strtotime($det->tanggal_lahir)) : '')}}">
                                                                 <span class="input-group-addon">
                                                                     <span class="icon-calendar-full"></span>
                                                                 </span>
@@ -135,18 +161,7 @@
                                                             <textarea name="alamat" class="form-control">{{$id==-1 ? '' : $det->alamat}}</textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-4 control-label">Status Aktif</label>
-                                                        <div class="col-md-8">
-                                                            <div class="app-radio primary inline"> 
-                                                                <label><input type="radio" name="flag" value="1" {{$id==-1 ? '' : ($det->flag==1 ? 'checked="checked"' : '')}}> Aktif</label> 
-                                                            </div>
-                                                            <div class="app-radio primary inline"> 
-                                                                <label><input type="radio" name="flag" value="0" {{$id==-1 ? '' : ($det->flag==0 ? 'checked="checked"' : '')}}> Non Aktif</label> 
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
 

@@ -29,8 +29,11 @@ class MasterinstrukturController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
-        list($tg,$bl,$th)=explode('/',$data['tanggal_lahir']);
-        $data['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
+        if($data['tanggal_lahir']!='')
+        {
+            list($tg,$bl,$th)=explode('/',$data['tanggal_lahir']);
+            $data['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
+        }
         
         $create = Masterinstruktur::create($data);
         return redirect('instruktur')->with('status','Data Instruktur Baru Berhasil di Simpan');
@@ -40,17 +43,20 @@ class MasterinstrukturController extends Controller
     public function update(Request $request,$id)
     {
         $data=$request->all();
-        list($tg,$bl,$th)=explode('/',$data['tanggal_lahir']);
-        $data['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
+        if($data['tanggal_lahir']!='')
+        {
+            list($tg,$bl,$th)=explode('/',$data['tanggal_lahir']);
+            $data['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
+        }
         
         $update = Masterinstruktur::find($id)->update($data);
-        return redirect('instruktur')->with('status','Data Instruktur Baru Berhasil di Edit');
+        return redirect('instruktur')->with('status','Data Instruktur Berhasil di Edit');
 
     }
 
     public function destroy($id)
     {
         $peg=Masterinstruktur::find($id)->delete();
-        return redirect('instruktur')->with('status','Data Instruktur Baru Berhasil di Hapus');
+        return redirect('instruktur')->with('status','Data Instruktur Berhasil di Hapus');
     }
 }

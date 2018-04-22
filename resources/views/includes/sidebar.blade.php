@@ -19,15 +19,16 @@
                                     <li><a href="{{url('pelatihan')}}"><span class="nav-icon-hexa">Jp</span> Jenis Pelatihan</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{url('user')}}" target="_blank"><span class="nav-icon-hexa">Mu</span> Manajemen User</a></li>
                             <li><a href="{{url('jadwal-pelatihan')}}"><span class="nav-icon-hexa">Mj</span> Manajemen Jadwal</a></li>
+                            <li><a href="{{url('peserta')}}"><span class="nav-icon-hexa">Mp</span> Manajemen Peserta</a></li>
+                            <li><a href="{{url('user')}}" target="_blank"><span class="nav-icon-hexa">Mu</span> Manajemen User</a></li>
                             <li>
                                 <a href="#"><span class="nav-icon-hexa">Md</span> Master Data</a>
                                 <ul>                                
                                     <li><a href="{{url('karyawan')}}"><span class="nav-icon-hexa">Dk</span> Data Karyawan</a></li>
                                     <li><a href="{{url('instruktur')}}"><span class="nav-icon-hexa">Di</span> Data Instruktur</a></li>                
                                     <li><a href="{{url('perusahaan')}}"><span class="nav-icon-hexa">Dp</span> Data Perusahaan </a></li>
-                                    <li><a href="{{url('quisioner')}}"><span class="nav-icon-hexa">Dq</span> Data Questioner</a></li>
+                                    <li><a href="{{url('quisioner')}}"><span class="nav-icon-hexa">Dq</span> Data Quisioner</a></li>
                                     
                                 </ul>
                             </li> 

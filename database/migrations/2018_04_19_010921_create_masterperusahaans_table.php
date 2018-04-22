@@ -21,12 +21,14 @@ class CreateMasterperusahaansTable extends Migration
             $table->integer('provinsi')->default(0);
             $table->integer('kabupaten_kota')->default(0);
             $table->integer('kecamatan')->default(0);
-            $table->integer('kelurahan')->default(0);
+            $table->bigInteger('kelurahan')->default(0);
             $table->integer('kode_pos')->default(0);
             $table->string('telp')->nullable();
             $table->string('email')->nullable();
             $table->string('fax')->nullable();
             $table->string('cp')->nullable();
+            $table->string('no_cp')->nullable();
+            $table->string('email_cp')->nullable();
             $table->string('bagian_cp')->nullable();
             $table->string('jenis_usaha')->nullable();
             $table->text('desc')->nullable();

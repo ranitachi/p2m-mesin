@@ -29,8 +29,11 @@ class MasteregawaiController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
-        list($tg,$bl,$th)=explode('/',$data['tanggal_lahir']);
-        $data['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
+        if($data['tanggal_lahir']!='')
+        {
+            list($tg,$bl,$th)=explode('/',$data['tanggal_lahir']);
+            $data['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
+        }
         
         $create = Masterpegawai::create($data);
         return redirect('karyawan')->with('status','Data Karyawan Baru Berhasil di Simpan');
@@ -40,17 +43,20 @@ class MasteregawaiController extends Controller
     public function update(Request $request,$id)
     {
         $data=$request->all();
-        list($tg,$bl,$th)=explode('/',$data['tanggal_lahir']);
-        $data['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
+        if($data['tanggal_lahir']!='')
+        {
+            list($tg,$bl,$th)=explode('/',$data['tanggal_lahir']);
+            $data['tanggal_lahir']=$th.'-'.$bl.'-'.$tg;
+        }
         
         $update = Masterpegawai::find($id)->update($data);
-        return redirect('karyawan')->with('status','Data Karyawan Baru Berhasil di Edit');
+        return redirect('karyawan')->with('status','Data Karyawan Berhasil di Edit');
 
     }
 
     public function destroy($id)
     {
         $peg=Masterpegawai::find($id)->delete();
-        return redirect('karyawan')->with('status','Data Karyawan Baru Berhasil di Hapus');
+        return redirect('karyawan')->with('status','Data Karyawan Berhasil di Hapus');
     }
 }

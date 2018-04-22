@@ -3,24 +3,9 @@
     <title>Data Karyawan :: P2M Departemen Teknik Mesin FT-UI</title> 
 @endsection
 @section('konten')
-    <div class="app-heading app-heading-bordered app-heading-page">
-                        <div class="icon icon-lg">
-                            <span class="icon-home"></span>
-                        </div>
-                        <div class="title">
-                            <h1>P2M - Departemen Mesin </h1>
-                            <p>Fakultas Teknik Universitas Indonesia</p>
-                        </div>               
-                        <!--
-                        <div class="heading-elements">
-                            <a href="#" class="btn btn-danger" id="page-like"><span class="app-spinner loading"></span> loading...</a>
-                            <a href="https://themeforest.net/item/boooya-revolution-admin-template/17227946?ref=aqvatarius&license=regular&open_purchase_for_item_id=17227946" class="btn btn-success btn-icon-fixed"><span class="icon-text">$24</span> Purchase</a>
-                        </div>
-                        -->
-                    </div>
-                    <div class="app-heading-container app-heading-bordered bottom">
+    <div class="app-heading-container app-heading-bordered bottom">
                         <ul class="breadcrumb">
-                            <li class="active"><a href="{{url('/')}}">Beranda</a></li>                                                     
+                            <li class="active"><a href="{{url('/')}}"><i class="fa fa-home"></i>&nbsp;Beranda</a></li>                                                    
                             <li class="active"><a href="#">Data Karyawan</a></li>                                                     
                           
                         </ul>
@@ -45,14 +30,14 @@
                                             <a href="{{url('karyawan/-1')}}" class="btn btn-xs btn-primary"><i class="fa fa-plus-circle"></i>&nbsp;Tambah Data</a>
                                         </div>
                                     </div>
-                                    @if(Session::has(''))
+                                    @if(Session::has('status'))
                                         <div class="row">            
                                             <div class="col-md-12" style="padding:0 30px;">
                                                 <div class="alert alert-success alert-icon-block alert-dismissible" role="alert">
                                                     <div class="alert-icon">
                                                         <span class="icon-checkmark-circle"></span> 
                                                     </div>
-                                                    <strong>Success!</strong> {{ Session::get('') }} 
+                                                    <strong>Success!</strong> {{ Session::get('status') }} 
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span></button>
                                                 </div>
                                             </div>

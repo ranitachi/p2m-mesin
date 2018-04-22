@@ -16,6 +16,7 @@ class CreateMasterquesionersTable extends Migration
         Schema::create('master_quesioner', function (Blueprint $table) {
             $table->increments('id');
             $table->string('question')->nullable();
+            $table->string('kategori')->nullable();
             $table->integer('flag')->default(1);
             $table->timestamps();
             $table->softdeletes();

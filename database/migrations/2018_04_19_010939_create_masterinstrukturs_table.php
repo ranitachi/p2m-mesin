@@ -21,6 +21,7 @@ class CreateMasterinstruktursTable extends Migration
             $table->string('gelar_s1')->nullable();
             $table->string('gelar_s2')->nullable();
             $table->string('gelar_s3')->nullable();
+            $table->string('gelar_lain')->nullable();
             $table->text('alamat')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();

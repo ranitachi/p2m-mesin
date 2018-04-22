@@ -21,3 +21,4 @@
         <script type="text/javascript" src="{{asset('build/js/app_demo.js')}}"></script>
         <!-- END APP SCRIPTS -->
         <script type="text/javascript" src="{{asset('build/js/app_demo_dashboard.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/autoNumeric.js')}}"></script>

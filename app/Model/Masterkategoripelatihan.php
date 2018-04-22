@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Masterkategoripelatihan extends Model
 {
     use SoftDeletes;
-    private $table = 'master_kategori_pelatihan';
-    private $protected = 'deleted_at';
-    private $fillable = ['kategori','desc','flag','created_at','updated_at'];
+    protected $table = 'master_kategori_pelatihan';
+    protected $protected = 'deleted_at';
+    protected $fillable = ['kategori','desc','flag','created_at','updated_at'];
 }
 

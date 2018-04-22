@@ -27,6 +27,7 @@
                     @include('includes.sidebar')
                    <div class="app-content app-sidebar-left">
                     @include('includes.navbar')
+
                     @yield('konten')
                    </div>
                    
@@ -36,13 +37,7 @@
             <!-- END APP CONTAINER -->
                         
             <!-- START APP FOOTER -->
-            <div class="app-footer app-footer-default" id="footer">
-              
-               
-                <div class="app-footer-line darken">                
-                    <div class="copyright wide text-center">&copy; 2018 P2M Departemen Mesin. Fakultas Teknik Universitas Indonesia</div>                
-                </div>
-            </div>
+            
             <!-- END APP FOOTER -->
             <!-- START APP SIDEPANEL -->
             @include('includes.sidepanel')
@@ -51,7 +46,13 @@
             <!-- APP OVERLAY -->
             <div class="app-overlay"></div>
             <!-- END APP OVERLAY -->
-        </div>        
+            
+        </div>  
+        <div class="app-footer app-footer-default" id="footer">
+            <div class="app-footer-line darken">                
+                <div class="copyright wide text-right">&copy; 2018 P2M Departemen Mesin. Fakultas Teknik Universitas Indonesia</div>                
+            </div>
+        </div>
         <!-- END APP WRAPPER -->                
         
         <!--

@@ -22583,17 +22583,31 @@ body .row > div[class^='col-'] {
     display: none;
   }
 }
-.app .app-footer {
+.app .app-footer, {
+  float: left;
+  width: 100%;
+  position: absolute;
+  bottom:0;
+  /* z-index:100000; */
+}
+.app-footer {
   float: left;
   width: 100%;
   position: relative;
+  bottom:0;
+  z-index:2;
+  padding:10px 20px 10px;
+  text-align:right;
+
 }
-.app .app-footer.app-footer-default {
+.app .app-footer.app-footer-default,
+.app-footer.app-footer-default {
   background: #252a3c;
   color: #80909A;
   font-size: 13px;
 }
-.app .app-footer.app-footer-default a {
+.app .app-footer.app-footer-default a,
+.app-footer.app-footer-default a {
   color: #9ca9b1;
 }
 .app .app-footer.app-footer-default .btn.btn-primary {

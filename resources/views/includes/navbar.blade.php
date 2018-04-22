@@ -10,7 +10,7 @@
                         <ul class="app-header-buttons pull-right">
                             <li>
                                 <div class="contact contact-rounded contact-bordered contact-lg contact-ps-controls">
-                                    <img src="assets/images/users/user_1.jpg" alt="John Doe">
+                                    <img src="{{asset('build/assets/images/users/user_1.jpg')}}" alt="John Doe">
                                     <div class="contact-container">
                                         <a href="#">Lorem Ipsum</a>
                                         <span>Administrator</span>
