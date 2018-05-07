@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Batchpelatihan;
 use App\Model\BatchIntruktur;
+use App\Model\BatchParticipant;
 use App\Model\Masterpelatihan;
 use App\Model\Masterinstruktur;
 use App\Model\Masterpegawai;
+use App\Model\Masterpeserta;
+use App\Model\Skedulpelatihan;
+use App\Skedulpelatihandetail;
+use App\Model\Materi;
+use App\Model\Absensipelatihan;
+use App\Model\Absensipelatihandetail;
+
+use Carbon;
 class BatchpelatihanController extends Controller
 {
     public function index()
@@ -132,10 +141,299 @@ class BatchpelatihanController extends Controller
     {
         $jadwal=Batchpelatihan::find($id);
         $pelatihan=Masterpelatihan::where('id','=',$jadwal->pelatihan_id)->with('kategori')->get()->first();
+        $dpeserta=BatchParticipant::where('batch_id','=',$id)->with('peserta')->get();
+        $peserta=Masterpeserta::all();
+        $materi=Materi::where('pelatihan_id','=',$jadwal->pelatihan_id)->with('pelatihan')->get();
+        $pegawai=Masterpegawai::all();
+        $jns=strtok($jenis,'__');
+
+        $idjadwal=str_replace($jns.'__','',$jenis);
+        $skedule=Skedulpelatihandetail::select('*','skedul_pelatihan_detail.id as idp')
+            ->join('skedul_pelatihan','skedul_pelatihan.id','=','skedul_pelatihan_detail.skedul_id')
+            ->where('skedul_pelatihan_detail.batch_id','=',$id)
+            ->with('batch')
+            ->with('materi')
+            ->with('pegawai')
+            ->orderBy('skedul_pelatihan.date', 'ASC')
+            ->orderBy('skedul_pelatihan_detail.start_time','ASC')->get();
+        
+        $skd=array();
+        $detjadwal=$d_jadwal=array();
+        foreach($skedule as $k => $v)
+        {
+            $skd[$v->date][]=$v;
+            $detjadwal[$v->idp]=$v;
+        }
+        
+        $absensi=Absensipelatihandetail::with('absensi')->with('peserta')->with('skedul')->get();
+        $absn=array();
+        foreach($absensi as $k =>$v)
+        {
+            $absn[$v->absensi_id][]=$v;
+        }
+
+        // if($idjadwal!='')
+        // {
+            if($idjadwal!=0)
+            {
+                $d_jadwal=$detjadwal[$idjadwal];
+            }
+        // }
+        
         return view('pages.jadwal.batch.index')
             ->with('id',$id)
+            ->with('absen',$absn)
+            ->with('skd',$skd)
+            ->with('pegawai',$pegawai)
+            ->with('detjadwal',$d_jadwal)
+            ->with('materi',$materi)
             ->with('jadwal',$jadwal)
+            ->with('idjadwal',$idjadwal)
+            ->with('peserta',$peserta)
+            ->with('dpeserta',$dpeserta)
             ->with('pelatihan',$pelatihan)
-            ->with('jenis',$jenis);
+            ->with('jenis',$jns);
+    }
+
+    public function peserta_add(Request $request,$idbatch)
+    {
+        // echo '<pre>';
+        // print_r($request->all());
+        // echo '</pre>';
+        $data=0;
+        foreach($request->peserta_id as $k=>$v)
+        {
+            if($v!='')
+            {
+                $participant=new Batchparticipant;
+                $participant->batch_id=$idbatch;
+                $participant->participant_id=$v;
+                $participant->active=1;
+                $participant->created_at=date('Y-m-d H:i:s');
+                $participant->updated_at=date('Y-m-d H:i:s');
+                $participant->save();
+                $data=1;
+            }
+        }
+        if($data==1)
+        {
+            $ps='Data Peserta Pelatihan Berhasil Ditambahkan';
+            $type='success';
+        }
+        else
+        {
+            $ps='Data Peserta Pelatihan Tidak Berhasil Ditambahkan';
+            $type='fail';
+        }
+        return redirect('batch-detail/'.$idbatch.'/peserta')->with($type,$ps);
+    }
+    public function peserta_hapus($id,$idbatch)
+    {
+        $del=Batchparticipant::find($id)->delete();
+        if($del)
+        {
+            $ps='Data Peserta Pelatihan Berhasil Dihapus';
+            $type='success';
+        }
+        else
+        {
+            $ps='Data Peserta Pelatihan Tidak Berhasil Dihapus';
+            $type='fail';
+        }
+        return redirect('batch-detail/'.$idbatch.'/peserta')->with($type,$ps);
+    }
+
+    public function jadwal_add(Request $request,$idbatch,$id)
+    {
+        $skedul=$detail=array();
+        foreach($request->all() as $k =>$v)
+        {
+            $tbl=strtok($k,'__');
+            $kolom=str_replace($tbl.'__','',$k);
+            if($tbl=='skedul')
+            {
+                $skedul[$kolom]=$v;
+            }
+            elseif($tbl=='detail')
+            {
+                $detail[$kolom]=$v;
+            }
+        }
+        if($skedul['date']!='')
+        {
+            list($tg,$bl,$th)=explode('/',$skedul['date']);
+            $skedul['date']=$date=$th.'-'.$bl.'-'.$tg;
+            $timestamp = strtotime($date);
+            $day = date('D', $timestamp);
+            $skedul['weekday']=$day;
+        }
+        $detail['batch_id']=$skedul['batch_id']=$idbatch;
+    
+        $cek=Skedulpelatihan::where('batch_id','=',$idbatch)->where('date','like',$date)->first();
+        if(count($cek)==0)
+        {
+            $skd=Skedulpelatihan::create($skedul);
+            $skedul_id=$skd->id;
+        }
+        else
+        {
+            if($id!=-1)
+            {
+                $cek->update($skedul);
+            }
+            $skedul_id=$cek->id;
+        }
+
+        $detail['skedul_id']=$skedul_id;
+        if($id!=-1)
+        {
+            $edit=Skedulpelatihandetail::find($id)->update($detail);
+            if($edit)
+            {
+                $ps='Data Jadwal Pelatihan Berhasil Di Edit';
+                $type='success';
+            }
+            else
+            {
+                $ps='Data Jadwal Pelatihan Tidak Berhasil Di Edit';
+                $type='fail';
+            }
+        }
+        else
+        {
+            $add=Skedulpelatihandetail::create($detail);
+            if($add)
+            {
+                $ps='Data Jadwal Pelatihan Berhasil Ditambahkan';
+                $type='success';
+            }
+            else
+            {
+                $ps='Data Jadwal Pelatihan Tidak Berhasil Ditambahkan';
+                $type='fail';
+            }
+        }
+
+        
+        return redirect('batch-detail/'.$idbatch.'/jadwal')->with($type,$ps);
+        // echo '<pre>';
+        // print_r($skedul);
+        // print_r($detail);
+        // echo '</pre>';
+    }
+
+    public function jadwal_hapus($id,$idbatch)
+    {
+        $del=Skedulpelatihandetail::find($id)->delete();
+        if($del)
+        {
+            $ps='Jadwal Pelatihan Berhasil Dihapus';
+            $type='success';
+        }
+        else
+        {
+            $ps='Jadwal Pelatihan Tidak Berhasil Dihapus';
+            $type='fail';
+        }
+        return redirect('batch-detail/'.$idbatch.'/jadwal')->with($type,$ps);
+    }
+    public function absensi_detail($idabsensi)
+    {
+        $det_abs=Absensipelatihandetail::where('absensi_id','=',$idabsensi)->with('peserta')->get();
+        echo '<h3>Data Kehadiran Peserta</h3>';
+        echo '<h5>Tanggal : '.date('d-m-Y',strtotime($det_abs[0]->skedul->date)).'</h5>';
+        echo '<table class="table table-striped table-bordered" id="">
+                        <thead>
+                            <tr>
+                                <th style="width:40px;">No</th>
+                                <th>Nama Peserta</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>                                    
+                        <tbody>';
+            foreach($det_abs as $k => $v)
+            {
+                echo '<tr>';
+                echo '<td>'.(++$k).'</td>';
+                echo '<td>'.($v->peserta->nama_lengkap).'</td>';
+                echo '<td>'.ucwords($v->status).'</td>';
+                echo '</tr>';
+            }
+        echo '</tbody></table>';
+    }
+    public function absensi_add(Request $request,$idbatch,$id)
+    {
+        list($tg,$bl,$th)=explode('/',$request->skedul__date);
+        $date=$th.'-'.$bl.'-'.$tg;
+        // $date=date('Y-m-d',strtotime($request->skedul__date));
+        // echo $date;
+        $skedul=Skedulpelatihan::where('batch_id','=',$idbatch)->where('date','like',$date)->first();
+        $absensi['skedul_id']=$skedul->id;
+        $absensi['batch_id']=$idbatch;
+        $absensi['date']=$date;
+        $absensi['desc']=$request->desc;
+        $abs=Absensipelatihan::create($absensi);
+        $abs_id=$abs->id;
+
+        $det_abs=Absensipelatihandetail::where('absensi_id','=',$abs_id)->forceDelete();
+        $simpan=0;
+        foreach($request->status as $idpeserta => $status)
+        {
+            $abs_det=new Absensipelatihandetail;
+            $abs_det->absensi_id=$abs_id;	
+            $abs_det->peserta_id=$idpeserta;	
+            $abs_det->skedul_id=$skedul->id;
+            $abs_det->status=$status;
+            $abs_det->save();
+            $simpan=1;
+        }	
+
+            if($simpan==1)
+            {
+                $ps='Data Jadwal Pelatihan Berhasil Ditambahkan';
+                $type='success';
+            }
+            else
+            {
+                $ps='Data Jadwal Pelatihan Tidak Berhasil Ditambahkan';
+                $type='fail';
+            }
+            return redirect('batch-detail/'.$idbatch.'/absensi')->with($type,$ps);
+    }
+
+    public function absensi_hapus($id,$idbatch)
+    {
+        Absensipelatihandetail::where('absensi_id','=',$id)->delete();
+        $del=Absensipelatihan::find($id)->delete();
+        if($del)
+        {
+            $ps='Data Absensi Pelatihan Berhasil Dihapus';
+            $type='success';
+        }
+        else
+        {
+            $ps='Data Absensi Pelatihan Tidak Berhasil Dihapus';
+            $type='fail';
+        }
+        return redirect('batch-detail/'.$idbatch.'/absensi')->with($type,$ps);
+    }
+
+    public function absensi_instrktur($id)
+    {
+        $instruktur=BatchIntruktur::where('batch_pelatihan_id',$id)->with('instruktur')->get();
+        $pelatihan=Batchpelatihan::find($id);
+        return view('pages.jadwal.batch.berkas.absensi-instruktur')
+            ->with('instruktur',$instruktur)
+            ->with('pelatihan',$pelatihan)
+            ->with('id',$id);
+    }
+    public function absensi_peserta($id)
+    {
+        $peserta=BatchParticipant::where('batch_id',$id)->with('peserta')->get();
+        $pelatihan=Batchpelatihan::find($id);
+        return view('pages.jadwal.batch.berkas.absensi-peserta')
+            ->with('peserta',$peserta)
+            ->with('pelatihan',$pelatihan)
+            ->with('id',$id);
     }
 }

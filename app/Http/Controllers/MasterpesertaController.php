@@ -22,6 +22,25 @@ class MasterpesertaController extends Controller
     public function show($id)
     {
         $det=$data=array();
+        $kd=Masterpeserta::max('kode');
+        if(is_null($kd))
+        {
+            $kdd='0001';
+        }
+        else
+        {
+            $kdb=((int)substr($kd,-4) + 1);
+            if($kdb<10)
+                $kdd='000'.$kdb;
+            elseif($kdb>=10 && $kdb<100)
+                $kdd='00'.$kdb;
+            elseif($kdb>=100 && $kdb<1000)
+                $kdd='0'.$kdb;
+            else
+                $kdd=$kdb;
+            // $kdd=$kdb;
+        }
+        $kode=date('Ymd').$kdd;
         $agama=array('Islam','Katolik','Protestan','Budha','Hindu','Konghucu','Lainnya');
         $perusahaan=Masterperusahaan::all();
         $prop=Provinsi::all();
@@ -36,9 +55,11 @@ class MasterpesertaController extends Controller
             $kota=Kabupatenkota::where('provinsi_id','=',$det->provinsi)->get();
             $kec=Kecamatan::where('kabupatenkota_id','=',$det->kabupaten_kota)->get();
             $kel=Kelurahan::where('kecamatan_id','=',$det->kecamatan)->get();
+            $kode=$det->kode;
         }
         return view('pages.peserta.form')
             ->with('det',$det)
+            ->with('kode',$kode)
             ->with('data',$data)
             ->with('agama',$agama)
             ->with('perusahaan',$perusahaan)
@@ -95,7 +116,18 @@ class MasterpesertaController extends Controller
                 $pdata->save();
             }
         }
-        $pers=Masterperusahaan::find($request->peserta_perusahaan_id)->update($perusahaan);
+        if(isset($request->peserta_perusahaan_id))
+        {
+            if($request->peserta_perusahaan_id!=-2)
+            {
+
+                $pers=Masterperusahaan::find($request->peserta_perusahaan_id);
+                if(count($pers)!=0)
+                {
+                    $pers->update($perusahaan);
+                }
+            }
+        }
         return redirect('peserta')->with('status','Data Peserta Baru Berhasil di Simpan');
     }
     public function update(Request $request,$id)
@@ -144,7 +176,13 @@ class MasterpesertaController extends Controller
                 $pdata->save();
             }
         }
-        $pers=Masterperusahaan::find($request->peserta_perusahaan_id)->update($perusahaan);
+        if(isset($request->peserta_perusahaan_id))
+        {
+            if($request->peserta_perusahaan_id!=-2)
+            {
+                $pers=Masterperusahaan::find($request->peserta_perusahaan_id)->update($perusahaan);
+            }
+        }
         // return redirect('peserta')->with('status','Data Peserta Baru Berhasil di Simpan');
         return redirect('peserta')->with('status','Data Peserta Berhasil di Edit');
 

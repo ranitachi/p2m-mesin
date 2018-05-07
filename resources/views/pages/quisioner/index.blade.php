@@ -28,6 +28,7 @@
                                         </div>              
                                         <div class="heading-elements">
                                             <a href="{{url('quisioner/-1')}}" class="btn btn-xs btn-primary"><i class="fa fa-plus-circle"></i>&nbsp;Tambah Data</a>
+                                            
                                         </div>
                                     </div>
                                     @if(Session::has('status'))

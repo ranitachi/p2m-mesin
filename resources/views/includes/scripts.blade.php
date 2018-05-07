@@ -22,3 +22,4 @@
         <!-- END APP SCRIPTS -->
         <script type="text/javascript" src="{{asset('build/js/app_demo_dashboard.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/autoNumeric.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('build/js/vendor/maskedinput/jquery.maskedinput.min.js')}}"></script>

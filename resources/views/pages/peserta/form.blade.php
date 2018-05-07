@@ -55,6 +55,12 @@
                                                 <div class="col-md-6">
                                                     
                                                     <div class="form-group">
+                                                        <label class="col-md-4 control-label">Kode Peserta</label>
+                                                        <div class="col-md-8">
+                                                            <input type="text" name="peserta_kode" id="kode" class="form-control" value="{{$kode}}" placeholder="Kode Peserta">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label class="col-md-4 control-label">Nama Lengkap</label>
                                                         <div class="col-md-8">
                                                             <input type="text" name="peserta_nama_lengkap" id="nama" class="form-control" value="{{$id==-1 ? '' : $det->nama_lengkap}}" placeholder="Nama Lengkap (Dengan Gelar)">
@@ -63,7 +69,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Nama Untuk Sertifikat</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" name="peserta_nama_sertifikat" id="nama_sertifikat" class="form-control" value="{{$id==-1 ? '' : $det->nama_sertifikat}}" placeholder="Nama Untuk Sertifikat (Tanpa Gelar)">
+                                                            <input type="text" name="peserta_nama_sertifikat" id="nama_sertifikat" class="form-control" value="{{$id==-1 ? '' : $det->nama_sertifikat}}" placeholder="Nama Untuk Sertifikat">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -254,12 +260,24 @@
                                                             <input type="text" name="data_bidang['nonengineering']" id="sma" class="form-control" value="{{$id==-1 ? '' : $det->nonengineering}}" placeholder="ex : Ekonomi, dll">
                                                         </div>
                                                     </div>
+                                                    @if ($id!=-1 && $det->perusahaan_id==-2)
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label">Asal Perusahaan</label>
+                                                            <div class="col-md-8">
+                                                                <select class="s2-select-search form-control" name="peserta_perusahaan_id" id="perusahaan" onchange="getperusahaan(this.value)">
+                                                                    <option value="-2">-PRIBADI-</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    @else
+
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Asal Perusahaan</label>
                                                         <div class="col-md-8">
                                                             <select class="s2-select-search form-control" name="peserta_perusahaan_id" id="perusahaan" onchange="getperusahaan(this.value)">
                                                                 <option value="">-Perusahaan-</option>
                                                                 <option value="-1">-Tambah Perusahaan Baru-</option>
+                                                                <option value="-2">-PRIBADI-</option>
                                                                 @foreach ($perusahaan as $item)
                                                                     @if ($id!=-1)
                                                                         @if ($det->perusahaan_id==$item->id)
@@ -276,7 +294,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group" id="div_jabatan">
                                                         <label class="col-md-4 control-label">Jabatan Terakhir</label>
                                                         <div class="col-md-8">
                                                             <input type="text" name="peserta_jabatan" class="form-control" value="{{$id==-1 ? '' : $det->jabatan}}" placeholder="Jabatan Terakhir">
@@ -308,7 +326,7 @@
                                                             </div>
                                                         </div>
                                                         
-                                                        
+                                                    
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Jenis Usaha</label>
                                                             <div class="col-md-8">
@@ -341,6 +359,8 @@
                                                                 <input type="text" name="perusahaan_bagian_cp" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->bagian_cp}}" placeholder="Bagian CP">
                                                             </div>
                                                         </div>
+                                                    
+                                                    
                                                     </div>
                                                             <div class="form-group" style="margin-top:10px;">
                                                                 <label class="col-md-4 control-label">Keterangan Lain </label>
@@ -348,7 +368,7 @@
                                                                     <textarea name="peserta_desc" class="form-control">{{$id==-1 ? '' : $det->perusahaan->desc}}</textarea>
                                                                 </div>
                                                             </div>
-                                                    
+                                                    @endif
                                                 </div>
                                             </div>
 
@@ -385,11 +405,18 @@
         $('#btnSimpan').on('click',function(){
             var nama=$('#nama').val();
             var perusahaan=$('#perusahaan').val();
+            var nama_sertifikat=$('#nama_sertifikat').val();
             if(nama=='')
             {
                 var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Nama Peserta Harus Diisi';
                 pesanNoty(ps,'error');
                 $('#nama').focus();
+            }
+            else if(nama_sertifikat=='')
+            {
+                var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Nama Untuk Sertifikat Harus Di isi';
+                pesanNoty(ps,'error');
+                $('#email').focus();
             }
             else if(perusahaan=='')
             {
@@ -413,6 +440,11 @@
         if(id==-1)
         {
             location.href='{{url("perusahaan/-1")}}';
+        }
+        else if(id==-2)
+        {
+            $('#detail').hide();
+            $('#div_jabatan').hide();
         }
         else
         {

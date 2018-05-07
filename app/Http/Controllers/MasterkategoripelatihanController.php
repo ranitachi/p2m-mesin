@@ -55,4 +55,9 @@ class MasterkategoripelatihanController extends Controller
         return response()->json(['done']);
         // return redirect('kategori')->with('status','Data Quisioner Berhasil di Hapus');
     }
+
+    public function detail($idkat)
+    {
+        return redirect('pelatihan')->with('idkat',$idkat);
+    }
 }

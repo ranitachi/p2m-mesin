@@ -1,0 +1,46 @@
+SIMPEL P2M TEKNIK MESIN FTUI
+
+1.  Master Data Pelatihan
+    [ok] Tambahkan Kode Pelatihan selain Judul Pelatihan
+    [ok] Masing-masing materi pelatihan ditambahkan kode induk pelatihan
+    [ok] Untuk Detail Pelatihan, kode pelatihan ditempatkan di kolom paling awal baru kemudian kategori pelatihan
+    [ok] Materi Pelatihan direlasikan dengan jadwal pelatihan
+    [ok] Nama materi pelatihan dalam Indonesia dan Inggris
+
+2.  Master Data Instruktur
+    [ok] Tambahkan kolom bidang keahlian (bisa lebih dari 1 bidang untuk setiap instruktur)
+    [ok] Tambahkan kolom Afiliasi, pilihan -> UI/Praktisi
+    Tambahkan menu import file dari excel
+
+3.  Master Data Peserta
+    [ok] Tambahkan nomor induk Peserta, 10 digit, format yymmdd0001 (0001 menyatakan nomor urut)
+    [ok] Data Peserta yang wajib diisi (not null) => nama lengkap, nama untuk sertifikat, asal perusahaan
+    [ok] Untuk pilihan asal perusahaan, tambahkan pilihan PRIBADI. Jika yang dipilih pribadi, data perusahaan dihilangkan.
+    Tambahkan kolom FOTO
+    Tambahkan menu import file dari excel
+
+4.  Master Data Perusahaan
+    [ok] Tambahkan Kode Perusahaan, 5 Digit, format bebas
+    Tambahkan menu import file dari excel
+
+5.  Master Data Jadwal Pelatihan
+    Pilihan Kode pelatihan otomatis muncul jika sudah dipilih kategori pelatihan.
+    Tambahkan staf yang bertugas untuk setiap pelatihan
+    Dari menu jadwal pelatihan bisa generate:
+
+        o Absen peserta pelatihan
+        o Absen instruktur
+        o Nametag peserta
+        o Nama meja peserta
+
+    Jika bisa tambahkan menu upload foto kegiatan pelatihan (nantinya bisa digenerate untuk Laporan Akhir Pelatihan)
+    [ok] Untuk input data jadwal pelatihan, kolom staff diganti menjadi nama instruktur
+    Tambahkan menu untuk input nilai pre-test dan post-test setiap peserta pelatihan
+
+6. Master Data Kuesioner
+    Data kuesioner dicetak langsung dari SIMPEL
+
+Note:
+    Belum ada tampilan untuk buku peserta
+    Belum ada tampilan sertifikat
+    Data peserta dan data perusahaan di input dari excel

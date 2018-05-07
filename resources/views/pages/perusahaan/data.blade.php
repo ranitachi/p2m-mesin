@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>Kode</th>
                 <th>Nama Perusahaan</th>
                 <th>Pimpinan</th>
                 <th>Alamat</th>
@@ -18,6 +19,7 @@
             @foreach ($perusahaan as $key=>$item)
                 <tr>
                     <td class="text-center">{{(++$key)}}</td>    
+                    <td class="text-left">{{$item->kode}}</td>    
                     <td class="text-left">{{$item->nama_perusahaan}}</td>    
                     <td class="text-left">{{$item->pimpinan}}</td>    
                     <td class="text-left">{{$item->alamat}}</td>    

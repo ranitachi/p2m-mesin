@@ -25,7 +25,7 @@
                                 <div class="block block-condensed">
                                     <div class="app-heading">                                        
                                         <div class="title">
-                                            <h2>Form {{$id==-1 ? 'Tambah' : 'Edit'}} Karyawan</h2>
+                                            <h2>Form {{$id==-1 ? 'Tambah' : 'Edit'}} Pelatihan</h2>
                                             <!-- <p>Quick information</p> -->
                                         </div>  
                                         <div class="heading-elements">
@@ -72,7 +72,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Nama Pelatihan</label>
                                                             <div class="col-md-8">
-                                                                <textarea name="nama" id="name" class="form-control" placeholder="Nama Pelatihan">{{$id==-1 ? '' : $det->name}}</textarea>
+                                                                <textarea name="nama" id="name" class="form-control" placeholder="Nama Pelatihan">{{$id==-1 ? '' : $det->nama}}</textarea>
                                                               
                                                             </div>
                                                         </div>

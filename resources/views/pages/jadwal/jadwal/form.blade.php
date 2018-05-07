@@ -64,12 +64,12 @@
                                                                 @foreach ($pelatihan as $item)
                                                                     @if ($id!=-1)
                                                                         @if ($det->pelatihan_id==$item->id)
-                                                                            <option value="{{$item->id}}" selected="selected">{{$item->nama}}</option>
+                                                                            <option value="{{$item->id}}__{{$item->kode}}" selected="selected">{{$item->nama}}</option>
                                                                         @else
-                                                                            <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                            <option value="{{$item->id}}__{{$item->kode}}">{{$item->nama}}</option>
                                                                         @endif
                                                                     @else
-                                                                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                        <option value="{{$item->id}}__{{$item->kode}}">{{$item->nama}}</option>
                                                                         
                                                                     @endif
                                                                 @endforeach          
@@ -214,9 +214,15 @@
 <script type="text/javascript" src="{{asset('build/js/vendor/multiselect/jquery.multi-select.js')}}"></script>
 <script>
     $(document).ready(function(){
+        $('#pelatihan_id').change(function(){
+            var id=($(this).val()).split('__');
+            var kode=id[1];
+            $('#kode').val(kode);
+        });
         $('#btnSimpan').on('click',function(){
             
-            var pelatihan_id=$('#pelatihan_id').val();
+            var p_id=($('#pelatihan_id').val()).split('__');
+            var pelatihan_id=p_id[0];
             var start_date=$('#start_date').val();
             var end_date=$('#end_date').val();
             if(pelatihan_id=='' || pelatihan_id==0)

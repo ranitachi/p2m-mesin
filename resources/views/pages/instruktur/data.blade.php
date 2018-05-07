@@ -7,6 +7,8 @@
                 <th>No</th>
                 <th>NIP</th>
                 <th>Nama</th>
+                <th>Bidang Keahlian</th>
+                <th>Afiliasi</th>
                 <th>Email</th>
                 <th>Telp/HP</th>
                 <th>Alamat</th>
@@ -36,8 +38,10 @@
             @endphp
                 <tr>
                     <td class="text-center">{{(++$key)}}</td>    
-                    <td class="text-center">{{$item->nip}}</td>    
+                    <td class="text-center">{{$item->nip==0 ? '':$item->nip}}</td>    
                     <td class="text-left">{{$nama}}</td>    
+                    <td class="text-left">{{$item->bidang_keahlian}}</td>    
+                    <td class="text-left">{{$item->afiliasi}}</td>    
                     <td class="text-left">{{$item->email}}</td>    
                     <td class="text-center">{{$item->hp}}</td>    
                     <td class="text-center">{{$item->alamat}}</td>    

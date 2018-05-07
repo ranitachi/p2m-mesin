@@ -28,6 +28,8 @@
                                         </div>              
                                         <div class="heading-elements">
                                             <a href="{{url('perusahaan/-1')}}" class="btn btn-xs btn-primary"><i class="fa fa-plus-circle"></i>&nbsp;Tambah Data</a>
+                                            <a href="{{url('peserta-import')}}" class="btn btn-xs btn-success"><i class="fa fa-file-excel-o"></i>&nbsp;Import Excel</a>
+                                            <a href="{{url('cetak-label-perusahaan')}}" class="btn btn-xs btn-info"><i class="fa fa-print"></i>&nbsp;Cetak Label</a>
                                         </div>
                                     </div>
                                     @if(Session::has('status'))

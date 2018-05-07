@@ -96,16 +96,16 @@
                                                             <input type="email" name="email" id="email" class="form-control" value="{{$id==-1 ? '' : $det->email}}" placeholder="Email">
                                                         </div>
                                                     </div>
-                                                    
-                                                    
-                                                </div>
-                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Telp/HP</label>
                                                         <div class="col-md-8">
                                                             <input type="text" name="hp" class="form-control" value="{{$id==-1 ? '' : $det->hp}}" placeholder="Telp/HP">
                                                         </div>
                                                     </div>
+                                                    
+                                                </div>
+                                                <div class="col-md-6">
+                                                    
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jenis Kelamin</label>
                                                         <div class="col-md-8">
@@ -161,10 +161,26 @@
                                                             <textarea name="alamat" class="form-control">{{$id==-1 ? '' : $det->alamat}}</textarea>
                                                         </div>
                                                     </div>
-                                                    
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">Bidang Keahlian</label>
+                                                        <div class="col-md-8">
+                                                            <input type="text" name="bidang_keahlian" class="form-control" value="{{$id==-1 ? '' : $det->bidang_keahlian}}" placeholder="Bidang Keahlian">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                           <label class="col-md-4 control-label">Afiliasi</label>
+                                                           <div class="col-md-8">
+                                                               <select class="form-control" name="afiliasi">
+                                                                   <option value="-1">- Pilih -</option>
+                                                                    <option value="UI" {{$id!=-1 ? ($det->afiliasi=='UI' ? 'selected="selected"' : '') : ''}}>Universitas Indonesia (UI)</option>
+                                                                   <option value="Non-UI" {{$id!=-1 ? ($det->afiliasi=='Non-UI' ? 'selected="selected"' : '') : ''}}>Non-UI</option>
+                                                                   
+                                                               </select>
+                                                           </div>
+                                                       </div>    
                                                 </div>
                                             </div>
-
+                                            
                                             <div class="form-group">                                                
                                                 <div class="col-md-12 text-center">
                                                     <button class="btn btn-sm btn-info" type="button" id="btnSimpan"><i class="fa fa-save"></i>&nbsp;Simpan Data</button>

@@ -19,6 +19,7 @@
                                 <ul>                                
                                     <li><a href="{{url('kategori-pelatihan')}}"><span class="nav-icon-hexa">Kp</span> Kategori Pelatihan</a></li>
                                     <li><a href="{{url('pelatihan')}}"><span class="nav-icon-hexa">Jp</span> Jenis Pelatihan</a></li>
+                                    <li><a href="{{url('materi')}}"><span class="nav-icon-hexa">Mp</span> Materi Pelatihan</a></li>
                                 </ul>
                             </li>
                             <li><a href="#"><span class="nav-icon-hexa">Mj</span> Manajemen Jadwal</a>

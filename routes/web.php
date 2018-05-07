@@ -20,6 +20,7 @@ Route::get('/utama', 'HomeController@utama')->name('home');
 /* Karyawan */
 Route::resource('karyawan', 'MasteregawaiController');
 Route::get('karyawan-hapus/{id}', 'MasteregawaiController@destroy');
+
 /* Instruktur */
 Route::resource('instruktur', 'MasterinstrukturController');
 Route::get('instruktur-hapus/{id}', 'MasterinstrukturController@destroy');
@@ -41,12 +42,19 @@ Route::get('quisioner-hapus/{id}', 'MasterquesionerController@destroy');
 Route::resource('kategori-pelatihan', 'MasterkategoripelatihanController');
 Route::get('kategori-pelatihan-hapus/{id}', 'MasterkategoripelatihanController@destroy');
 Route::get('kategori-pelatihan-data', 'MasterkategoripelatihanController@data');
+Route::get('pelatihan-detail/{id}', 'MasterkategoripelatihanController@detail');
 
 /* Pelatihan */
 Route::resource('pelatihan', 'MasterpelatihanController');
 Route::get('pelatihan-hapus/{id}', 'MasterpelatihanController@destroy');
 Route::get('pelatihan-data/{idkat}', 'MasterpelatihanController@data');
 Route::get('pelatihan-form/{idkat}/{id}', 'MasterpelatihanController@show');
+
+/* Pelatihan */
+Route::resource('materi', 'MateriController');
+Route::get('materi-hapus/{id}', 'MateriController@destroy');
+Route::get('materi-data/{idpel}', 'MateriController@data');
+Route::get('materi-form/{idpel}/{id}', 'MateriController@show');
 
 /* Provinsi */
 Route::resource('provinsi', 'ProvinsiController');
@@ -59,8 +67,21 @@ Route::get('jadwal-pelatihan-hapus/{id}', 'BatchpelatihanController@destroy');
 Route::get('jadwal-pelatihan-data', 'BatchpelatihanController@data');
 
 Route::get('batch-detail/{id}/{jenis}', 'BatchpelatihanController@detail');
+Route::post('peserta-add/{idbatch}', 'BatchpelatihanController@peserta_add');
+Route::get('peserta-hapus/{id}/{idbatch}', 'BatchpelatihanController@peserta_hapus');
 
+Route::post('jadwal-add/{idbatch}/{id}', 'BatchpelatihanController@jadwal_add');
+Route::get('jadwal-hapus/{id}/{idbatch}', 'BatchpelatihanController@jadwal_hapus');
 
+Route::post('absensi-add/{idbatch}/{id}', 'BatchpelatihanController@absensi_add');
+Route::get('absensi-detail/{idabsensi}','BatchpelatihanController@absensi_detail');
+Route::get('absensi-hapus/{id}/{idbatch}', 'BatchpelatihanController@absensi_hapus');
+
+Route::get('getmateri/{id}','MateriController@getmateri');
+
+/* Bekas Batch Pelatihan */
+Route::get('absensi-instruktur/{id}','BatchpelatihanController@absensi_instrktur');
+Route::get('absensi-peserta/{id}','BatchpelatihanController@absensi_peserta');
 /* Kabupaten Kota */
 Route::resource('kabupatenkota', 'KabupatenkotaController');
 Route::get('kabupatenkota-hapus/{id}', 'KabupatenkotaController@destroy');

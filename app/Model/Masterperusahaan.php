@@ -10,7 +10,7 @@ class Masterperusahaan extends Model
     use SoftDeletes;
     protected $table = 'master_perusahaan';
     protected $protected = 'deleted_at';
-    protected $fillable = ['nama_perusahaan','pimpinan','alamat','provinsi','kabupaten_kota','kecamatan','kelurahan','kode_pos','telp','email','fax','cp','no_cp','email_cp','bagian_cp','jenis_usaha','desc','created_at','updated_at'];
+    protected $fillable = ['nama_perusahaan','kode','pimpinan','alamat','provinsi','kabupaten_kota','kecamatan','kelurahan','kode_pos','telp','email','fax','cp','no_cp','email_cp','bagian_cp','jenis_usaha','desc','created_at','updated_at'];
     
     public function provinsi()
     {

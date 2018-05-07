@@ -19,6 +19,26 @@ class MasterperusahaanController extends Controller
     public function show($id)
     {
         $det=array();
+         $kd=Masterperusahaan::max('kode');
+        if(is_null($kd))
+        {
+            $kdd='0001';
+        }
+        else
+        {
+            $kdb=((int)substr($kd,-4) + 1);
+            if($kdb<10)
+                $kdd='000'.$kdb;
+            elseif($kdb>=10 && $kdb<100)
+                $kdd='00'.$kdb;
+            elseif($kdb>=100 && $kdb<1000)
+                $kdd='0'.$kdb;
+            else
+                $kdd=$kdb;
+            // $kdd=$kdb;
+        }
+        $kode='P'.$kdd;
+
         $prop=Provinsi::all();
         $kota=array();
         $kec=array();
@@ -30,10 +50,12 @@ class MasterperusahaanController extends Controller
             $kota=Kabupatenkota::where('provinsi_id','=',$det->provinsi)->get();
             $kec=Kecamatan::where('kabupatenkota_id','=',$det->kabupaten_kota)->get();
             $kel=Kelurahan::where('kecamatan_id','=',$det->kecamatan)->get();
+            $kode=$det->kode;
         }
         return view('pages.perusahaan.form')
             ->with('det',$det)
             ->with('prop',$prop)
+            ->with('kode',$kode)
             ->with('kota',$kota)
             ->with('kec',$kec)
             ->with('kel',$kel)
