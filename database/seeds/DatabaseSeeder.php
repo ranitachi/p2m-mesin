@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UserTabel::class);
+        //$this->call(UserTabel::class);
         // $this->call(Datadirektur::class);
         Eloquent::unguard();
 
