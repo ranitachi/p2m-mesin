@@ -19,3 +19,19 @@ if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
 }
 
 require_once __DIR__.'/public/index.php';
+
+/*
+myVPS
+
+SSH:
+103.84.194.25
+username: root
+password: 7deadlysin5
+
+MySQL Password:
+username: root
+password: thisisdudy91
+
+Folder Sourcecode: /home
+Create your own symlink to /var/www/
+*/

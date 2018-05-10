@@ -10,3 +10,7 @@
     font-family: aristaBold;
     src: url('../fonts/Arista2.0-FatTrial.ttf');
 }
+@font-face {
+    font-family: readventor;
+    src: url('../fonts/texgyreadventor-bold.otf');
+}

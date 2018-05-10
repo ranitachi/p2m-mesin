@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+// use DB;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(UserTabel::class);
+        // $this->call(Datadirektur::class);
+        Eloquent::unguard();
+
+        $path = public_path('files/db_p2m.sql');
+        DB::unprepared(file_get_contents($path));
+        $this->command->info('Master Perusahaan table seeded!');
     }
 }

@@ -316,4 +316,9 @@ function jumlah_hari($bulan = 0, $tahun = '')
     $jumlah_hari    = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
     return $jumlah_hari[$bulan - 1];
 }
+function akses()
+{
+	$akses=array('Semua Menu','Manajemen Pelatihan','Manajemen Jadwal','Manajemen Peserta','Manajemen User','Master Data','Pengaturan Sistem');
+	return $akses;
+}
 ?>

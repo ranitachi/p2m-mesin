@@ -46,6 +46,7 @@ class MateriController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
+        $data['pelatihan_id']=strtok($request->pelatihan_id,'__');
         $create = Materi::create($data);
         // return response()->json([$create]);
         $idpel=$request->pelatihan_id;
@@ -56,7 +57,8 @@ class MateriController extends Controller
     public function update(Request $request,$id)
     {
         $data=$request->all();
-        $idpel=$request->pelatihan_id;
+        // $idpel=$request->pelatihan_id;
+        $idpel=$data['pelatihan_id']=strtok($request->pelatihan_id,'__');
         $update = Materi::find($id)->update($data);
         // return response()->json([$update]);
         return redirect('materi')->with('status','Data Materi Berhasil di Edit')->with('idpel',$idpel);
@@ -69,4 +71,8 @@ class MateriController extends Controller
         return response()->json(['done']);
         // return redirect('kategori')->with('status','Data Quisioner Berhasil di Hapus');
     }
+    public function detail($idpel)
+    {
+        return redirect('materi')->with('idpel',$idpel);
+    } 
 }

@@ -31,9 +31,15 @@
                                 <td class="text-center">{{getMinutes($item[0]->start_time,$item[0]->end_time)}}</td> 
                                 <td class="text-center">{{$item[0]->materi}}</td> 
                                 <td class="text-center">{{($item[0]->materi == 0 ? '' : $item[0]->materi->kode)}}</td> 
-                                <td class="text-center">{{isset($item[0]->pegawai->kode) ? $item[0]->pegawai->kode : ''}}</td>
                                 <td class="text-center">
-                                    <a href="{{url('batch-detail/'.$id.'/jadwal-add__'.$item[0]->id)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="edit Data"><i class="fa fa-edit" ></i></a>    
+                                    @if ($item[0]->instruktur_id!=0)
+                                        {{isset($item[0]->instruktur->nama) ? $item[0]->instruktur->nama : ''}}
+                                    @else
+                                        {{isset($item[0]->pegawai->kode) ? $item[0]->pegawai->kode : ''}}
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{url('batch-detail/'.$id.'/jadwal-add__'.$item[0]->idp)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="edit Data"><i class="fa fa-edit" ></i></a>    
                                     <a href="javascript:hapusjadwal({{$item[0]->id}},{{$id}})" class="btn btn-xs btn-danger btn-rounded" data-toggle="tooltip" title="Hapus Data"><i class="fa fa-trash" ></i></a>    
                                 </td>    
                             </tr> 
@@ -45,9 +51,14 @@
                                         <td class="text-center">{{getMinutes($ii->start_time,$ii->end_time)}}</td> 
                                         <td class="text-center">{{$ii->materi}}</td> 
                                         <td class="text-center">{{($ii->materi == 0 ? '' : $ii->materi->kode)}}</td> 
-                                        <td class="text-center">{{isset($ii->pegawai->kode) ? $ii->pegawai->kode : ''}}</td>
                                         <td class="text-center">
-                                            <a href="{{url('batch-detail/'.$id.'/jadwal-add__'.$ii->id)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="edit Data"><i class="fa fa-edit" ></i></a> 
+                                             @if ($ii->instruktur_id!=0)
+                                                {{isset($ii->instruktur->nama) ? $ii->instruktur->nama : ''}}
+                                            @else
+                                                {{isset($ii->pegawai->kode) ? $ii->pegawai->kode : ''}}</td>
+                                            @endif
+                                        <td class="text-center">
+                                            <a href="{{url('batch-detail/'.$id.'/jadwal-add__'.$ii->idp)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="edit Data"><i class="fa fa-edit" ></i></a> 
                                             <a href="javascript:hapusjadwal({{$ii->id}},{{$id}})" class="btn btn-xs btn-danger btn-rounded" data-toggle="tooltip" title="Hapus Data"><i class="fa fa-trash" ></i></a>    
                                         </td>    
                                     </tr> 

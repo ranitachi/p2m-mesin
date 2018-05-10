@@ -33,14 +33,14 @@
                             <td class="text-center">3</td>
                             <td class="text-left">Name Tag Peserta</td>
                             <td class="text-center">
-                                <a href="javascript:nametagpeserta({{$id}})" class="btn btn-xs btn-danger"><i class="fa fa-print"></i> Unduh</a>
+                                <a href="{{url('name-tag/'.$id)}}" target="_blank" class="btn btn-xs btn-danger"><i class="fa fa-print"></i> Unduh</a>
                             </td>
                         </tr>
                         <tr>
                             <td class="text-center">4</td>
                             <td class="text-left">Unduh Form Quisioner</td>
                             <td class="text-center">
-                                <a href="javascript:quisioner({{$id}})" class="btn btn-xs btn-danger"><i class="fa fa-print"></i> Unduh</a>
+                                <a href="{{url('form-quisioner/'.$id)}}" target="_blank" class="btn btn-xs btn-danger"><i class="fa fa-print"></i> Unduh</a>
                             </td>
                         </tr>
                         
@@ -48,23 +48,18 @@
                             <td class="text-center">5</td>
                             <td class="text-left">Nama Meja Peserta</td>
                             <td class="text-center">
-                                <a href="javascript:namameja({{$id}})" class="btn btn-xs btn-danger"><i class="fa fa-print"></i> Unduh</a>
+                                <a href="{{url('nama-meja/'.$id)}}" target="_blank" class="btn btn-xs btn-danger"><i class="fa fa-print"></i> Unduh</a>
                             </td>
                         </tr>
+                        
                         <tr>
                             <td class="text-center">6</td>
-                            <td class="text-left">Unduh Sertifikat</td>
-                            <td class="text-center">
-                                <a href="javascript:sertifikat({{$id}})" class="btn btn-xs btn-success"><i class="fa fa-print"></i> Unduh</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">7</td>
                             <td class="text-left">Unggah Foto Pelatihan</td>
                             <td class="text-center">
                                 <a href="javascript:unggah({{$id}})" class="btn btn-xs btn-info"><i class="fa fa-upload"></i> Unggah</a>
                             </td>
                         </tr>
+                        
                     </tbody>
                 </table>
             </div>

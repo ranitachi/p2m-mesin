@@ -56,12 +56,12 @@
                                                             @foreach ($pelatihan as $item)
                                                                 @if ($idpelatihan!='')
                                                                     @if ($idpelatihan==$item->id)   
-                                                                        <option value="{{$idpelatihan}}" selected="selected">{{$item->nama}}</option>
+                                                                        <option value="{{$idpelatihan}}" selected="selected">{{$item->kode}}-{{$item->nama}}</option>
                                                                     @else
-                                                                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                        <option value="{{$item->id}}">{{$item->kode}}-{{$item->nama}}</option>
                                                                     @endif
                                                                 @else
-                                                                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                    <option value="{{$item->id}}">{{$item->kode}}-{{$item->nama}}</option>
                                                                 @endif
                                                             @endforeach          
                                                         </select>
