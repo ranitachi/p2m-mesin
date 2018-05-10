@@ -15,6 +15,7 @@
                     </div>
                 </div>            
             </div>
+       
             
             <div class="modal fade" id="modal-danger" tabindex="-1" role="dialog" aria-labelledby="modal-danger-header">                        
                 <div class="modal-dialog modal-danger" role="document">
