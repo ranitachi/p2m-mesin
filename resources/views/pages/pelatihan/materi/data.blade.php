@@ -3,9 +3,10 @@
         <thead>
             <tr>
                 <th style="width:40px;">No</th>
-                <th>Nama Pelatihan</th>
+                <th>Kode Materi</th>
                 <th>Materi</th>
                 <th>Materi (Inggris)</th>
+                <th>Nama Pelatihan</th>
                 <th style="width:80px;">#</th>
             </tr>
         </thead>                                    
@@ -13,9 +14,10 @@
             @foreach ($materi as $key=>$item)
                 <tr>
                     <td class="text-center" style="width:80px;">{{(++$key)}}</td>    
-                    <td class="text-left">{{$item->pelatihan->nama}}</td>    
+                    <td class="text-left">{{$item->kode}}</td>    
                     <td class="text-left">{{$item->materi}}</td>    
                     <td class="text-left">{{$item->materi_en}}</td>    
+                    <td class="text-left">{{$item->pelatihan->nama}}</td>    
                     <td class="text-center">
                         <a href="{{url('materi-form/'.$idpel.'/'.$item->id)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="Edit Data"><i class="fa fa-edit" ></i></a> 
                            

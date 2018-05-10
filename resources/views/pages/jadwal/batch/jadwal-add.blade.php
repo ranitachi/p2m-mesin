@@ -71,7 +71,26 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label text-right">Staf</label>
+                                        <label class="col-md-4 control-label text-right">Instruktur</label>
+                                        <div class="col-md-8">
+                                            <select class="s2-select-search form-control" name="detail__instruktur_id" id="instruktur">
+                                                <option value="0">- Pilih -</option>
+                                                @foreach ($instruktur as $item)
+                                                    @if ($idjadwal!=0)
+                                                        @if ($detjadwal->instruktur_id==$item->instruktur_id)
+                                                            <option value="{{$item->instruktur_id}}" selected="selected">{{$item->instruktur->nama}}</option>
+                                                        @else
+                                                            <option value="{{$item->instruktur_id}}">{{$item->instruktur->nama}}</option>    
+                                                        @endif
+                                                    @else
+                                                        <option value="{{$item->instruktur_id}}">{{$item->instruktur->nama}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label text-right">PIC</label>
                                         <div class="col-md-8">
                                             <select class="s2-select-search form-control" name="detail__staf_id" id="staf">
                                                 <option value="0">- Pilih -</option>

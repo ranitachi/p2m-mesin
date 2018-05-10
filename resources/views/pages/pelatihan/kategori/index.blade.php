@@ -84,8 +84,14 @@
         $('#form').load('{{url("kategori-pelatihan")}}/'+id, function(){
             $('#btnSimpan').one('click',function(){
                 var kategori=$('#kategori').val();
+                var kode=$('#kode').val();
             
-                if(kategori=='')
+                if(kode=='')
+                {
+                    var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Kode Kategori Pelatihan Masih Kosong';
+                    pesanNoty(ps,'error');
+                }
+                else if(kategori=='')
                 {
                     var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Kategori Pelatihan Masih Kosong';
                     pesanNoty(ps,'error');

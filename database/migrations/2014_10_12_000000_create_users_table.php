@@ -15,11 +15,9 @@ class CreateUsersTable extends Migration
     {
         /**
          * flag level user
-         * --> [1] Super Admin
-         * --> [2] Kepala ULP
-         * --> [3] PPK
-         * --> [4] POKJA
-         * --> [5] Sekretariat
+         * --> [0] admin
+         * --> [1] direktur
+         * --> [2] pegawai
          */
 
         Schema::create('users', function (Blueprint $table) {
@@ -28,8 +26,14 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('level');
+            $table->integer('flag');
+            $table->string('hakakses')->nullable();
+            $table->integer('pegawai_id')->default(0);
+            $table->integer('direktur_id')->default(0);
+            $table->integer('instruktur_id')->default(0);
             $table->rememberToken();
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 

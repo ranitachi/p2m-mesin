@@ -59,16 +59,25 @@
                                     <li class="{{$jenis=='absensi-add' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/absensi-add__0')}}">Tambah Absensi</a></li>
                                 </ul>
                             </li>
-                            <li class="{{strpos($jenis,'unduh')!==false ? 'active' : ''}}">
+                            <li class="{{strpos($jenis,'unduh')!==false ? 'active' : (strpos($jenis,'sertifikat')!==false ? 'active' : (strpos($jenis,'ucapan-terimakasih')!==false ? 'active' : ''))}}">
                                 <a href="#"><span class="icon-user-plus"></span> Berkas Pelatihan</a>                
                                 <ul>
                                     <li class="{{$jenis=='unduh' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/unduh-berkas')}}">Unduh & Unggah Berkas</a></li>
+                                    <li class="{{$jenis=='sertifikat' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/sertifikat')}}">Sertifikat</a></li>
+                                    <li class="{{$jenis=='ucapan-terimakasih' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/ucapan-terimakasih')}}">Ucapan Terima Kasih</a></li>
                                 </ul>
                             </li>
                             <li class="{{strpos($jenis,'test')!==false ? 'active' : ''}}">
                                 <a href="#"><span class="icon-user-plus"></span> Pre Test & Post Test</a>                
                                 <ul>
                                     <li class="{{$jenis=='test' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/test')}}">Nilai Pre Test & Post Test</a></li>
+                                </ul>
+                            </li>
+                            <li class="{{strpos($jenis,'quisioner')!==false ? 'active' : ''}}">
+                                <a href="#"><span class="icon-user-plus"></span> Quisioner</a>                
+                                <ul>
+                                    <li class="{{$jenis=='quisioner' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/quisioner')}}">Form Quisioner</a></li>
+                                    <li class="{{$jenis=='quisioner-hasil' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/quisioner-hasil')}}">Hasil Quisioner</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -122,6 +131,8 @@
                     @include('pages.jadwal.batch.unduh-berkas')    
                 @elseif($jenis=='test')
                     @include('pages.jadwal.batch.test')    
+                @else
+                    @include('pages.jadwal.batch.'.$jenis)    
                 @endif                                               
                         
                 </div>                          

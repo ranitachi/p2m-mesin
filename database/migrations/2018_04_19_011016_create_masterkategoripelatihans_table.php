@@ -15,6 +15,7 @@ class CreateMasterkategoripelatihansTable extends Migration
     {
         Schema::create('master_kategori_pelatihan', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('kode')->nullable();
             $table->string('kategori')->nullable();
             $table->text('desc')->nullable();
             $table->integer('flag')->default(1);

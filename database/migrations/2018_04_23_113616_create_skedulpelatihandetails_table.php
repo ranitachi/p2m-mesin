@@ -20,6 +20,7 @@ class CreateSkedulpelatihandetailsTable extends Migration
             $table->integer('batch_id')->nullable()->default(0);
             $table->string('materi')->nullable();
             $table->integer('staf_id')->nullable()->default(0);
+            $table->integer('instruktur_id')->nullable()->default(0);
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();
             $table->timestamps();

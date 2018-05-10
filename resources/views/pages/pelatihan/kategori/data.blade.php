@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th style="width:40px;">No</th>
+                <th>Kode</th>
                 <th>Kategori</th>
                 <th style="width:40px;">Status</th>
                 <th style="width:80px;">#</th>
@@ -14,6 +15,7 @@
             @foreach ($kategori as $key=>$item)
                 <tr>
                     <td class="text-center" style="width:80px;">{{(++$key)}}</td>    
+                    <td class="text-center" style="width:80px;">{{($item->kode)}}</td>    
                     <td class="text-left"><a href="{{url('pelatihan-detail/'.$item->id)}}">{{$item->kategori}}</a></td>   
                     <td class="text-center">{!!$item->flag ==1 ? '<span class="label label-success">Aktif</span>':'<span class="label label-warning">Tidak Aktif</span>'!!}</td>   
                     <td class="text-center">

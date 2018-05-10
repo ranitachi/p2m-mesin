@@ -8,6 +8,12 @@
             <div class="col-md-12">
                 
                <div class="form-group">
+                    <label class="col-md-12 control-label">Kode</label>
+                    <div class="col-md-12">
+                        <input type="text" name="kode" class="form-control" value="{{$id==-1 ? '' : $det->kode}}" placeholder="Kode" id="kode">
+                    </div>
+                </div>
+               <div class="form-group">
                     <label class="col-md-12 control-label">Kategori</label>
                     <div class="col-md-12">
                         <input type="text" name="kategori" class="form-control" value="{{$id==-1 ? '' : $det->kategori}}" placeholder="Kategori" id="kategori">

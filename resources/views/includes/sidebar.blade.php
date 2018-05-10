@@ -1,7 +1,7 @@
 @php
     $path=Request::path();
 @endphp
-             <div class="app-sidebar app-navigation app-navigation-fixed scroll app-navigation-style-default app-navigation-open-hover dir-left" data-type="close-other" data-minimized="minimized">
+             <div class="app-sidebar app-navigation app-navigation-fixed scroll app-navigation-style-default app-navigation-open-hover dir-left" data-type="close-other" data-minimized="">
                     <a href="index.html" style="padding-left:0px;font-family:Montserrat;">
                         <div class="app-navigation-logo"><span class="mobile-hidden"></span>
                             <button class="app-navigation-logo-button mobile-hidden" data-sidepanel-toggle=".app-sidepanel"><span class="icon-alarm"></span> 
@@ -37,6 +37,7 @@
                                     <li><a href="{{url('instruktur')}}"><span class="nav-icon-hexa">Di</span> Data Instruktur</a></li>                
                                     <li><a href="{{url('perusahaan')}}"><span class="nav-icon-hexa">Dp</span> Data Perusahaan </a></li>
                                     <li><a href="{{url('quisioner')}}"><span class="nav-icon-hexa">Dq</span> Data Quisioner</a></li>
+                                    <li><a href="{{url('direktur')}}"><span class="nav-icon-hexa">Dr</span> Data Direktur</a></li>
                                     
                                 </ul>
                             </li> 
