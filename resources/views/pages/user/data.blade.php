@@ -20,6 +20,8 @@
                     $nama=$item->instruktur->nama;
                 elseif($item->direktur_id!=0)
                     $nama=$item->direktur->nama;
+                elseif($item->level==0)
+                    $nama=$item->name;
                 
                 $akses=explode(',',$item->hakakses);
             @endphp
