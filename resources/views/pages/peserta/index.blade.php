@@ -59,6 +59,7 @@
 @section('footscript')
 <script type="text/javascript" src="{{asset('build/js/vendor/datatables/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('build/js/vendor/datatables/dataTables.bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/webcamjs-master/webcam.js')}}"></script>
 <script>
     $(document).ready(function(){
         // $('div.alert-success').hide();
@@ -66,7 +67,34 @@
             $('div.alert-success').fadeOut();
         },3000);
     });
+    
+    
+    function ambilfoto(id)
+    {
+        $('#idpeserta').val(id);
+        Webcam.set({
+            width: 320,
+            height: 240,
+            dest_width: 320,
+            dest_height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90,
+            force_flash: false
+        });
+        Webcam.attach( '#my_camera' );
 
+        $('#modal-camera-header').text('Ambil Foto');
+        $('#modal-camera').modal('show');
+        $('#submit-camera').text('Simpan');
+        $('#submit-camera').one('click',function(){
+                $('#myform').submit();
+        });
+        $('#no-btn').one('click',function(){
+            Webcam.reset();
+            $('#modal-camera').modal('hide');
+        });
+        
+    }
     function hapus(id)
     {
         $('#modal-primary-header').text('Informasi');
@@ -76,5 +104,39 @@
             location.href='{{url("peserta-hapus")}}/'+id;
         });
     }
+    function take_snapshot() {
+            Webcam.snap( function(data_uri) {
+                var raw_image_data = data_uri.replace(/^data\:image\/\w+\;base64\,/, '');
+                document.getElementById('mydata').value = raw_image_data;
+                document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+            });
+    }
 </script>
 @endsection
+ <div class="modal fade" id="modal-camera" tabindex="-1" role="dialog" aria-labelledby="modal-primary-header">     
+                <div class="modal-dialog modal-primary" role="document">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon-cross"></span></button>
+
+                    <div class="modal-content">
+                        <div class="modal-header">                        
+                            <h4 class="modal-title" id="modal-camera-header"></h4>
+                        </div>
+                        <div class="modal-body" id="camera-body">
+                        <form id="myform" action="{{url('foto-simpan')}}" method="post">
+                            <input type="hidden" name="id" id="idpeserta">
+                            <input id="mydata" type="hidden" name="mydata" value=""/>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <center>
+                                <div id="my_camera" style="width:320px; height:240px;"></div>
+                                <div id="my_result"></div>
+                                <a href="javascript:void(take_snapshot())" class="btn btn-xs btn-info" style="margin-top:5px;"><i class="fa fa-camera"></i> Ambil Foto</a>
+                            </center>
+                        </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link" id="no-btn">Tidak</button>
+                            <button type="button" class="btn btn-primary" id="submit-camera">Ya</button>
+                        </div>
+                    </div>
+                </div>            
+            </div>
