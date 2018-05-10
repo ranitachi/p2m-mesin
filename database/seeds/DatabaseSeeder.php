@@ -11,12 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->call(UserTabel::class);
+        $this->call(UserTabel::class);
         // $this->call(Datadirektur::class);
-        Eloquent::unguard();
+       // Eloquent::unguard();
 
-        $path = public_path('files/db_p2m.sql');
-        DB::unprepared(file_get_contents($path));
-        $this->command->info('Master Perusahaan table seeded!');
+       // $path = public_path('files/db_p2m.sql');
+        ///DB::unprepared(file_get_contents($path));
+        //$this->command->info('Master Perusahaan table seeded!');
     }
 }
