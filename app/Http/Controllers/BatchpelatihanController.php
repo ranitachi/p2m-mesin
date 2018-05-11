@@ -120,6 +120,7 @@ class BatchpelatihanController extends Controller
             list($tg,$bl,$th)=explode('/',$data['end_date']);
             $data['end_date']=$th.'-'.$bl.'-'.$tg;
         }
+        $data['pelatihan_id']=strtok($request->pelatihan_id,'__');
         $update = Batchpelatihan::find($id)->update($data);
         BatchIntruktur::where('batch_pelatihan_id','=',$id)->forceDelete();
         if(isset($request->instruktur_id))
