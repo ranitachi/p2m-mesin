@@ -177,6 +177,7 @@ class BatchpelatihanController extends Controller
         
         $absensi=Absensipelatihandetail::with('absensi')->with('peserta')->with('skedul')->get();
         $absn=array();
+        $nilai=array();
         foreach($absensi as $k =>$v)
         {
             $absn[$v->absensi_id][]=$v;
