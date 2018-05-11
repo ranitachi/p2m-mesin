@@ -83,6 +83,7 @@ class BatchpelatihanController extends Controller
             list($tg,$bl,$th)=explode('/',$data['end_date']);
             $data['end_date']=$th.'-'.$bl.'-'.$tg;
         }
+        $data['pelatihan_id']=strtok($request->pelatihan_id,'__');
         // echo '<pre>';
         // print_r($data);
         // echo '</pre>';
