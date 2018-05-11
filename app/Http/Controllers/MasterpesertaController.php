@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Masterpeserta;
 use App\Model\Masterpesertadata;
-
 use App\Model\Masterperusahaan;
 use App\Model\Provinsi;
 use App\Model\Kabupatenkota;
@@ -13,6 +12,10 @@ use App\Model\Kecamatan;
 use App\Model\Kelurahan;
 class MasterpesertaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
      public function index()
     {
         $peserta=Masterpeserta::orderBy('kode')->get();

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Model\Masterpegawai;
 class MasteregawaiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $pegawai=Masterpegawai::orderBy('nama')->get();

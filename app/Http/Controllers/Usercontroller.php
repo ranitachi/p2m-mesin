@@ -7,8 +7,13 @@ use App\Model\Users;
 use App\Model\Direktur;
 use App\Model\Masterpegawai;
 use App\Model\Masterinstruktur;
+use Auth;
 class Usercontroller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $user=Users::orderBy('name')->with('pegawai')->with('instruktur')->with('direktur')->get();
@@ -173,5 +178,9 @@ class Usercontroller extends Controller
         $user->password=bcrypt($newpass);
         $user->save();
         return redirect('user')->with('status','Password Sudah Di Reset,<br>Password Baru : '.$newpass);
+    }
+    public function performLogout(Request $request) {
+        Auth::logout();
+        return redirect('login');
     }
 }

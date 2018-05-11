@@ -8,6 +8,10 @@ use App\Model\Masterkategoripelatihan;
 use App\Model\Masterpelatihan;
 class MateriController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getmateri($id)
     {
         $materi=Materi::find($id);

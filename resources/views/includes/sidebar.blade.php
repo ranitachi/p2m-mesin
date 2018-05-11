@@ -12,8 +12,14 @@
                     <nav>
                         <ul>
                             <li class="title">MAIN</li>
-                            <li><a href="{{url('/')}}"><span class="nav-icon-hexa">Br</span> Beranda</a></li>
-                                                   
+                            <li><a href="{{url('/utama')}}"><span class="nav-icon-hexa">Br</span> Beranda</a></li>
+                         @if (Auth::check())
+                            @php
+                                $mn=Auth::user()->hakakses;
+                                $menu=explode(',',$mn);
+                            @endphp      
+
+                            @if (in_array(1,$menu) || (in_array(0,$menu)))
                             <li>
                                 <a href="#"><span class="nav-icon-hexa">Mp</span> Manajemen Pelatihan</a>
                                 <ul>                                
@@ -22,14 +28,22 @@
                                     <li><a href="{{url('materi')}}"><span class="nav-icon-hexa">Mp</span> Materi Pelatihan</a></li>
                                 </ul>
                             </li>
+                            @endif
+                            @if (in_array(2,$menu) || (in_array(0,$menu)))
                             <li><a href="#"><span class="nav-icon-hexa">Mj</span> Manajemen Jadwal</a>
                                 <ul>                                
                                     <li><a href="{{url('jadwal-pelatihan')}}"><span class="nav-icon-hexa">Bp</span> Batch Pelatihan</a></li>
                                     {{-- <li><a href="{{url('pelatihan')}}"><span class="nav-icon-hexa">Jp</span> Peserta Pelatihan</a></li> --}}
                                 </ul>
                             </li>
+                            @endif
+                            @if (in_array(3,$menu) || (in_array(0,$menu)))
                             <li><a href="{{url('peserta')}}"><span class="nav-icon-hexa">Mp</span> Manajemen Peserta</a></li>
+                            @endif
+                            @if (in_array(4,$menu) || (in_array(0,$menu)))
                             <li><a href="{{url('user')}}"><span class="nav-icon-hexa">Mu</span> Manajemen User</a></li>
+                            @endif
+                            @if (in_array(5,$menu) || (in_array(0,$menu)))
                             <li>
                                 <a href="#"><span class="nav-icon-hexa">Md</span> Master Data</a>
                                 <ul>                                
@@ -41,6 +55,8 @@
                                     
                                 </ul>
                             </li> 
+                            @endif
+                            @if (in_array(6,$menu) || (in_array(0,$menu)))
                             <li class="title">PENGATURAN</li>                
                             <li><a href="#"><span class="nav-icon-hexa">Ps</span> Pengaturan Sistem</a>
                                 <ul>                                
@@ -50,7 +66,8 @@
                                     <li><a href="{{url('kelurahan')}}"><span class="nav-icon-hexa">Kl</span> Data Kelurahan</a></li>
                                 </ul>
                             </li>
-                           
+                           @endif
+                        @endif
                         </ul>
                     </nav>
                 </div>

@@ -193,7 +193,7 @@
                                                     <tr>
                                                         <th>Waktu</th>
                                                         <th width="150">Nama Pelatihan</th>                                                    
-                                                        <th width="150">Status</th>
+                                                        <th width="150">Lokasi</th>
                                                         <th width="55"></th>
                                                     </tr>
                                                 </thead>
@@ -207,7 +207,7 @@
                                                             </div>
                                                         </td>
                                                         <td>Lorem Ipsum</td>
-                                                        <td><span class="label label-success label-bordered">Tahap Pendaftaran</span></td>
+                                                        <td><span class="label label-success label-bordered">Hotel</span></td>
                                                         <td>
                                                             <div class="dropdown">
                                                                 <button class="btn btn-default btn-icon btn-clean dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-cog"></span></button>
@@ -230,7 +230,7 @@
                                                             </div>
                                                         </td>
                                                         <td>Lorem Ipsum</td>
-                                                        <td><span class="label label-success label-bordered">Tahap Pendaftaran</span></td>
+                                                        <td><span class="label label-success label-bordered">Hotel</span></td>
                                                         <td>
                                                             <div class="dropdown">
                                                                 <button class="btn btn-default btn-icon btn-clean dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-cog"></span></button>
@@ -253,7 +253,7 @@
                                                             </div>
                                                         </td>
                                                         <td>Lorem Ipsum</td>
-                                                        <td><span class="label label-success label-bordered">Tahap Pendaftaran</span></td>
+                                                        <td><span class="label label-success label-bordered">Hotel</span></td>
                                                         <td>
                                                             <div class="dropdown">
                                                                 <button class="btn btn-default btn-icon btn-clean dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-cog"></span></button>
@@ -276,7 +276,7 @@
                                                             </div>
                                                         </td>
                                                         <td>Lorem Ipsum</td>
-                                                        <td><span class="label label-success label-bordered">Tahap Pendaftaran</span></td>
+                                                        <td><span class="label label-success label-bordered">Hotel</span></td>
                                                         <td>
                                                             <div class="dropdown">
                                                                 <button class="btn btn-default btn-icon btn-clean dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-cog"></span></button>

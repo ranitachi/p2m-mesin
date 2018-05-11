@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Model\Masterquesioner;
 class MasterquesionerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $quisioner=Masterquesioner::orderBy('question')->get();

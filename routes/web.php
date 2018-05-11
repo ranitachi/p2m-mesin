@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', 'HomeController@utama')->name('home');
+// Route::get('/', 'HomeController@utama')->name('home');
+Route::get('/',function(){
+    return view('auth.login');
+});
 Auth::routes();
-
+Route::post('/logout','Usercontroller@performLogout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/utama', 'HomeController@utama')->name('home');
 

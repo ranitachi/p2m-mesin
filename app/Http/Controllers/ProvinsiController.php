@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Model\Provinsi;
 class ProvinsiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {  

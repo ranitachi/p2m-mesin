@@ -30131,6 +30131,7 @@ input[type="file"] {
   margin-bottom: 0px;
 }
 .app .app-login-box {
+  border:1px solid #0000ff;
   width: 360px;
   margin: 50px auto;
   background: #FFF;
@@ -30140,7 +30141,7 @@ input[type="file"] {
   zoom: 1;
   -webkit-box-shadow: 0px 4px 20px 5px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 4px 20px 5px rgba(0, 0, 0, 0.05);
-  box-shadow: 0px 4px 20px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 4px 20px 5px rgba(47, 0, 156, 0.05);
 }
 .app .app-login-box:before,
 .app .app-login-box:after {
@@ -30228,8 +30229,10 @@ input[type="file"] {
 .app .app-login-box .app-login-box-footer {
   float: left;
   width: 100%;
-  background: #fafafa;
+  background: lightblue;
   padding: 15px 30px;
+  font-weight:600;
+  border-top:1px solid #0000ff;
   -webkit-border-top-right-radius: 0px;
   -webkit-border-bottom-right-radius: 5px;
   -webkit-border-bottom-left-radius: 5px;

@@ -7,6 +7,10 @@ use App\Model\Provinsi;
 use App\Model\Kabupatenkota;
 class KabupatenkotaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {  
         $prop=Provinsi::all();

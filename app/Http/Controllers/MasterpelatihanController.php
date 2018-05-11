@@ -7,6 +7,10 @@ use App\Model\Masterpelatihan;
 use App\Model\Masterkategoripelatihan;
 class MasterpelatihanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {  
         $kategori=Masterkategoripelatihan::all();
