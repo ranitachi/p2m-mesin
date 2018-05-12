@@ -9,6 +9,10 @@ use App\Model\Kabupatenkota;
 use App\Model\Kelurahan;
 class KelurahanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {  
         $prop=Provinsi::all();

@@ -6,7 +6,7 @@
 
                     <div class="app-heading-container app-heading-bordered bottom">
                         <ul class="breadcrumb">
-                            <li class="active"><a href="{{url('/')}}"><i class="fa fa-home"></i>&nbsp;Beranda</a></li>                                                     
+                            <li class="active"><a href="{{url('/utama')}}"><i class="fa fa-home"></i>&nbsp;Beranda</a></li>                                                     
                             <li class="active"><a href="#">Kategori Pelatihan</a></li>                                                     
                           
                         </ul>
@@ -84,8 +84,14 @@
         $('#form').load('{{url("kategori-pelatihan")}}/'+id, function(){
             $('#btnSimpan').one('click',function(){
                 var kategori=$('#kategori').val();
+                var kode=$('#kode').val();
             
-                if(kategori=='')
+                if(kode=='')
+                {
+                    var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Kode Kategori Pelatihan Masih Kosong';
+                    pesanNoty(ps,'error');
+                }
+                else if(kategori=='')
                 {
                     var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Kategori Pelatihan Masih Kosong';
                     pesanNoty(ps,'error');

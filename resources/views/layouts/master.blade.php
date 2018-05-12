@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="{{asset('css/font.monserat.css')}}">
         <link rel="stylesheet" href="{{asset('css/font.notosans.css')}}">
         <link rel="stylesheet" href="{{asset('css/font.roboto.css')}}">
+        <link rel="stylesheet" href="{{asset('css/font.arista.css')}}">
         <!-- EOF CSS INCLUDE -->
     </head>
     <body>        

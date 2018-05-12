@@ -15,7 +15,9 @@
                     </div>
                 </div>            
             </div>
-<div class="modal fade" id="modal-danger" tabindex="-1" role="dialog" aria-labelledby="modal-danger-header">                        
+       
+            
+            <div class="modal fade" id="modal-danger" tabindex="-1" role="dialog" aria-labelledby="modal-danger-header">                        
                 <div class="modal-dialog modal-danger" role="document">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon-cross"></span></button>
 

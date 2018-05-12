@@ -18,6 +18,7 @@ class CreateMasterperusahaansTable extends Migration
             $table->string('nama_perusahaan')->nullable();
             $table->string('pimpinan')->nullable();
             $table->text('alamat')->nullable();
+            $table->text('alamat2')->nullable();
             $table->integer('provinsi')->default(0);
             $table->integer('kabupaten_kota')->default(0);
             $table->integer('kecamatan')->default(0);

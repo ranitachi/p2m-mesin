@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Masterpeserta;
 use App\Model\Masterpesertadata;
-
 use App\Model\Masterperusahaan;
 use App\Model\Provinsi;
 use App\Model\Kabupatenkota;
@@ -13,9 +12,13 @@ use App\Model\Kecamatan;
 use App\Model\Kelurahan;
 class MasterpesertaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
      public function index()
     {
-        $peserta=Masterpeserta::orderBy('nama_lengkap')->get();
+        $peserta=Masterpeserta::orderBy('kode')->get();
         return view('pages.peserta.index')
             ->with('peserta',$peserta);
     }
@@ -200,5 +203,38 @@ class MasterpesertaController extends Controller
         return view('pages.peserta.by-perusahaan')
             ->with('id',$idper)
             ->with('det',$det);
+    }
+
+    public function foto($id)
+    {
+        $pes=Masterpeserta::find($id);
+        return view('pages.peserta.foto')
+            ->with('id',$id)
+            ->with('det',$pes);
+    }
+    public function fotosimpan(Request $request)
+    {
+
+        $id=$request->id;
+        $pes=Masterpeserta::find($id);
+        $encoded_data = $request->mydata;
+        $binary_data = base64_decode( $encoded_data );
+
+        $name=str_slug($pes->nama_lengkap,'-').'.jpg';
+        $path = public_path('files/foto');
+        $result = file_put_contents( $path.'/'.$name, $binary_data );
+        if (!$result) 
+            die("Could not save image!  Check file permissions.");
+        else
+        {
+            $pes->foto=url('/').'/files/foto/'.$name;
+            $pes->save();
+        }
+        
+        // echo '<pre>';
+        // print_r($request->all());
+        // print_r($name);
+        // echo '</pre>';
+        return redirect('peserta')->with('status','Foto Peserta Berhasil di Simpan');
     }
 }

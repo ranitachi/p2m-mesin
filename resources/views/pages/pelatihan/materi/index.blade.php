@@ -6,7 +6,7 @@
 
                     <div class="app-heading-container app-heading-bordered bottom">
                         <ul class="breadcrumb">
-                            <li class="active"><a href="{{url('/')}}"><i class="fa fa-home"></i>&nbsp;Beranda</a></li>                                                     
+                            <li class="active"><a href="{{url('/utama')}}"><i class="fa fa-home"></i>&nbsp;Beranda</a></li>                                                     
                             <li class="active"><a href="#">Data Materi</a></li>                                                     
                           
                         </ul>
@@ -56,12 +56,12 @@
                                                             @foreach ($pelatihan as $item)
                                                                 @if ($idpelatihan!='')
                                                                     @if ($idpelatihan==$item->id)   
-                                                                        <option value="{{$idpelatihan}}" selected="selected">{{$item->nama}}</option>
+                                                                        <option value="{{$idpelatihan}}" selected="selected">{{$item->kode}}-{{$item->nama}}</option>
                                                                     @else
-                                                                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                        <option value="{{$item->id}}">{{$item->kode}}-{{$item->nama}}</option>
                                                                     @endif
                                                                 @else
-                                                                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                    <option value="{{$item->id}}">{{$item->kode}}-{{$item->nama}}</option>
                                                                 @endif
                                                             @endforeach          
                                                         </select>

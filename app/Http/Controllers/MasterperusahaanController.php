@@ -10,9 +10,13 @@ use App\Model\Kecamatan;
 use App\Model\Kelurahan;
 class MasterperusahaanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        $perusahaan=Masterperusahaan::with('provinsi')->with('kabupatenkota')->with('kecamatan')->with('kelurahan')->orderBy('nama_perusahaan')->get();
+        $perusahaan=Masterperusahaan::with('provinsi')->with('kabupatenkota')->with('kecamatan')->with('kelurahan')->orderBy('kode')->get();
         return view('pages.perusahaan.index')
             ->with('perusahaan',$perusahaan);
     }

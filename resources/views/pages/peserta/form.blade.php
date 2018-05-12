@@ -6,7 +6,7 @@
   
                     <div class="app-heading-container app-heading-bordered bottom">
                         <ul class="breadcrumb">
-                            <li class="active"><a href="{{url('/')}}"><i class="fa fa-home"></i>&nbsp;Beranda</a></li>                                                     
+                            <li class="active"><a href="{{url('/utama')}}"><i class="fa fa-home"></i>&nbsp;Beranda</a></li>                                                     
                             <li class="active"><a href="{{url('peserta')}}"> Peserta</a></li>                                                     
                             <li class="active"><a href="#">Form {{$id==-1 ? 'Tambah' : 'Edit'}} Peserta</a></li>                                                     
                           

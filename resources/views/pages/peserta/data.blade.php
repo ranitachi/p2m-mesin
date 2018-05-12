@@ -13,7 +13,7 @@
                 <th>Asal Perusahaan</th>
                 <th>Jabatan</th>
                 <th >Kamera</th>
-                <th style="width:80px;">#</th>
+                <th style="width:100px;">#</th>
             </tr>
         </thead>                                    
         <tbody>
@@ -30,8 +30,8 @@
                     <td class="text-left">{{$item->alamat}}</td>    
                     <td class="text-left">{{isset($item->perusahaan->nama_perusahaan) ? $item->perusahaan->nama_perusahaan :'PRIBADI'}}</td>    
                     <td class="text-left">{{$item->jabatan}}</td>    
-                    <td class="text-center"><a href="#" class="btn btn-xs btn-success btn-rounded" data-toggle="tooltip" title="Ambil Foto"><i class="fa fa-camera" ></i></a> </td>    
-                    <td class="text-center">
+                    <td class="text-center"><a href="javascript:ambilfoto({{$item->id}})" class="btn btn-xs btn-success btn-rounded" data-toggle="tooltip" title="Ambil Foto"><i class="fa fa-camera" ></i></a></td>    
+                    <td class="text-center" style="width:100px;">
                         
 
                         <a href="{{url('peserta/'.$item->id)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="Edit Data"><i class="fa fa-edit" ></i></a> 

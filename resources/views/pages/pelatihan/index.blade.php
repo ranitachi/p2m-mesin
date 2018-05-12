@@ -6,7 +6,7 @@
 
                     <div class="app-heading-container app-heading-bordered bottom">
                         <ul class="breadcrumb">
-                            <li class="active"><a href="{{url('/')}}"><i class="fa fa-home"></i>&nbsp;Beranda</a></li>                                                     
+                            <li class="active"><a href="{{url('/utama')}}"><i class="fa fa-home"></i>&nbsp;Beranda</a></li>                                                     
                             <li class="active"><a href="#">Data Pelatihan</a></li>                                                     
                           
                         </ul>
@@ -103,7 +103,9 @@
 <script type="text/javascript" src="{{asset('build/js/vendor/datatables/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('build/js/vendor/datatables/dataTables.bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('build/js/vendor/noty/jquery.noty.packaged.js')}}"></script>
-
+<script type="text/javascript" src="{{asset('build/js/vendor/bootstrap-select/bootstrap-select.js')}}"></script>
+<script type="text/javascript" src="{{asset('build/js/vendor/select2/select2.full.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('build/js/vendor/multiselect/jquery.multi-select.js')}}"></script>
 <script>
     $(document).ready(function(){
         var status="{{ Session::get('status') }}";

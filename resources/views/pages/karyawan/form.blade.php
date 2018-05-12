@@ -20,7 +20,7 @@
                     </div>
                     <div class="app-heading-container app-heading-bordered bottom">
                         <ul class="breadcrumb">
-                            <li class="active"><a href="{{url('/')}}">Beranda</a></li>                                                     
+                            <li class="active"><a href="{{url('/utama')}}">Beranda</a></li>                                                     
                             <li class="active"><a href="{{url('karyawan')}}"> Karyawan</a></li>                                                     
                             <li class="active"><a href="#">Form {{$id==-1 ? 'Tambah' : 'Edit'}} Karyawan</a></li>                                                     
                           

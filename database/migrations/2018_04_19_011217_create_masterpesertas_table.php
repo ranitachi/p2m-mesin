@@ -17,6 +17,9 @@ class CreateMasterpesertasTable extends Migration
             $table->increments('id');
             $table->string('nama_lengkap')->nullable();
             $table->string('nama_sertifikat')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->string('gender')->nullable();
+            $table->date('tanggal_lahir')->nullable();
             $table->string('agama')->nullable();
             $table->string('alamat')->nullable();
             $table->integer('provinsi')->default(0);

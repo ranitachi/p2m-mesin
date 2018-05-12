@@ -5,21 +5,36 @@
 	</head>
 	<body onLoad="window.print()">
         <div class="body" style="page-break-before: always;">
-			<table border="0" style="width:90%;margin:0 auto;" cellpadding="0" cellspacing="0">
-				<tr>
-					<td style="width:20%;text-align:right;vertical-align:top">
-                        <img src="{{asset('img/WhatsApp Image 2018-05-04 at 15.36.20.jpeg')}}" style='height:120px;margin:0 auto;'>
-                    </td>
-					<td style="width:80%;vertical-align:top;text-align:center">
-						<h2 style="font-size:20px !important;">P2M - Departemen Teknik Mesin, FTUI</h2>
-						<h2 style="font-size:20px !important;">Daftar Hadir Peserta</h2>
-						<h1 style="font-size:30px !important;font-weight:300;">{{$pelatihan->pelatihan->nama}}</h1>
-                        <h3>Tanggal : {{tbt($pelatihan->start_date)}} s.d. {{tbt($pelatihan->end_date)}}</h3>
-						
-                    </td>
-                    
-				</tr>
-            </table>
+				@foreach ($peserta as $idx=>$item)
+					
+                        <table border="0" style="width:45%;margin:0 auto;border:1px solid #888;margin-right:30px;margin-bottom:20px;" cellpadding="0" cellspacing="0">
+							<tr>
+								<td style="width:20%;text-align:right;vertical-align:top">
+									<img src="{{asset('img/WhatsApp Image 2018-05-04 at 15.36.20.jpeg')}}" style='height:50px;margin:10px auto;'>
+								</td>
+								<td style="width:80%;vertical-align:top;text-align:center">
+									<h1 style="font-size:20px !important;">P2M - Departemen Teknik Mesin, FTUI</h1>	
+								</td>
+								
+							</tr>
+							<tr>
+								<td colspan="2" style="text-align:center;background-color:yellow">
+									<h4>Training / Pelatihan</h4>
+									<h3>{{strtoupper($pelatihan->pelatihan->nama)}}</h3>
+									<h3>Tanggal : {{tgl_indo2($pelatihan->start_date)}} s.d. {{tgl_indo2($pelatihan->end_date)}}</h3>
+									<h1 style="font-size:140%">{{$item->peserta->nama_lengkap}}</h1>
+								</td>
+								
+							</tr>
+							<tr>
+								<td colspan="2" style="text-align:center;background-color:dodgerblue;color:white">
+									<h3>{{$item->peserta->jabatan=='' ? '&nbsp;':$item->peserta->jabatan}}</h3>
+								</td>
+								
+							</tr>
+						</table>
+                        
+				@endforeach 
         </div>
     </body>
 </html>
@@ -74,8 +89,13 @@ table td
 
 h1,h2,h4,h5
 {
+<<<<<<< HEAD
 	padding: 3px !important;
 	margin: 3px !important;
+=======
+	padding: 1px !important;
+	margin: 2px !important;
+>>>>>>> 0b8d5d7700535219d8cf0faba4061cf7fa08a368
 }
 h6,h3
 {

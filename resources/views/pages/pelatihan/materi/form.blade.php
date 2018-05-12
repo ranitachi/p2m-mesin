@@ -6,7 +6,7 @@
 
                     <div class="app-heading-container app-heading-bordered bottom">
                         <ul class="breadcrumb">
-                            <li class="active"><a href="{{url('/')}}"><i class="fa fa-home"></i>&nbsp;Beranda</a></li>                                                     
+                            <li class="active"><a href="{{url('/utama')}}"><i class="fa fa-home"></i>&nbsp;Beranda</a></li>                                                     
                             <li class="active"><a href="{{url('pelatihan')}}">Pelatihan</a></li>                                                     
                             <li class="active"><a href="#">Form Materi</a></li>                                                     
                           
@@ -46,20 +46,20 @@
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Pelatihan</label>
                                                             <div class="col-md-8">
-                                                                <select class="s2-select-search form-control" name="pelatihan_id" id="pelatihan_id" >
+                                                                <select class="s2-select-search form-control" name="pelatihan_id" id="pelatihan_id" onchange="gantipelatihan(this.value)">
                                                                     <option>-Pelatihan-</option>
                                                                     @foreach ($pelatihan as $item)
                                                                         @if ($idpel!=-1)
                                                                             @if ($idpel==$item->id)
-                                                                                <option value="{{$item->id}}" selected="selected">{{$item->nama}}</option>
+                                                                                <option value="{{$item->id}}__{{$item->kode}}" selected="selected">{{$item->nama}}</option>
                                                                             @php
                                                                                 $kode=$item->kode;
                                                                             @endphp
                                                                             @else
-                                                                                <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                                <option value="{{$item->id}}__{{$item->kode}}">{{$item->nama}}</option>
                                                                             @endif
                                                                         @else
-                                                                            <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                            <option value="{{$item->id}}__{{$item->kode}}">{{$item->nama}}</option>
                                                                         @endif
                                                                     @endforeach          
                                                                 </select>
@@ -75,14 +75,14 @@
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Modul Materi</label>
                                                             <div class="col-md-8">
-                                                                <textarea name="materi" id="name" class="form-control" placeholder="Materi Pelatihan">{{$id==-1 ? '' : $det->materi}}</textarea>
+                                                                <textarea name="materi" id="materi" class="form-control" placeholder="Materi Pelatihan">{{$id==-1 ? '' : $det->materi}}</textarea>
                                                               
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Modul Materi (Inggris)</label>
                                                             <div class="col-md-8">
-                                                                <textarea name="materi_en" id="namteri_en" class="form-control" placeholder="Materi (Inggris)">{{$id==-1 ? '' : $det->materi_en}}</textarea>
+                                                                <textarea name="materi_en" id="materi_en" class="form-control" placeholder="Materi (Inggris)">{{$id==-1 ? '' : $det->materi_en}}</textarea>
                                                               
                                                             </div>
                                                         </div>
@@ -127,30 +127,32 @@
 <script type="text/javascript" src="{{asset('build/js/vendor/select2/select2.full.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('build/js/vendor/multiselect/jquery.multi-select.js')}}"></script>
 <script>
+    function gantipelatihan(val)
+    {
+        var d=val.split('__');
+        var id=d[0];
+        var kode=d[1];
+        $('#kode').val(kode+'-');
+    }
     $(document).ready(function(){
-        $('#biaya_pelatihan').autoNumeric('init',{mDec:0});
+        
         $('#btnSimpan').on('click',function(){
-            var kode=$('#kode').val();
-            var nama=$('#nama').val();
-            var biaya=$('#biaya_pelatihan').val();
-            if(kode=='')
+            var materi=$('#materi').val();
+            var materi_en=$('#materi_en').val();
+      
+            if(materi=='')
             {
-                var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Kode Pelatihan Harus Diisi,<br>Jika Tidak Ada Isi Dengan 0';
+                var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Materi Harus Diisi';
                 pesanNoty(ps,'error');
-                $('#kode').focus();
+                $('#materi').focus();
             }
-            else if(nama=='')
+            else if(materi_en=='')
             {
-                var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Nama Pelatihan Harus Diisi';
+                var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Materi Dalam Bahasa Inggris Harus Diisi';
                 pesanNoty(ps,'error');
-                $('#nama').focus();
+                $('#nammateri_ena').focus();
             }
-            else if(biaya=='')
-            {
-                var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Biaya Pelatihan Harus Diisi';
-                pesanNoty(ps,'error');
-                $('#biaya_pelatihan').focus();
-            }
+            
             else
             {
                 $('#modal-primary-header').text('Informasi');

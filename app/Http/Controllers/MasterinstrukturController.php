@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Model\Masterinstruktur;
 class MasterinstrukturController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $instruktur=Masterinstruktur::orderBy('nama')->get();

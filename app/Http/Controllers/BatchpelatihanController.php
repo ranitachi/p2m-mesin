@@ -14,11 +14,18 @@ use App\Model\Skedulpelatihan;
 use App\Skedulpelatihandetail;
 use App\Model\Materi;
 use App\Model\Absensipelatihan;
+use App\Model\Masterquesioner;
 use App\Model\Absensipelatihandetail;
-
+use App\Model\Quisionerdata;
+use App\Model\Nilaites;
+use DB;
 use Carbon;
 class BatchpelatihanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {  
         
@@ -76,6 +83,7 @@ class BatchpelatihanController extends Controller
             list($tg,$bl,$th)=explode('/',$data['end_date']);
             $data['end_date']=$th.'-'.$bl.'-'.$tg;
         }
+        $data['pelatihan_id']=strtok($request->pelatihan_id,'__');
         // echo '<pre>';
         // print_r($data);
         // echo '</pre>';
@@ -112,6 +120,7 @@ class BatchpelatihanController extends Controller
             list($tg,$bl,$th)=explode('/',$data['end_date']);
             $data['end_date']=$th.'-'.$bl.'-'.$tg;
         }
+        $data['pelatihan_id']=strtok($request->pelatihan_id,'__');
         $update = Batchpelatihan::find($id)->update($data);
         BatchIntruktur::where('batch_pelatihan_id','=',$id)->forceDelete();
         if(isset($request->instruktur_id))
@@ -142,9 +151,11 @@ class BatchpelatihanController extends Controller
         $jadwal=Batchpelatihan::find($id);
         $pelatihan=Masterpelatihan::where('id','=',$jadwal->pelatihan_id)->with('kategori')->get()->first();
         $dpeserta=BatchParticipant::where('batch_id','=',$id)->with('peserta')->get();
+        $instruktur=BatchIntruktur::where('batch_pelatihan_id','=',$id)->with('instruktur')->get();
         $peserta=Masterpeserta::all();
         $materi=Materi::where('pelatihan_id','=',$jadwal->pelatihan_id)->with('pelatihan')->get();
         $pegawai=Masterpegawai::all();
+        $quisioner=Masterquesioner::where('flag',1)->orderBy('kategori','desc')->get();
         $jns=strtok($jenis,'__');
 
         $idjadwal=str_replace($jns.'__','',$jenis);
@@ -167,6 +178,7 @@ class BatchpelatihanController extends Controller
         
         $absensi=Absensipelatihandetail::with('absensi')->with('peserta')->with('skedul')->get();
         $absn=array();
+        $nilai=array();
         foreach($absensi as $k =>$v)
         {
             $absn[$v->absensi_id][]=$v;
@@ -179,11 +191,48 @@ class BatchpelatihanController extends Controller
                 $d_jadwal=$detjadwal[$idjadwal];
             }
         // }
-        
+        $skedul=Skedulpelatihandetail::where('batch_id',$id)->with('instruktur')->with('pegawai')->with('materi')->with('skedul')->get();
+        $sch=array();
+        foreach($skedul as $k=>$v)
+        {
+            $sch[$v->instruktur_id][]=$v;
+        }
+
+        $dataquisioner=Quisionerdata::where('batch_id',$id)->get();
+        $ds=array();
+        foreach($dataquisioner as $k => $v)
+        {
+            $ds[$v->peserta_id][$v->instruktur_id]=$v;
+        }
+        $q_data=Quisionerdata::where('batch_id',$id)->get();
+        $q_d=array();
+        foreach($q_data as $k => $v)
+        {
+            if($v->nilai=='BS')
+                $nilai[$v->instruktur_id][$v->quisioner_id][$v->nilai]=4;
+            elseif($v->nilai=='B')
+                $nilai[$v->instruktur_id][$v->quisioner_id][$v->nilai]=3;
+            elseif($v->nilai=='C')
+                $nilai[$v->instruktur_id][$v->quisioner_id][$v->nilai]=2;
+            elseif($v->nilai=='K')
+                $nilai[$v->instruktur_id][$v->quisioner_id][$v->nilai]=1;
+        }   
+
+        $nilaites=Nilaites::where('batch_id',$id)->get();
+        $n_tes=array();
+        foreach($nilaites as $kn => $vn)
+        {
+            $n_tes[$vn->peserta_id][$vn->jenis_tes]=$vn->nilai;
+        }
+
         return view('pages.jadwal.batch.index')
             ->with('id',$id)
             ->with('absen',$absn)
+            ->with('n_tes',$n_tes)
+            ->with('nilai',$nilai)
+            ->with('ds',$ds)
             ->with('skd',$skd)
+            ->with('skedul',$sch)
             ->with('pegawai',$pegawai)
             ->with('detjadwal',$d_jadwal)
             ->with('materi',$materi)
@@ -192,6 +241,8 @@ class BatchpelatihanController extends Controller
             ->with('peserta',$peserta)
             ->with('dpeserta',$dpeserta)
             ->with('pelatihan',$pelatihan)
+            ->with('instruktur',$instruktur)
+            ->with('quisioner',$quisioner)
             ->with('jenis',$jns);
     }
 
@@ -435,5 +486,170 @@ class BatchpelatihanController extends Controller
             ->with('peserta',$peserta)
             ->with('pelatihan',$pelatihan)
             ->with('id',$id);
+    }
+    public function name_tag($id)
+    {
+        $peserta=BatchParticipant::where('batch_id',$id)->with('peserta')->get();
+        $pelatihan=Batchpelatihan::find($id);
+        return view('pages.jadwal.batch.berkas.name-tag')
+            ->with('peserta',$peserta)
+            ->with('pelatihan',$pelatihan)
+            ->with('id',$id);
+    }
+    public function nama_meja($id)
+    {
+        $peserta=BatchParticipant::where('batch_id',$id)->with('peserta')->get();
+        $pelatihan=Batchpelatihan::find($id);
+        return view('pages.jadwal.batch.berkas.nama-meja')
+            ->with('peserta',$peserta)
+            ->with('pelatihan',$pelatihan)
+            ->with('id',$id);
+    }
+    public function cetak_sertifikat($id,$idbatch)
+    {
+        $peserta=BatchParticipant::where('id',$id)->where('batch_id',$idbatch)->with('peserta')->first();
+        $pelatihan=Batchpelatihan::find($idbatch);
+        return view('pages.jadwal.batch.berkas.sertifikat')
+            ->with('peserta',$peserta)
+            ->with('pelatihan',$pelatihan)
+            ->with('idbatch',$idbatch)
+            ->with('id',$id);
+    }
+    public function cetak_ucapan($id,$idbatch)
+    {
+        $instruktur=BatchIntruktur::where('id',$id)->where('batch_pelatihan_id',$idbatch)->with('instruktur')->first();
+        $pelatihan=Batchpelatihan::find($idbatch);
+        return view('pages.jadwal.batch.berkas.ucapan-terimakasih')
+            ->with('instruktur',$instruktur)
+            ->with('pelatihan',$pelatihan)
+            ->with('idbatch',$idbatch)
+            ->with('id',$id);
+    }
+    public function form_quisioner($idbatch)
+    {
+        $instruktur=BatchIntruktur::where('batch_pelatihan_id',$idbatch)->with('instruktur')->get();
+        $pelatihan=Batchpelatihan::find($idbatch);
+        $quisioner=Masterquesioner::where('flag',1)->orderBy('kategori','desc')->get();
+        $skedul=Skedulpelatihandetail::where('batch_id',$idbatch)->with('instruktur')->with('pegawai')->with('materi')->with('skedul')->get();
+        $sch=array();
+        foreach($skedul as $k=>$v)
+        {
+            $sch[$v->instruktur_id][]=$v;
+        }
+        return view('pages.jadwal.batch.berkas.form-quisioner')
+            ->with('instruktur',$instruktur)
+            ->with('pelatihan',$pelatihan)
+            ->with('quisioner',$quisioner)
+            ->with('skedul',$sch)
+            ->with('idbatch',$idbatch);
+    }
+
+    public function simpan_quisioner(Request $request,$iduser,$idbatch,$date,$instruktur_id)
+    {
+        // echo '<pre>';
+        // print_r($request->all());
+        // echo '</pre>';
+        $batch=Batchpelatihan::find($idbatch);
+        $x=0;
+        foreach($request->pilihan as $k => $v)
+        {
+            $simpan[$x]['quisioner_id']=$k;
+            $simpan[$x]['peserta_id']=$iduser;
+            $simpan[$x]['batch_id']=$idbatch;
+            $simpan[$x]['pelatihan_id']=$batch->pelatihan_id;
+            $simpan[$x]['instruktur_id']=$instruktur_id;
+            $simpan[$x]['nilai']=$v;
+            $simpan[$x]['created_at']=date('Y-m-d');
+            $simpan[$x]['updated_at']=date('Y-m-d');
+            $x++;
+        }
+        foreach($request->usulan as $kk => $vv)
+        {
+            $usulan['quisioner_id']=$kk;
+            $usulan['peserta_id']=$iduser;
+            $usulan['batch_id']=$idbatch;
+            $usulan['pelatihan_id']=$batch->pelatihan_id;
+            $usulan['instruktur_id']=$instruktur_id;
+            $usulan['usulan']=$vv;
+        }
+
+        Quisionerdata::insert($simpan);
+        $save=Quisionerdata::create($usulan);
+        return response()->json([$save]);
+    }
+
+    function hasil_quisioner($instruktur_id,$batch_id)
+    {
+        $instruktur=BatchIntruktur::where('instruktur_id',$instruktur_id)->where('batch_pelatihan_id',$batch_id)->with('instruktur')->first();
+        $pelatihan=Batchpelatihan::find($batch_id);
+        $quisioner=Masterquesioner::where('flag',1)->orderBy('kategori','desc')->get();
+        $skedul=Skedulpelatihandetail::where('batch_id',$batch_id)->where('instruktur_id',$instruktur_id)->with('instruktur')->with('pegawai')->with('materi')->with('skedul')->get();
+        $nilai=array();
+        $q_data=Quisionerdata::where('batch_id',$batch_id)->where('instruktur_id',$instruktur_id)->get();
+        $q_d=array();
+        foreach($q_data as $k => $v)
+        {
+            if($v->nilai=='BS')
+                $nilai[$v->quisioner_id][$v->nilai]=4;
+            elseif($v->nilai=='B')
+                $nilai[$v->quisioner_id][$v->nilai]=3;
+            elseif($v->nilai=='C')
+                $nilai[$v->quisioner_id][$v->nilai]=2;
+            elseif($v->nilai=='K')
+                $nilai[$v->quisioner_id][$v->nilai]=1;
+        }
+        return view('pages.jadwal.batch.quisioner-grafik')
+                ->with('instruktur_id',$instruktur_id)
+                ->with('batch_id',$batch_id)
+                ->with('instruktur',$instruktur)
+                ->with('pelatihan',$pelatihan)
+                ->with('n',$nilai)
+                ->with('skedul',$skedul)
+                ->with('quisioner',$quisioner);
+    }
+
+    public function simpan_nilai_test(Request $request,$idpeserta,$idbatch)
+    {
+        $pelatihan=Batchpelatihan::find($idbatch);
+        // echo '<pre>';
+        // print_r($request->all());
+        // echo '</pre>';
+        Nilaites::where('batch_id',$idbatch)->forceDelete();
+        // foreach($n as $it)
+        // {
+        //     DB::table("nilaites")->forceDelete($it->id);
+        // }
+
+        foreach($request->nilai_pre_test as $k=>$v)
+        {
+            $participant_id=$k;
+            $nilai_pre=$v;
+            
+            $n=new Nilaites;
+            $n->peserta_id=$participant_id;
+            $n->pelatihan_id=$pelatihan->pelatihan_id;
+            $n->jenis_tes='pre';
+            $n->batch_id=$idbatch;
+            $n->nilai=$v;
+            $n->created_at=date('Y-m-d H:i:s');
+            $n->updated_at=date('Y-m-d H:i:s');
+            $n->save();
+        }
+        foreach($request->nilai_post_test as $k=>$v)
+        {
+            $participant_id=$k;
+            $nilai_pre=$v;
+            
+            $n=new Nilaites;
+            $n->peserta_id=$participant_id;
+            $n->pelatihan_id=$pelatihan->pelatihan_id;
+            $n->jenis_tes='post';
+            $n->batch_id=$idbatch;
+            $n->nilai=$v;
+            $n->created_at=date('Y-m-d H:i:s');
+            $n->updated_at=date('Y-m-d H:i:s');
+            $n->save();
+        }
+        return response()->json(['done']);
     }
 }

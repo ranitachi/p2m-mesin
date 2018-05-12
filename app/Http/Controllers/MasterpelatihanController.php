@@ -7,6 +7,10 @@ use App\Model\Masterpelatihan;
 use App\Model\Masterkategoripelatihan;
 class MasterpelatihanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {  
         $kategori=Masterkategoripelatihan::all();
@@ -15,9 +19,9 @@ class MasterpelatihanController extends Controller
     public function data($idkat)
     {
         if($idkat!=-1)
-            $pelatihan=Masterpelatihan::where('flag','=','1')->where('kategori_id','=',$idkat)->with('kategori')->get();
+            $pelatihan=Masterpelatihan::where('flag','=','1')->where('kategori_id','=',$idkat)->with('kategori')->orderBy('kode','asc')->get();
         else
-            $pelatihan=Masterpelatihan::where('flag','=','1')->with('kategori')->get();
+            $pelatihan=Masterpelatihan::where('flag','=','1')->with('kategori')->orderBy('kategori_id','asc')->orderBy('kode','asc')->get();
         
         return view('pages.pelatihan.data')
                 ->with('idkat',$idkat)
@@ -28,9 +32,9 @@ class MasterpelatihanController extends Controller
     {
         $det=array();
         if($idkat==-1)
-            $kategori=Masterkategoripelatihan::all();
+            $kategori=Masterkategoripelatihan::orderBy('kategori_id','asc')->orderBy('kode','asc')->get();
         else
-            $kategori=Masterkategoripelatihan::where('id','=',$idkat)->get();
+            $kategori=Masterkategoripelatihan::where('id','=',$idkat)->orderBy('kode','asc')->get();
 
         if($id!=-1)
         {
