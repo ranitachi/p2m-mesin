@@ -40,7 +40,18 @@ SIMPEL P2M TEKNIK MESIN FTUI
 6. Master Data Kuesioner
     Data kuesioner dicetak langsung dari SIMPEL
 
+
+
 Note:
     Belum ada tampilan untuk buku peserta
     Belum ada tampilan sertifikat
     Data peserta dan data perusahaan di input dari excel
+
+
+- NAme Tag/Nama Meja yg biru diisi dengan Perusahaan, in House yg muncul jabatan
+- Name Tag gk kesamping
+- Quisioner sesuai jlh sesi setiap Instruktur
+- Materi di jadwal belum ambil ke database
+- In House Pre Tes bisa berkali-kali
+- perhitungan hasil quisioner masih blm pas
+- 
