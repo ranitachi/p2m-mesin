@@ -25,7 +25,7 @@
                                                 @endforeach
                                             </select> --}}
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="dd/mm/yyyy" name="skedul__date" id="tanggal" value="{{ $idjadwal==0 ? '' : ($detjadwal->tanggal!='' ? date('d/m/Y',strtotime($detjadwal->tanggal)) : '') }}">
+                                                <input type="text" class="form-control" placeholder="{{ $idjadwal==0 ? '' : ($detjadwal->tanggal!='' ? date('d/m/Y',strtotime($detjadwal->tanggal)) : 'dd/mm/yyyy') }}" name="skedul__date" id="tanggal" value="{{ $idjadwal==0 ? '' : ($detjadwal->tanggal!='' ? date('d/m/Y',strtotime($detjadwal->tanggal)) : '') }}">
                                                 <span class="input-group-addon">
                                                     <span class="icon-calendar-full"></span>
                                                 </span>
@@ -78,12 +78,12 @@
                                                 @foreach ($instruktur as $item)
                                                     @if ($idjadwal!=0)
                                                         @if ($detjadwal->instruktur_id==$item->instruktur_id)
-                                                            <option value="{{$item->instruktur_id}}" selected="selected">{{$item->instruktur->nama}}</option>
+                                                            <option value="{{$item->instruktur_id}}" selected="selected">{{$item->instruktur->inisial}}-{{$item->instruktur->nama}}</option>
                                                         @else
-                                                            <option value="{{$item->instruktur_id}}">{{$item->instruktur->nama}}</option>    
+                                                            <option value="{{$item->instruktur_id}}">{{$item->instruktur->inisial}}-{{$item->instruktur->nama}}</option>    
                                                         @endif
                                                     @else
-                                                        <option value="{{$item->instruktur_id}}">{{$item->instruktur->nama}}</option>
+                                                        <option value="{{$item->instruktur_id}}">{{$item->instruktur->inisial}}-{{$item->instruktur->nama}}</option>
                                                     @endif
                                                 @endforeach
                                             </select>

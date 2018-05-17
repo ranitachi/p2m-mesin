@@ -10,7 +10,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
-                                                        <th>NIP</th>
+                                                        <th>Inisial</th>
                                                         <th>Nama</th>
                                                         <th>Email</th>
                                                         <th>Telp/HP</th>

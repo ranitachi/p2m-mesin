@@ -280,6 +280,11 @@
     {
         $('#detabsen').load('{{url("absensi-detail")}}/'+idabsensi);
     }
+    
+    function cetakjadwal(idbatch)
+    {
+        $('#detabsen').load('{{url("absensi-detail")}}/'+idabsensi);
+    }
 </script>
 @endsection
 <style>

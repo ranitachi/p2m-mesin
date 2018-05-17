@@ -48,10 +48,9 @@ Note:
     Data peserta dan data perusahaan di input dari excel
 
 
-- NAme Tag/Nama Meja yg biru diisi dengan Perusahaan, in House yg muncul jabatan
-- Name Tag gk kesamping
-- Quisioner sesuai jlh sesi setiap Instruktur
-- Materi di jadwal belum ambil ke database
+- [ok] NAme Tag/Nama Meja yg biru diisi dengan Perusahaan, in House yg muncul jabatan
+- [ok] Name Tag gk kesamping
+- [ok] Quisioner sesuai jlh sesi setiap Instruktur
+- [ok] Materi di jadwal belum ambil ke database
 - In House Pre Tes bisa berkali-kali
 - perhitungan hasil quisioner masih blm pas
-- 

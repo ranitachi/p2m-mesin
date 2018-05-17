@@ -7,10 +7,10 @@
         <div class="body" style="page-break-before: always;">
 				@foreach ($peserta as $idx=>$item)
 					
-                        <table border="0" style="width:45%;margin:0 auto;border:1px solid #888;margin-right:30px;margin-bottom:20px;" cellpadding="0" cellspacing="0">
+                        <table border="0" style="width:45%;margin:0 auto;border:1px solid #888;margin-right:30px;margin-bottom:20px;float:left" cellpadding="0" cellspacing="0">
 							<tr>
 								<td style="width:20%;text-align:right;vertical-align:top">
-									<img src="{{asset('img/WhatsApp Image 2018-05-04 at 15.36.20.jpeg')}}" style='height:50px;margin:10px auto;'>
+									<img src="{{asset('img/logo.jpeg')}}" style='height:50px;margin:10px auto;'>
 								</td>
 								<td style="width:80%;vertical-align:top;text-align:center">
 									<h1 style="font-size:20px !important;">P2M - Departemen Teknik Mesin, FTUI</h1>	
@@ -28,7 +28,13 @@
 							</tr>
 							<tr>
 								<td colspan="2" style="text-align:center;background-color:dodgerblue;color:white">
-									<h3>{{$item->peserta->jabatan=='' ? '&nbsp;':$item->peserta->jabatan}}</h3>
+									<h3>
+									@if (isset($item->peserta->perusahaan->nama_perusahaan))
+										{{($item->peserta->perusahaan->nama_perusahaan)}}
+									@else
+										{{($item->peserta->jabatan=='' ? '&nbsp;':$item->peserta->jabatan)}}
+									@endif	
+									</h3>
 								</td>
 								
 							</tr>

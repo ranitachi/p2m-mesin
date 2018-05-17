@@ -55,9 +55,9 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Kode NIP</label>
+                                                        <label class="col-md-4 control-label">Kode Inisial</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" name="kode" id="kode" class="form-control" value="{{$id==-1 ? '' : $det->kode}}" placeholder="Kode NIP">
+                                                            <input type="text" name="kode" id="kode" class="form-control" value="{{$id==-1 ? '' : $det->kode}}" placeholder="Kode Inisial">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">

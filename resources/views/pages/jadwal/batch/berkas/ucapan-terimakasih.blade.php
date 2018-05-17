@@ -8,7 +8,7 @@
 				        <table border="0" style="width:100%;margin:0 auto;border:1px solid #888;margin-right:30px;margin-bottom:20px;" cellpadding="0" cellspacing="0">
 							<tr>
 								<td style="width:100%;text-align:center;vertical-align:top">
-									<img src="{{asset('img/WhatsApp Image 2018-05-04 at 15.36.20.jpeg')}}" style='height:100px;margin:10px auto;'>
+									<img src="{{asset('img/logo.jpeg')}}" style='height:100px;margin:10px auto;'>
 								</td>
 							
 							</tr>

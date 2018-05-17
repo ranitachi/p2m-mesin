@@ -8,7 +8,7 @@
 				        <table border="0" style="width:100%;margin:0 auto;border:1px solid #888;margin-right:30px;margin-bottom:20px;" cellpadding="0" cellspacing="0">
 							<tr>
 								<td style="width:20%;text-align:right;vertical-align:top">
-									<img src="{{asset('img/WhatsApp Image 2018-05-04 at 15.36.20.jpeg')}}" style='height:50px;margin:10px auto;'>
+									<img src="{{asset('img/logo.jpeg')}}" style='height:50px;margin:10px auto;'>
 								</td>
 								<td style="width:80%;vertical-align:top;text-align:center">
 									<h1 style="font-size:20px !important;">P2M - Departemen Teknik Mesin, FTUI</h1>	

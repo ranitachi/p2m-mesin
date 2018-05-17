@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>Kode Inisial</th>
                 <th>NIP</th>
                 <th>Nama</th>
                 <th>Bidang Keahlian</th>
@@ -38,6 +39,7 @@
             @endphp
                 <tr>
                     <td class="text-center">{{(++$key)}}</td>    
+                    <td class="text-center">{{$item->inisial}}</td>    
                     <td class="text-center">{{$item->nip==0 ? '':$item->nip}}</td>    
                     <td class="text-left">{{$nama}}</td>    
                     <td class="text-left">{{$item->bidang_keahlian}}</td>    

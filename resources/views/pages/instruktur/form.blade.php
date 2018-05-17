@@ -61,6 +61,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label class="col-md-4 control-label">Kode Inisial</label>
+                                                        <div class="col-md-8">
+                                                            <input type="text" name="inisial" id="inisial" class="form-control" value="{{$id==-1 ? '' : $det->inisial}}" placeholder="Kode Inisial">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label class="col-md-4 control-label">Nama Instruktur</label>
                                                         <div class="col-md-8">
                                                             <input type="text" name="nama" id="nama" class="form-control" value="{{$id==-1 ? '' : $det->nama}}" placeholder="Nama Instruktur">

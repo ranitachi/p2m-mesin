@@ -27,23 +27,30 @@
                         <td style="width:15%;vertical-align:top;text-align:left">Pemateri/Instruktur</td>
                         <td style="width:1%;vertical-align:top;text-align:center">:</td>
                         @php
-                            $nama=$item->instruktur->nama;
-                            if($item->instruktur->gelar_s3!='')
+                        // if($item->instruktur_id!=0)
+                        // {
+                            $nama=$it->instruktur->nama;
+                            if($it->instruktur->gelar_s3!='')
                             {
-                                $nama.=', '.$item->instruktur->gelar_s3.'.';
+                                $nama.=', '.$it->instruktur->gelar_s3.'.';
                             }
-                            if($item->instruktur->gelar_s1!='')
+                            if($it->instruktur->gelar_s1!='')
                             {
-                                $nama.=', '.$item->instruktur->gelar_s1.'.';
+                                $nama.=', '.$it->instruktur->gelar_s1.'.';
                             }
-                            if($item->instruktur->gelar_s2!='')
+                            if($it->instruktur->gelar_s2!='')
                             {
-                                $nama.=', '.$item->instruktur->gelar_s2.'.';
+                                $nama.=', '.$it->instruktur->gelar_s2.'.';
                             }
-                            if($item->instruktur->gelar_lain!='')
+                            if($it->instruktur->gelar_lain!='')
                             {
-                                $nama.=', '.$item->instruktur->gelar_lain;
+                                $nama.=', '.$it->instruktur->gelar_lain;
                             }
+                        // }
+                        // else
+                        // {
+                        //     $nama='';
+                        // }
                         @endphp 
                         <td style="width:60%;vertical-align:top;text-align:left"><b>{{$nama}}</b></td>
                     </tr>

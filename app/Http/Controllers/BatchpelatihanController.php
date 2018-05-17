@@ -515,6 +515,33 @@ class BatchpelatihanController extends Controller
             ->with('idbatch',$idbatch)
             ->with('id',$id);
     }
+    
+    public function cetak_jadwal($idbatch)
+    {
+        $jadwal=Skedulpelatihandetail::where('batch_id',$idbatch)->get();
+        $pelatihan=Batchpelatihan::find($idbatch);
+        $skedule=Skedulpelatihandetail::select('*','skedul_pelatihan_detail.id as idp')
+            ->join('skedul_pelatihan','skedul_pelatihan.id','=','skedul_pelatihan_detail.skedul_id')
+            ->where('skedul_pelatihan_detail.batch_id','=',$idbatch)
+            ->with('batch')
+            ->with('materi')
+            ->with('pegawai')
+            ->orderBy('skedul_pelatihan.date', 'ASC')
+            ->orderBy('skedul_pelatihan_detail.start_time','ASC')->get();
+        
+        $skd=array();
+        $detjadwal=$d_jadwal=array();
+        foreach($skedule as $k => $v)
+        {
+            $skd[$v->date][]=$v;
+            $detjadwal[$v->idp]=$v;
+        }
+        return view('pages.jadwal.batch.berkas.jadwal-cetak')
+            ->with('pelatihan',$pelatihan)
+            ->with('skd',$skd)
+            ->with('id',$idbatch)
+            ->with('idbatch',$idbatch);
+    }
     public function cetak_ucapan($id,$idbatch)
     {
         $instruktur=BatchIntruktur::where('id',$id)->where('batch_pelatihan_id',$idbatch)->with('instruktur')->first();
@@ -534,7 +561,8 @@ class BatchpelatihanController extends Controller
         $sch=array();
         foreach($skedul as $k=>$v)
         {
-            $sch[$v->instruktur_id][]=$v;
+            if($v->instruktur_id!=0)
+                $sch[$v->instruktur_id][]=$v;
         }
         return view('pages.jadwal.batch.berkas.form-quisioner')
             ->with('instruktur',$instruktur)

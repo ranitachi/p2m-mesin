@@ -19,7 +19,7 @@
 			<table border="0" style="width:90%;margin:0 auto;" cellpadding="0" cellspacing="0">
 				<tr>
 					<td style="width:20%;text-align:right;vertical-align:top">
-                        <img src="{{asset('img/WhatsApp Image 2018-05-04 at 15.36.20.jpeg')}}" style='height:120px;margin:0 auto;'>
+                        <img src="{{asset('img/logo.jpeg')}}" style='height:120px;margin:0 auto;'>
                     </td>
 					<td style="width:80%;vertical-align:top;text-align:center">
 						<h2 style="font-size:20px !important;">P2M - Departemen Teknik Mesin, FTUI</h2>

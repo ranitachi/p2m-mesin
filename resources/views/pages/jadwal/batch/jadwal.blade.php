@@ -1,9 +1,16 @@
-<div class="app-heading app-heading-small">                                
-           
-            <div class="title">
-                <h1 style="font-size:20px;">Jadwal Pelatihan</h1>
-            </div>                                
-        </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="app-heading app-heading-small">                                    
+                <div class="title">
+                    <h1 style="font-size:20px;">Jadwal Pelatihan</h1>
+                </div>                                
+            </div>
+        </div>    
+        <div class="col-md-6" style="padding-right:20px;">
+            <a href="{{url('cetak-jadwal/'.$id)}}" target="_blank" class="btn btn-xs btn-primary pull-right" style="margin-top:20px;"><i class="fa fa-print"></i> Cetak Jadwal</a>    
+        </div>    
+    </div>
+        
          <div class="block-content">
             
             <div class="row" style="padding:0px 30px;">
@@ -33,7 +40,7 @@
                                 <td class="text-center">{{($item[0]->materi == 0 ? '' : $item[0]->materi->kode)}}</td> 
                                 <td class="text-center">
                                     @if ($item[0]->instruktur_id!=0)
-                                        {{isset($item[0]->instruktur->nama) ? $item[0]->instruktur->nama : ''}}
+                                        {{isset($item[0]->instruktur->nama) ? $item[0]->instruktur->inisial : ''}}
                                     @else
                                         {{isset($item[0]->pegawai->kode) ? $item[0]->pegawai->kode : ''}}
                                     @endif
@@ -53,7 +60,7 @@
                                         <td class="text-center">{{($ii->materi == 0 ? '' : $ii->materi->kode)}}</td> 
                                         <td class="text-center">
                                              @if ($ii->instruktur_id!=0)
-                                                {{isset($ii->instruktur->nama) ? $ii->instruktur->nama : ''}}
+                                                {{isset($ii->instruktur->nama) ? $ii->instruktur->inisial : ''}}
                                             @else
                                                 {{isset($ii->pegawai->kode) ? $ii->pegawai->kode : ''}}</td>
                                             @endif

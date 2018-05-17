@@ -100,6 +100,7 @@ Route::get('name-tag/{id}','BatchpelatihanController@name_tag');
 Route::get('nama-meja/{id}','BatchpelatihanController@nama_meja');
 Route::get('cetak-sertifikat/{id}/{idbatch}','BatchpelatihanController@cetak_sertifikat');
 Route::get('cetak-ucapan/{id}/{idbatch}','BatchpelatihanController@cetak_ucapan');
+Route::get('cetak-jadwal/{idbatch}','BatchpelatihanController@cetak_jadwal');
 Route::get('form-quisioner/{id}','BatchpelatihanController@form_quisioner');
 Route::post('simpan-quisioner/{iduser}/{idbatch}/{date}/{instruktur_id}','BatchpelatihanController@simpan_quisioner');
 Route::get('hasil-quisioner/{instruktur_id}/{idbatch}','BatchpelatihanController@hasil_quisioner');

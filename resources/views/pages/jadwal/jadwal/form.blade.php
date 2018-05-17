@@ -111,7 +111,16 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">Jenis Pelatihan</label>
+                                                        <div class="col-md-8">
+                                                            <select class="s2-select-search form-control" name="jenis" id="jenis">
+                                                                <option value="0">-Pilih Jenis-</option>
+                                                                <option value="In House">In House</option>
+                                                                <option value="Public">Public</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -142,12 +151,12 @@
                                                                 @foreach ($instruktur as $item)
                                                                     @if ($id!=-1)
                                                                         @if (array_key_exists($item->id, $batchins))
-                                                                            <option value="{{$item->id}}" selected="selected">{{$item->nama}}</option>
+                                                                            <option value="{{$item->id}}" selected="selected">{{$item->inisial}}-{{$item->nama}}</option>
                                                                         @else
-                                                                            <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                            <option value="{{$item->id}}">{{$item->inisial}}-{{$item->nama}}</option>
                                                                         @endif
                                                                     @else
-                                                                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                        <option value="{{$item->id}}">{{$item->inisial}}-{{$item->nama}}</option>
                                                                         
                                                                     @endif
                                                                 @endforeach          

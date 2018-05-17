@@ -286,8 +286,7 @@
                                                                             <option value="{{$item->id}}">{{$item->nama_perusahaan}}</option>
                                                                         @endif
                                                                     @else
-                                                                        <option value="{{$item->id}}">{{$item->nama_perusahaan}}</option>
-                                                                        
+                                                                        <option value="{{$item->id}}">{{$item->nama_perusahaan}}</option> 
                                                                     @endif
                                                                 @endforeach    
 
@@ -304,7 +303,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Alamat</label>
                                                             <div class="col-md-8">
-                                                                <textarea name="perusahaan_alamat" class="form-control">{{$id==-1 ? '' : $det->perusahaan->alamat}}</textarea>
+                                                                <textarea name="perusahaan_alamat" class="form-control">{{$id==-1 ? '' : (isset($det->perusahaan->alamat) ? $det->perusahaan->alamat : '')}}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -316,13 +315,13 @@
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Telp</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_telp" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->telp}}" placeholder="Telp">
+                                                                <input type="text" name="perusahaan_telp" class="form-control" value="{{$id==-1 ? '' : (isset($det->perusahaan->telp) ? $det->perusahaan->telp : '')}}" placeholder="Telp">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Fax</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_fax" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->fax}}" placeholder="Fax">
+                                                                <input type="text" name="perusahaan_fax" class="form-control" value="{{$id==-1 ? '' : (isset($det->perusahaan->fax) ? $det->perusahaan->fax : '')}}" placeholder="Fax">
                                                             </div>
                                                         </div>
                                                         
@@ -330,19 +329,19 @@
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Jenis Usaha</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_jenis_usaha" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->jenis_usaha}}" placeholder="Jenis Usaha">
+                                                                <input type="text" name="perusahaan_jenis_usaha" class="form-control" value="{{$id==-1 ? '' : (isset($det->perusahaan->jenis_usaha) ? $det->perusahaan->jenis_usaha : '')}}" placeholder="Jenis Usaha">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Kontak Person (CP)</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_cp" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->cp}}" placeholder="Kontak Person">
+                                                                <input type="text" name="perusahaan_cp" class="form-control" value="{{$id==-1 ? '' : (isset($det->perusahaan->cp) ? $det->perusahaan->cp : '')}}" placeholder="Kontak Person">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Nomor CP</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_no_cp" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->no_cp}}" placeholder="Nomor CP">
+                                                                <input type="text" name="perusahaan_no_cp" class="form-control" value="{{$id==-1 ? '' : (isset($det->perusahaan->no_cp) ? $det->perusahaan->no_cp : '')}}" placeholder="Nomor CP">
                                                             </div>
                                                         </div>
                                                     
@@ -350,13 +349,13 @@
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Email CP</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_email_cp" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->email_cp}}" placeholder="Email CP">
+                                                                <input type="text" name="perusahaan_email_cp" class="form-control" value="{{$id==-1 ? '' : (isset($det->perusahaan->email_cp) ? $det->perusahaan->email_cp : '')}}" placeholder="Email CP">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label">Bagian CP</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="perusahaan_bagian_cp" class="form-control" value="{{$id==-1 ? '' : $det->perusahaan->bagian_cp}}" placeholder="Bagian CP">
+                                                                <input type="text" name="perusahaan_bagian_cp" class="form-control" value="{{$id==-1 ? '' : (isset($det->perusahaan->bagian_cp) ? $det->perusahaan->bagian_cp : '')}}" placeholder="Bagian CP">
                                                             </div>
                                                         </div>
                                                     
@@ -365,7 +364,7 @@
                                                             <div class="form-group" style="margin-top:10px;">
                                                                 <label class="col-md-4 control-label">Keterangan Lain </label>
                                                                 <div class="col-md-8">
-                                                                    <textarea name="peserta_desc" class="form-control">{{$id==-1 ? '' : $det->perusahaan->desc}}</textarea>
+                                                                    <textarea name="peserta_desc" class="form-control">{{$id==-1 ? '' : (isset($det->perusahaan->desc) ? $det->perusahaan->desc : '')}}</textarea>
                                                                 </div>
                                                             </div>
                                                     @endif
