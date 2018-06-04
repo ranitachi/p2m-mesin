@@ -18,12 +18,16 @@
                 $nama=$item->name;
             else
             {   
-                if($item->pegawai_id!=0)
-                    $nama=$item->pegawai->nama;
-                elseif($item->instruktur_id!=0)
-                    $nama=$item->instruktur->nama;
-                elseif($item->direktur_id!=0)
-                    $nama=$item->direktur->nama;
+                if(isset($item->pegawai->nama))
+                {
+
+                    if($item->pegawai_id!=0)
+                        $nama=$item->pegawai->nama;
+                    elseif($item->instruktur_id!=0)
+                        $nama=$item->instruktur->nama;
+                    elseif($item->direktur_id!=0)
+                        $nama=$item->direktur->nama;
+                }
             }
                 
                 
