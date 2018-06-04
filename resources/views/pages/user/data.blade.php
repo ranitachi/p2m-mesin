@@ -14,14 +14,18 @@
         <tbody>
             @foreach ($user as $key=>$item)
             @php
+            if($item->level==0)
+                $nama=$item->name;
+            else
+            {   
                 if($item->pegawai_id!=0)
                     $nama=$item->pegawai->nama;
                 elseif($item->instruktur_id!=0)
                     $nama=$item->instruktur->nama;
                 elseif($item->direktur_id!=0)
                     $nama=$item->direktur->nama;
-                elseif($item->level==0)
-                    $nama=$item->name;
+            }
+                
                 
                 $akses=explode(',',$item->hakakses);
             @endphp
