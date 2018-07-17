@@ -566,8 +566,9 @@ class BatchpelatihanController extends Controller
         foreach($skedul as $k=>$v)
         {
             if($v->instruktur_id!=0)
-                $sch[$v->instruktur_id][]=$v;
+                $sch[$v->instruktur_id][strtok($v->skedul->date,' ')]=$v;
         }
+        // dd($sch);
         return view('pages.jadwal.batch.berkas.form-quisioner')
             ->with('instruktur',$instruktur)
             ->with('pelatihan',$pelatihan)
