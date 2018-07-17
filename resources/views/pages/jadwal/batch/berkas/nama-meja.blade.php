@@ -9,7 +9,7 @@
         <div class="body" style="page-break-before: always;">
 				@foreach ($peserta as $idx=>$item)
 					
-                        <table border="0" style="width:100%;height:140px;margin:0 auto;border:1px solid #888;;margin-right:0px;margin-bottom:20px;" cellpadding="0" cellspacing="0">
+                        <table border="0" style="width:100%;height:200px;margin:0 auto;border:1px solid #888;;margin-right:0px;margin-bottom:40px;" cellpadding="0" cellspacing="0">
 							<tr>
 								<td style="text-align:center;vertical-align:top;">
                                     <div style="font-size:70px !important;padding:60px 0px;border-bottom:3px solid lightblue;font-family:readventor !important">{{strtoupper($item->peserta->nama_lengkap)}}</div>
@@ -34,13 +34,19 @@
     </body>
 </html>
 <style type="text/css" media="print">
-  @page { 
-  	size: A4; 
-  }
+  @page {
+    size: A4 landscape;
+	margin:0px !important;
+	padding:0px !important;
+	
+}
   @media print {
   html, body {
     width: 297mm;
     height: 210mm;
+	height:100%;
+  width:100%;
+  
   }
   .body
   {
