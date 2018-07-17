@@ -47,7 +47,7 @@
                                 <td class="text-center" align="center">{{$item[0]->start_time}} - {{$item[0]->end_time}}</td> 
                                 <td class="text-center" align="center">{{getMinutes($item[0]->start_time,$item[0]->end_time)}}</td> 
                                 <td class="text-center" align="center">{{$item[0]->materi}}</td> 
-                                <td class="text-center" align="center">{{($item[0]->materi == 0 ? '' : $item[0]->materi->kode)}}</td> 
+                                <td class="text-center" align="center">{{($item[0]->materi_id == 0 ? '' : $item[0]->mmateri->kode)}}</td> 
                                 <td class="text-center" align="center">
                                     @if ($item[0]->instruktur_id!=0)
                                         {{isset($item[0]->instruktur->nama) ? $item[0]->instruktur->inisial : ''}}
@@ -64,7 +64,7 @@
                                         <td class="text-center" align="center">{{$ii->start_time}} - {{$ii->end_time}}</td> 
                                         <td class="text-center" align="center">{{getMinutes($ii->start_time,$ii->end_time)}}</td> 
                                         <td class="text-center" align="center">{{$ii->materi}}</td> 
-                                        <td class="text-center" align="center">{{($ii->materi == 0 ? '' : $ii->materi->kode)}}</td> 
+                                        <td class="text-center" align="center">{{($ii->materi_id == 0 ? '' : $ii->mmateri->kode)}}</td> 
                                         <td class="text-center" align="center">
                                              @if ($ii->instruktur_id!=0)
                                                 {{isset($ii->instruktur->nama) ? $ii->instruktur->inisial : ''}}

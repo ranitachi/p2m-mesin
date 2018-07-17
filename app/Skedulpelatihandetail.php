@@ -23,6 +23,10 @@ class Skedulpelatihandetail extends Model
     {
         return $this->belongsTo('App\Model\Materi', 'materi_id');
     }
+    public function mmateri()
+    {
+        return $this->belongsTo('App\Model\Materi', 'materi_id');
+    }
     public function pegawai()
     {
         return $this->belongsTo('App\Model\Masterpegawai', 'staf_id');

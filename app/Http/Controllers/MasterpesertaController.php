@@ -125,7 +125,7 @@ class MasterpesertaController extends Controller
             {
 
                 $pers=Masterperusahaan::find($request->peserta_perusahaan_id);
-                if(count($pers)!=0)
+                if($pers->count()!=0)
                 {
                     $pers->update($perusahaan);
                 }
