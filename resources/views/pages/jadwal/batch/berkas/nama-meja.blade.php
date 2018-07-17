@@ -9,14 +9,14 @@
         <div class="body" style="page-break-before: always;">
 				@foreach ($peserta as $idx=>$item)
 					
-                        <table border="0" style="width:100%;height:200px;margin:0 auto;border:1px solid #888;;margin-right:0px;margin-bottom:40px;" cellpadding="0" cellspacing="0">
+                        <table border="0" style="width:280mm;height:200px;margin-left:0px !important;border:3px solid #888;;margin-right:0px;margin-bottom:45px;margin-top:25px;" cellpadding="0" cellspacing="0">
 							<tr>
 								<td style="text-align:center;vertical-align:top;">
-                                    <div style="font-size:70px !important;padding:60px 0px;border-bottom:3px solid lightblue;font-family:readventor !important">{{strtoupper($item->peserta->nama_lengkap)}}</div>
+                                    <div style="font-size:70px !important;padding:50px 0px;border-bottom:3px solid lightblue;font-family:readventor !important">{{strtoupper($item->peserta->nama_lengkap)}}</div>
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:center;padding:15px 0">
+								<td style="text-align:center;padding:10px 0">
 									@if (isset($item->peserta->perusahaan->nama_perusahaan))
 									
 										<h3 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:25px">{{$item->peserta->jabatan=='' ? '&nbsp;':strtoupper(($item->peserta->perusahaan->nama_perusahaan))}}</h3>
