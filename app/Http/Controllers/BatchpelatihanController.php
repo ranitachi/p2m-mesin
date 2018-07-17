@@ -320,19 +320,20 @@ class BatchpelatihanController extends Controller
         }
         $detail['batch_id']=$skedul['batch_id']=$idbatch;
     
-        $cek=Skedulpelatihan::where('batch_id','=',$idbatch)->where('date','like',$date)->first();
-        if(count($cek)==0)
+        $cek=Skedulpelatihan::where('batch_id','=',$idbatch)->where('date','like',$date)->get();
+        if($cek->count()==0)
         {
             $skd=Skedulpelatihan::create($skedul);
             $skedul_id=$skd->id;
         }
         else
         {
+            $ck=$cek->first();
             if($id!=-1)
             {
-                $cek->update($skedul);
+                $ck->update($skedul);
             }
-            $skedul_id=$cek->id;
+            $skedul_id=$ck->id;
         }
 
         $detail['skedul_id']=$skedul_id;
