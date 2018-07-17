@@ -3,17 +3,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
-	<body onLoad="window.print()">
+	<body onLoad="window.print()" style="padding:0px !important;margin:0px !important;">
         <div class="body" style="page-break-before: always;">
 				@foreach ($peserta as $idx=>$item)
 					
-                        <table border="0" style="width:377px;height:250px;margin:0 auto;border:1px solid #888;margin-right:15px;margin-bottom:50px;float:left" cellpadding="0" cellspacing="0">
+                        <table border="0" style="width:390px;height:250px;margin:0 auto;border:1px solid #888;margin-right:5px;margin-bottom:50px;float:left" cellpadding="0" cellspacing="0">
 							<tr>
 								<td style="width:20%;text-align:right;vertical-align:top">
 									<img src="{{asset('img/logo.jpeg')}}" style='height:50px;margin:10px auto;'>
 								</td>
-								<td style="width:80%;vertical-align:top;text-align:center">
-									<h1 style="font-size:20px !important;">P2M - Departemen Teknik Mesin, FTUI</h1>	
+								<td style="width:80%;vertical-align:top;text-align:left">
+									<h2 style="font-size:16px !important;font-family:arial;letter-spacing:0.2px;">P2M-DEPARTEMEN TEKNIK MESIN
+									<br>
+									FAKULTAS TEKNIK<br>
+									UNIVERSITAS INDONESIA	
+									</h2>	
 								</td>
 								
 							</tr>
