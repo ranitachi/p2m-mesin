@@ -422,7 +422,7 @@ class BatchpelatihanController extends Controller
         // $date=date('Y-m-d',strtotime($request->skedul__date));
         // echo $date;
         $skedul=Skedulpelatihan::where('batch_id','=',$idbatch)->where('date','like',"%$date%")->first();
-        dd($skedul);
+        //dd($skedul);
         $absensi['skedul_id']=$skedul->id;
         $absensi['batch_id']=$idbatch;
         $absensi['date']=$date;
