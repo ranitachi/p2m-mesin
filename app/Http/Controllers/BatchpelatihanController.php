@@ -163,11 +163,13 @@ class BatchpelatihanController extends Controller
             ->join('skedul_pelatihan','skedul_pelatihan.id','=','skedul_pelatihan_detail.skedul_id')
             ->where('skedul_pelatihan_detail.batch_id','=',$id)
             ->with('batch')
-            ->with('materi')
+            ->with('mmateri')
             ->with('pegawai')
             ->orderBy('skedul_pelatihan.date', 'ASC')
             ->orderBy('skedul_pelatihan_detail.start_time','ASC')->get();
         
+        // dd($skedule);
+
         $skd=array();
         $detjadwal=$d_jadwal=array();
         foreach($skedule as $k => $v)
@@ -419,7 +421,8 @@ class BatchpelatihanController extends Controller
         $date=$th.'-'.$bl.'-'.$tg;
         // $date=date('Y-m-d',strtotime($request->skedul__date));
         // echo $date;
-        $skedul=Skedulpelatihan::where('batch_id','=',$idbatch)->where('date','like',$date)->first();
+        $skedul=Skedulpelatihan::where('batch_id','=',$idbatch)->where('date','like',"%$date%")->first();
+        dd($skedul);
         $absensi['skedul_id']=$skedul->id;
         $absensi['batch_id']=$idbatch;
         $absensi['date']=$date;
@@ -525,7 +528,7 @@ class BatchpelatihanController extends Controller
             ->join('skedul_pelatihan','skedul_pelatihan.id','=','skedul_pelatihan_detail.skedul_id')
             ->where('skedul_pelatihan_detail.batch_id','=',$idbatch)
             ->with('batch')
-            ->with('materi')
+            ->with('mmateri')
             ->with('pegawai')
             ->orderBy('skedul_pelatihan.date', 'ASC')
             ->orderBy('skedul_pelatihan_detail.start_time','ASC')->get();
