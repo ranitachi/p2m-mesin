@@ -10,9 +10,9 @@
                         <table border="0" style="width:385px;height:245px;margin:0 auto;border:1px solid #888;margin-right:5px;margin-bottom:50px;float:left" cellpadding="0" cellspacing="0">
 							<tr>
 								<td style="width:20%;text-align:right;vertical-align:top">
-									<img src="{{asset('img/logo.jpeg')}}" style='height:50px;margin:10px auto;'>
+									<img src="{{asset('img/logo.jpeg')}}" style='height:55px;margin:11px auto 0px auto;'>
 								</td>
-								<td style="width:80%;vertical-align:top;text-align:left">
+								<td style="width:80%;vertical-align:top;text-align:left;">
 									<h2 style="font-size:16px !important;font-family:arial;letter-spacing:0.2px;">P2M-DEPARTEMEN TEKNIK MESIN
 									<br>
 									FAKULTAS TEKNIK<br>
@@ -24,9 +24,9 @@
 							<tr>
 								<td colspan="2" style="text-align:center;background-color:yellow">
 									<h4>Training / Pelatihan</h4>
-									<h3>{{strtoupper($pelatihan->pelatihan->nama)}}</h3>
-									<h3>Tanggal : {{tgl_indo2($pelatihan->start_date)}} s.d. {{tgl_indo2($pelatihan->end_date)}}</h3>
-									<h1 style="font-size:140%">{{$item->peserta->nama_lengkap}}</h1>
+									<div style="margin-bottom:-5px;float:left;width:100%;font-weight:bold">{{strtoupper($pelatihan->pelatihan->nama)}}</div>
+									<div style="margin-bottom:10px;float:left;width:100%;font-weight:bold">Tanggal : {{tgl_indo2($pelatihan->start_date)}} s.d. {{tgl_indo2($pelatihan->end_date)}}</div>
+									<h1 style="font-size:140%;font-family:Arial, Helvetica, sans-serif">{{strtoupper($item->peserta->nama_lengkap)}}</h1>
 								</td>
 								
 							</tr>
