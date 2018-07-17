@@ -20,19 +20,33 @@
                     
                             <tr>
                                 <td class="text-center" style="width:80px;">{{(++$key)}}</td>    
-                                <td class="text-left"><strong><a href="{{url('peserta-detail/'.$item->id)}}">{{$item->peserta->nama_lengkap}}</a></strong></td>    
-                                <td class="text-left">{{isset($item->peserta->perusahaan->nama_perusahaan) ? $item->peserta->perusahaan->nama_perusahaan : 'PRIBADI'}}</td>     
+                                <td class="text-left">
+                                    <div style="width:130px;">
+                                        <strong><a href="{{url('peserta-detail/'.$item->id)}}">{{$item->peserta->nama_lengkap}}</a></strong>
+                                    </div>
+                                </td>    
+                                <td class="text-left">
+                                    <div style="width:150px;">
+                                        {{isset($item->peserta->perusahaan->nama_perusahaan) ? $item->peserta->perusahaan->nama_perusahaan : 'PRIBADI'}}
+                                    </div>
+                                </td>     
                                 <td class="text-center">
+                                @php
+                                    $idx=0;
+                                @endphp
                                 @foreach ($instruktur as $itm)
                                     @if (isset($skedul[$itm->instruktur_id]))
-                                        @foreach ($skedul[$itm->instruktur_id] as $it)
+                                        @foreach ($skedul[$itm->instruktur_id] as $idx_it=>$it)
                                             @if (isset($ds[$item->participant_id][$itm->instruktur_id]))
-                                                <a href="javascript:input_quisioner({{$item->participant_id}},{{$id}},'{{$it->skedul->date}}',{{$itm->instruktur_id}})" class="btn btn-xs btn-danger btn-rounded" data-toggle="tooltip" title="Input Quisioner"><i class="fa fa-user" ></i> {{$itm->instruktur->nama}}</a>    
+                                                <a href="javascript:input_quisioner({{$item->participant_id}},{{$id}},'{{$it->skedul->date}}',{{$itm->instruktur_id}})" class="btn btn-xs btn-danger btn-rounded" data-toggle="tooltip" title=" Quisioner {{$itm->instruktur->nama}} Tgl : {{date('d/m/Y',strtotime($idx_it))}}"><i class="fa fa-user" ></i> ( {{date('d/m/Y',strtotime($idx_it))}} ) - {{$itm->instruktur->inisial}}</a>    
                                             @else
-                                                <a href="javascript:input_quisioner({{$item->participant_id}},{{$id}},'{{$it->skedul->date}}',{{$itm->instruktur_id}})" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="Input Quisioner"><i class="fa fa-file-o" ></i> {{$itm->instruktur->nama}}</a>    
+                                                <a href="javascript:input_quisioner({{$item->participant_id}},{{$id}},'{{$it->skedul->date}}',{{$itm->instruktur_id}})" class="btn btn-xs btn-{{$key%2==0 ? 'info' : 'success'}} btn-rounded" data-toggle="tooltip" title=" Quisioner {{$itm->instruktur->nama}} Tgl : {{date('d/m/Y',strtotime($idx_it))}}"><i class="fa fa-file-o" ></i> ( {{date('d/m/Y',strtotime($idx_it))}} ) - {{$itm->instruktur->inisial}}</a>    
                                             @endif
                                         @endforeach
                                     @endif
+                                    @php
+                                        $idx++;
+                                    @endphp
                                 @endforeach
                                 
                                 </td>    

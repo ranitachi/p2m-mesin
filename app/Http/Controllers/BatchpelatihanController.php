@@ -197,7 +197,7 @@ class BatchpelatihanController extends Controller
         $sch=array();
         foreach($skedul as $k=>$v)
         {
-            $sch[$v->instruktur_id][]=$v;
+            $sch[$v->instruktur_id][strtok($v->skedul->date,' ')]=$v;
         }
 
         $dataquisioner=Quisionerdata::where('batch_id',$id)->get();
