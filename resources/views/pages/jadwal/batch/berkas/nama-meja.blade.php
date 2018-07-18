@@ -32,12 +32,12 @@
 							
 						</table>
                         @php
-							if($x==2)
+							$x++;
+							if($x==3)
 							{
 								echo '<div class="pisah"></div>';
 								$x=0;
 							}
-							$x++;
 						@endphp
 				@endforeach 
         </div>
