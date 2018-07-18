@@ -9,15 +9,15 @@
 			<table border="0" style="width:100%;margin:0 auto;" cellpadding="0" cellspacing="0">
 				<tr>
 					<td style="width:100%;vertical-align:top;text-align:center;padding-top:150px;">
-						<h1 style="font-size:40px !important;letter-spacing:25px;font-family:Arial, Helvetica, sans-serif;margin:0 auto;padding-top:50px;">SERTIFIKAT</h1>	
+						<h1 style="font-size:40px !important;letter-spacing:25px;font-family:Arial, Helvetica, sans-serif;margin:0 auto;padding-top:20px;">SERTIFIKAT</h1>	
 					</td>
 				</tr>
 				<tr>
 					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
 						<h1 style="font-size:25px !important;font-style:italic;font-family:Arial, Helvetica, sans-serif;">Certificate</h1>	
-						<div style="font-size:18px !important;">No. : {{$sertifikat->nomor_sertifikat}}</div>
-						<div style="font-size:17px !important;padding-top:5px;">Diberikan kepada :</div>
-						<div style="font-size:15px !important;font-style:italic">This is to certify that</div>
+						<div style="font-size:16px !important;">No. : {{$sertifikat->nomor_sertifikat}}</div>
+						<div style="font-size:14px !important;padding-top:5px;">Diberikan kepada :</div>
+						<div style="font-size:13px !important;font-style:italic">This is to certify that</div>
 					</td>
 				</tr>
 				<tr>
@@ -29,28 +29,28 @@
 				<tr>
 					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
 						
-						<div style="font-size:18px !important;">Yang telah memenuhi kriteria keberhasilan belajar pada :</div>
-						<div style="font-size:15px !important;font-style:italic">Has completed all the requirements of the</div>
+						<div style="font-size:17px !important;margin-bottom:-5px;">Yang telah memenuhi kriteria keberhasilan belajar pada :</div>
+						<div style="font-size:14px !important;font-style:italic">Has completed all the requirements of the</div>
 					</td>
 				</tr>
 				<tr>
 					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
-						<div style="font-size:20px !important;font-family:Arial, Helvetica, sans-serif;">PELATIHAN / TRAINING</div>	
-						<div style="font-size:25px !important;font-family:Arial, Helvetica, sans-serif;padding-top:5px;">{{strtoupper($pelatihan->pelatihan->nama)}}</div>
-						<div style="font-size:20px !important;font-style:italic">{{$pelatihan->pelatihan->judul_inggris}}</div>	
-						<div style="font-size:18px !important;padding-top:5px;">{{gabungtgl($pelatihan->start_date,$pelatihan->end_date)}}</div>	
-						<div style="font-size:18px !important;padding-top:5px;">Yang diselenggarakan oleh</div>	
-						<div style="font-size:16px !important;padding-top:5px;font-style:italic">Held by</div>	
-						<div style="font-size:18px !important;padding-top:5px;">P2M - Departemen Tkenik Mesin Fakultas Teknik Universitas Indonesia</div>	
-						<div style="font-size:16px !important;padding-top:5px;font-style:italic">P2M - Mechanical Engineering Departement, Faculty of Engineering University of Indonesia</div>	
+						<div style="font-size:18px !important;font-family:Arial, Helvetica, sans-serif;">PELATIHAN / TRAINING</div>	
+						<div style="font-size:20px !important;font-family:Arial, Helvetica, sans-serif;padding-top:5px;">{{strtoupper($pelatihan->pelatihan->nama)}}</div>
+						<div style="font-size:18px !important;font-style:italic">{{$pelatihan->pelatihan->judul_inggris}}</div>	
+						<div style="font-size:16px !important;padding-top:5px;">{{gabungtgl($pelatihan->start_date,$pelatihan->end_date)}}</div>	
+						<div style="font-size:18px !important;padding-top:5px;margin-bottom:-3px;">Yang diselenggarakan oleh</div>	
+						<div style="font-size:14px !important;font-style:italic">Held by</div>	
+						<div style="font-size:18px !important;padding-top:5px;margin-bottom:-3px;">P2M - Departemen Tkenik Mesin Fakultas Teknik Universitas Indonesia</div>	
+						<div style="font-size:15px !important;font-style:italic">P2M - Mechanical Engineering Departement, Faculty of Engineering University of Indonesia</div>	
 					</td>
 				</tr>
 				<tr>
 					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
-						<div style="font-size:17px !important;">Jakarta, {{tgl_indo(date('Y-m-d'))}}</div>
-						<div style="font-size:17px !important;">P2M - Departemen Teknik Mesin FTUI</div>
-						<div style="font-size:17px !important;">Direktur / <i>Director</i></div>
-						<div style="font-size:18px !important;padding-top:45px;text-decoration:underline">{{$direktur->nama}}</div>
+						<div style="font-size:15px !important;">Jakarta, {{tgl_indo(date('Y-m-d'))}}</div>
+						<div style="font-size:15px !important;">P2M - Departemen Teknik Mesin FTUI</div>
+						<div style="font-size:15px !important;">Direktur / <i>Director</i></div>
+						<div style="font-size:16px !important;padding-top:65px;text-decoration:underline">{{$direktur->nama}}</div>
 						<div style="font-size:14px !important;">NIP {{$direktur->nip}}<br>
 						
 						</div>
