@@ -192,104 +192,44 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Waktu</th>
-                                                        <th width="150">Nama Pelatihan</th>                                                    
-                                                        <th width="150">Lokasi</th>
-                                                        <th width="55"></th>
+                                                        <th width="250">Nama Pelatihan</th>                                                    
+                                                        <th width="100">Lokasi</th>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                @php
+                                                    $jadwal=\App\Model\Batchpelatihan::where('flag',1)->with('pelatihan')->orderBy('start_date','asc')->get();
+                                                    // dd($jadwal);
+                                                    $x=1;
+                                                @endphp  
+                                                @foreach ($jadwal as $k => $v)  
+                                                    @php
+                                                    $bln=date('n',strtotime($v->start_date));    
+                                                    @endphp                             
+
+                                                    @if ($bln>=date('n'))
+                                                    
                                                     <tr>
                                                         <td>
                                                             <div class="">
                                                                 <div class="contact-container">
-                                                                    <a href="#">23/04/2018</a>
+                                                                    <a href="{{url('batch-detail/'.$v->id.'/index')}}">{{gabungtgl($v->start_date,$v->end_date)}}</a>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td>Lorem Ipsum</td>
-                                                        <td><span class="label label-success label-bordered">Hotel</span></td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <button class="btn btn-default btn-icon btn-clean dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-cog"></span></button>
-                                                                <ul class="dropdown-menu dropdown-left">
-                                                                    <li><a href="#"><span class="icon-question-circle text-info"></span> More information</a></li> 
-                                                                    <li><a href="#"><span class="icon-arrow-up-circle text-warning"></span> Promote to top</a></li> 
-                                                                    <li class="divider"></li>
-                                                                    <li><a href="#"><span class="icon-cross-circle text-danger"></span> Delete transactions</a></li> 
-                                                                </ul>
-                                                            </div>
-                                                        </td>
+                                                        <td>{{$v->pelatihan->nama}}</td>
+                                                        <td><span class="label label-success label-bordered">{{$v->lokasi}}</span></td>
+                                                        @php
+                                                        if($x==6)
+                                                            break;
+                                                        
+                                                        $x++;
+                                                        @endphp
                                                     </tr>
-                                                                                                 
-                                                    <tr>
-                                                        <td>
-                                                            <div class="">
-                                                                <div class="contact-container">
-                                                                    <a href="#">23/04/2018</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>Lorem Ipsum</td>
-                                                        <td><span class="label label-success label-bordered">Hotel</span></td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <button class="btn btn-default btn-icon btn-clean dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-cog"></span></button>
-                                                                <ul class="dropdown-menu dropdown-left">
-                                                                    <li><a href="#"><span class="icon-question-circle text-info"></span> More information</a></li> 
-                                                                    <li><a href="#"><span class="icon-arrow-up-circle text-warning"></span> Promote to top</a></li> 
-                                                                    <li class="divider"></li>
-                                                                    <li><a href="#"><span class="icon-cross-circle text-danger"></span> Delete transactions</a></li> 
-                                                                </ul>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                                                                 
-                                                    <tr>
-                                                        <td>
-                                                            <div class="">
-                                                                <div class="contact-container">
-                                                                    <a href="#">23/04/2018</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>Lorem Ipsum</td>
-                                                        <td><span class="label label-success label-bordered">Hotel</span></td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <button class="btn btn-default btn-icon btn-clean dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-cog"></span></button>
-                                                                <ul class="dropdown-menu dropdown-left">
-                                                                    <li><a href="#"><span class="icon-question-circle text-info"></span> More information</a></li> 
-                                                                    <li><a href="#"><span class="icon-arrow-up-circle text-warning"></span> Promote to top</a></li> 
-                                                                    <li class="divider"></li>
-                                                                    <li><a href="#"><span class="icon-cross-circle text-danger"></span> Delete transactions</a></li> 
-                                                                </ul>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                                                                 
-                                                    <tr>
-                                                        <td>
-                                                            <div class="">
-                                                                <div class="contact-container">
-                                                                    <a href="#">23/04/2018</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>Lorem Ipsum</td>
-                                                        <td><span class="label label-success label-bordered">Hotel</span></td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <button class="btn btn-default btn-icon btn-clean dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-cog"></span></button>
-                                                                <ul class="dropdown-menu dropdown-left">
-                                                                    <li><a href="#"><span class="icon-question-circle text-info"></span> More information</a></li> 
-                                                                    <li><a href="#"><span class="icon-arrow-up-circle text-warning"></span> Promote to top</a></li> 
-                                                                    <li class="divider"></li>
-                                                                    <li><a href="#"><span class="icon-cross-circle text-danger"></span> Delete transactions</a></li> 
-                                                                </ul>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                                                                 
+                                                    @endif
+                                                 @endforeach                                            
+                                                                                 
                                                 </tbody>
                                             </table>
                                         </div>

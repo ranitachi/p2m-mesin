@@ -339,4 +339,63 @@ function akses()
 	$akses=array('Semua Menu','Manajemen Pelatihan','Manajemen Jadwal','Manajemen Peserta','Manajemen User','Master Data','Pengaturan Sistem');
 	return $akses;
 }
+
+function gelar($nama,$s1='',$s2='',$s3='',$lain='')
+{
+	$n='';
+	if($s1!='')
+	{
+		if(strpos(strtolower($s1),'ir')!==false)
+		{
+			$n=$s1.'. '.$nama;
+		}
+		else if(strpos(strtolower($s1),'drs')!==false)
+		{
+			$n=$s1.'. '.$nama;
+		}
+		else if(strtolower($s1)=='dr')
+		{
+			$n=$s1.'. '.$nama;
+		}
+		else
+			$n=$nama.', '.$s1;
+	}
+
+	if($s3!='')
+    {
+		if(strpos(strtolower($s3),'ir')!==false)
+		{
+			$n=$s3.'. '.$n;
+		}
+		else if(strpos(strtolower($s3),'drs')!==false)
+		{
+			$n=$s3.'. '.$n;
+		}
+		else if(strtolower($s3)=='dr')
+			$n=$s3.'. '.$n;
+		else
+			$n.=', '.$s3.'.';
+    }
+    if($s2!='')
+    {
+		if(strpos(strtolower($s2),'ir')!==false)
+		{
+			$n=$s2.'. '.$n;
+		}
+		else if(strpos(strtolower($s2),'drs')!==false)
+		{
+			$n=$s2.'. '.$n;
+		}
+		else if(strtolower($s2)=='dr')
+			$n=$s2.'. '.$n;
+		else
+        	$n.=', '.$s2.'.';
+    }
+    if($lain!='')
+    {
+        $n.=', '.$lain;
+    }
+
+	return $n;
+}
 ?>

@@ -31,25 +31,27 @@
 					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
 						@php
 							$nama=$instruktur->instruktur->nama;
+							$s1=$s2=$s3=$lain='';
 							if($instruktur->instruktur->gelar_s3!='')
 							{
-								$nama.=', '.$instruktur->instruktur->gelar_s3.'.';
+								$s3=$instruktur->instruktur->gelar_s3;
 							}
 							if($instruktur->instruktur->gelar_s1!='')
 							{
-								$nama.=', '.$instruktur->instruktur->gelar_s1.'.';
+								$s1=$instruktur->instruktur->gelar_s1;
 							}
 							if($instruktur->instruktur->gelar_s2!='')
 							{
-								$nama.=', '.$instruktur->instruktur->gelar_s2.'.';
+								$s2=$instruktur->instruktur->gelar_s2;
 							}
 							if($instruktur->instruktur->gelar_lain!='')
 							{
-								$nama.=', '.$instruktur->instruktur->gelar_lain;
+								$lain=$instruktur->instruktur->gelar_lain;
 							}
+							$gelar=gelar($nama,$s1,$s2,$s3,$lain);
 						@endphp
 						<div style="font-size:20px !important;font-family:copperplate">Disampaikan Kepada :</div>
-						<div style="font-size:40px !important;padding:15px 0px;letter-spacing:5px;font-family:Georgia;font-weight:500">{{$instruktur->instruktur->nama}}</div>
+						<div style="font-size:40px !important;padding:15px 0px;letter-spacing:5px;font-family:Georgia;font-weight:500">{{$gelar}}</div>
 						<div style="border-top:2px solid #888;width:80%;margin:0 auto;">&nbsp;</div>
 					</td>
 				</tr>
