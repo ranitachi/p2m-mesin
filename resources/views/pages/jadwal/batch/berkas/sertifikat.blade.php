@@ -8,12 +8,12 @@
 			<link rel="stylesheet" href="{{asset('css/font.arista.css')}}">
 			<table border="0" style="width:100%;margin:0 auto;" cellpadding="0" cellspacing="0">
 				<tr>
-					<td style="width:100%;vertical-align:top;text-align:center;padding-top:100px;">
-						<h1 style="font-size:50px !important;letter-spacing:25px;font-family:Arial, Helvetica, sans-serif;">SERTIFIKAT</h1>	
+					<td style="width:100%;vertical-align:top;text-align:center;padding-top:150px;">
+						<h1 style="font-size:40px !important;letter-spacing:25px;font-family:Arial, Helvetica, sans-serif;margin:0 auto;">SERTIFIKAT</h1>	
 					</td>
 				</tr>
 				<tr>
-					<td style="width:100%;vertical-align:top;text-align:center;padding-top:10px;">
+					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
 						<h1 style="font-size:25px !important;font-style:italic;font-family:Arial, Helvetica, sans-serif;">Certificate</h1>	
 						<div style="font-size:18px !important;">No. : {{$sertifikat->nomor_sertifikat}}</div>
 						<div style="font-size:17px !important;padding-top:5px;">Diberikan kepada :</div>
@@ -21,7 +21,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="width:100%;vertical-align:top;text-align:center;padding-top:10px;">
+					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
 						<h3 style=""><span style="font-size:35px !important;font-family:monotype !important;">{{$peserta->peserta->nama_lengkap}}</span></h3>	
 						<hr style="width:50%;border-bottom:1px solid #111;">
 					</td>
