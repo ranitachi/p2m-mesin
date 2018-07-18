@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
 	<body onLoad="window.print()" style="padding:0px !important;margin:0px !important;">
-        <div class="body" style="page-break-before: always;border:4px double darkblue;">
+        <div class="body" style="page-break-before: always;border:4px double darkblue;margin:5px 0px;">
 			<link rel="stylesheet" href="{{asset('css/font.arista.css')}}">
 			<table border="0" style="width:100%;margin:0 auto;" cellpadding="0" cellspacing="0">
 				<tr>
@@ -101,11 +101,14 @@
 }
   @media print {
   html, body {
-    height:100%;
+      /* width: 297mm; */
+    /* height: 210mm; */
+	height:100%;
   	width:100%;
 	left: 0;
     top: 0;
     right: 0;
+	
   }
   .body
   {
