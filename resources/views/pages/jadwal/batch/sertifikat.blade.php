@@ -39,7 +39,8 @@
                                 <td class="text-left">{{isset($item->peserta->perusahaan->nama_perusahaan) ? $item->peserta->perusahaan->nama_perusahaan : 'PRIBADI'}}</td>    
                                 <td class="text-center">{{$item->peserta->jabatan}}</td>    
                                 <td class="text-center">
-                                    <a href="{{url('cetak-sertifikat/'.$item->id.'/'.$id)}}" target="_blank" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="Cetak Sertifikat"><i class="fa fa-print" ></i> Cetak</a>    
+                                    <a href="{{url('cetak-sertifikat/'.$item->id.'/'.$id)}}" target="_blank" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="Cetak Sertifikat"><i class="fa fa-print" ></i> Sertifikat</a>    
+                                    <a href="{{url('cetak-sertifikat-materi/'.$item->id.'/'.$id)}}" target="_blank" class="btn btn-xs btn-success btn-rounded" data-toggle="tooltip" title="Cetak Materi"><i class="fa fa-print" ></i> Materi</a>    
                                 </td>    
                             </tr>    
                         @endforeach                                       

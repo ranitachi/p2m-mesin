@@ -541,6 +541,23 @@ class BatchpelatihanController extends Controller
             ->with('idbatch',$idbatch)
             ->with('id',$id);
     }
+    public function cetak_sertifikat_materi($id,$idbatch)
+    {
+        $peserta=BatchParticipant::where('id',$id)->where('batch_id',$idbatch)->with('peserta')->first();
+        $pelatihan=Batchpelatihan::where('id',$idbatch)->with('pelatihan')->first();
+        $sertifikat=NomorSertifikat::where('batch_id',$idbatch)->first();
+        $direktur=Direktur::where('flag',1)->first();
+        $materi=Materi::where('pelatihan_id',$pelatihan->id)->get();
+        // dd($peserta);
+        return view('pages.jadwal.batch.berkas.sertifikat-materi')
+            ->with('peserta',$peserta)
+            ->with('direktur',$direktur)
+            ->with('pelatihan',$pelatihan)
+            ->with('sertifikat',$sertifikat)
+            ->with('materi',$materi)
+            ->with('idbatch',$idbatch)
+            ->with('id',$id);
+    }
     
     public function cetak_jadwal($idbatch)
     {
