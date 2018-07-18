@@ -77,6 +77,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
+                                                            <label class="col-md-4 control-label">Nama Pelatihan (Inggris)</label>
+                                                            <div class="col-md-8">
+                                                                <textarea name="judul_inggris" id="judul_inggris" class="form-control" placeholder="Nama Pelatihan (Inggris)">{{$id==-1 ? '' : $det->judul_inggris}}</textarea>
+                                                              
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label class="col-md-4 control-label">Biaya Pelatihan</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" name="biaya_pelatihan" id="biaya_pelatihan" class="form-control" value="{{$id==-1 ? '' : number_format($det->biaya_pelatihan,0,'.',',')}}" placeholder="Biaya Pelatihan">

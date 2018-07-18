@@ -16,7 +16,7 @@
                     <td class="text-center" style="width:80px;">{{(++$key)}}</td>    
                     <td class="text-left">{{$item->kode}}</td>    
                     <td class="text-left">{{$item->kategori->kategori}}</td>    
-                    <td class="text-left"><b><a href="{{url('materi-detail/'.$item->id)}}">{{$item->nama}}</a></b></td>    
+                    <td class="text-left"><b><a href="{{url('materi-detail/'.$item->id)}}">{{$item->nama}}</a></b><br><i>{{$item->judul_inggris}}</i></td>    
                     <td class="text-right">{{number_format($item->biaya_pelatihan,0,',','.')}}</td>    
                     <td class="text-center">
                         <a href="{{url('pelatihan-form/'.$idkat.'/'.$item->id)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="Edit Data"><i class="fa fa-edit" ></i></a> 

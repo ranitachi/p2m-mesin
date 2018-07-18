@@ -5,8 +5,22 @@
             </div>                                
         </div>
          <div class="block-content">
+            <form action="{{url('simpan-nomor-sertifikat')}}" method="POST" id="simpan-nomor-sertifikat">
+                <div class="row" style="">
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="batch_id" value="{{$id}}">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2" style="padding-top:6px;text-align:right">Input Nomor Sertifikat</div>
+                    <div class="col-md-3">
+                        <input type="text" name="nomor_sertifikat" id="nomor_sertifikat" class="form-control"  placeholder="Nomor Sertifikat" value="{{$n_ser}}">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-md btn-info" type="button" id="btnSimpanSetifikat"><i class="fa fa-save"></i>&nbsp;Simpan Data</button>
+                    </div>
+                </div>
+            </form>
             <div class="row" style="padding:0px 30px;">
-                <table class="table table-striped table-bordered" id="datatable">
+                <table class="table table-striped table-bordered" id="datatable" style="margin-top:10px;">
                     <thead>
                         <tr>
                             <th style="width:40px;">No</th>

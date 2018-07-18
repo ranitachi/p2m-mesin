@@ -18,6 +18,8 @@ use App\Model\Masterquesioner;
 use App\Model\Absensipelatihandetail;
 use App\Model\Quisionerdata;
 use App\Model\Nilaites;
+use App\Model\NomorSertifikat;
+use App\Model\Direktur;
 use DB;
 use Carbon;
 class BatchpelatihanController extends Controller
@@ -33,7 +35,7 @@ class BatchpelatihanController extends Controller
     }
     public function data()
     {
-        $jadwal=Batchpelatihan::all();
+        $jadwal=Batchpelatihan::orderBy('start_date','desc')->get();
         $batchinstrtuktur=BatchIntruktur::with('batch_pelatihan')->with('instruktur')->get();
         $b_ins=array();
         foreach($batchinstrtuktur as $k => $v)
@@ -227,6 +229,11 @@ class BatchpelatihanController extends Controller
             $n_tes[$vn->peserta_id][$vn->jenis_tes]=$vn->nilai;
         }
 
+        $nomor=NomorSertifikat::where('batch_id',$id)->get();
+        $n_ser='';
+        if($nomor->count() !=0)
+            $n_ser=$nomor[0]->nomor_sertifikat;
+
         return view('pages.jadwal.batch.index')
             ->with('id',$id)
             ->with('absen',$absn)
@@ -245,6 +252,7 @@ class BatchpelatihanController extends Controller
             ->with('pelatihan',$pelatihan)
             ->with('instruktur',$instruktur)
             ->with('quisioner',$quisioner)
+            ->with('n_ser',$n_ser)
             ->with('jenis',$jns);
     }
 
@@ -482,6 +490,15 @@ class BatchpelatihanController extends Controller
             ->with('pelatihan',$pelatihan)
             ->with('id',$id);
     }
+    public function buku_peserta($id)
+    {
+        $peserta=BatchParticipant::where('batch_id',$id)->with('peserta')->get();
+        $pelatihan=Batchpelatihan::find($id);
+        return view('pages.jadwal.batch.berkas.buku-peserta')
+            ->with('peserta',$peserta)
+            ->with('pelatihan',$pelatihan)
+            ->with('id',$id);
+    }
     public function absensi_peserta($id)
     {
         $peserta=BatchParticipant::where('batch_id',$id)->with('peserta')->get();
@@ -512,10 +529,15 @@ class BatchpelatihanController extends Controller
     public function cetak_sertifikat($id,$idbatch)
     {
         $peserta=BatchParticipant::where('id',$id)->where('batch_id',$idbatch)->with('peserta')->first();
-        $pelatihan=Batchpelatihan::find($idbatch);
+        $pelatihan=Batchpelatihan::where('id',$idbatch)->with('pelatihan')->first();
+        $sertifikat=NomorSertifikat::where('batch_id',$idbatch)->first();
+        $direktur=Direktur::where('flag',1)->first();
+        // dd($peserta);
         return view('pages.jadwal.batch.berkas.sertifikat')
             ->with('peserta',$peserta)
+            ->with('direktur',$direktur)
             ->with('pelatihan',$pelatihan)
+            ->with('sertifikat',$sertifikat)
             ->with('idbatch',$idbatch)
             ->with('id',$id);
     }
@@ -550,16 +572,18 @@ class BatchpelatihanController extends Controller
     {
         $instruktur=BatchIntruktur::where('id',$id)->where('batch_pelatihan_id',$idbatch)->with('instruktur')->first();
         $pelatihan=Batchpelatihan::find($idbatch);
+        $direktur=Direktur::where('flag',1)->first();
         return view('pages.jadwal.batch.berkas.ucapan-terimakasih')
             ->with('instruktur',$instruktur)
             ->with('pelatihan',$pelatihan)
             ->with('idbatch',$idbatch)
+            ->with('direktur',$direktur)
             ->with('id',$id);
     }
     public function form_quisioner($idbatch)
     {
         $instruktur=BatchIntruktur::where('batch_pelatihan_id',$idbatch)->with('instruktur')->get();
-        $pelatihan=Batchpelatihan::find($idbatch);
+        $pelatihan=Batchpelatihan::where('id',$idbatch)->with('pelatihan')->first();
         $quisioner=Masterquesioner::where('flag',1)->orderBy('kategori','desc')->get();
         $skedul=Skedulpelatihandetail::where('batch_id',$idbatch)->with('instruktur')->with('pegawai')->with('materi')->with('skedul')->get();
         $sch=array();
@@ -684,5 +708,29 @@ class BatchpelatihanController extends Controller
             $n->save();
         }
         return response()->json(['done']);
+    }
+
+    public function simpan_nomor_sertifikat(Request $request)
+    {
+        $batch_id=$request->batch_id;
+        $nomor=$request->nomor_sertifikat;
+        $cek=NomorSertifikat::where('batch_id',$batch_id)->get();
+
+        $dir=Direktur::where('flag',1)->first();
+        if($cek->count()!=0)
+        {
+            $ck=$cek->first();
+            $ck->nomor_sertifikat=$nomor;
+            $ck->save();
+        }
+        else
+        {
+            $ck=new NomorSertifikat;
+            $ck->nomor_sertifikat=$nomor;
+            $ck->batch_id=$batch_id;
+            $ck->direktur_id=$dir->id;
+            $ck->save();
+        }
+        return redirect('batch-detail/'.$batch_id.'/sertifikat')->with('status','Nomor Sertifikat Berhasil Di Simpan');
     }
 }

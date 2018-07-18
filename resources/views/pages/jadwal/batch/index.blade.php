@@ -194,6 +194,7 @@
 
         $("input#start_time").mask('99:99');
         $("input#end_time").mask('99:99');
+        $("input#nomor_sertifikat").mask('999/UN2.F4.P2M-DTM/***/9999');
         $('#btnSimpanJadwal').on('click',function(){
             var tanggal=$('#tanggal').val();
             var start_time=$('#start_time').val();
@@ -233,6 +234,18 @@
                     $('#submit-primary').one('click',function(){
                         $('#formAddJadwal').submit();
                     });
+            }
+        });
+
+        $('#btnSimpanSetifikat').click(function(){
+            var nomor=$('#nomor_sertifikat').val();
+            if(nomor=='')
+            {
+                pesanNoty('Nomor Sertifikat Belum Di Isi','error');
+            }
+            else
+            {
+                $('#simpan-nomor-sertifikat').submit();
             }
         });
     });
@@ -285,6 +298,7 @@
     {
         $('#detabsen').load('{{url("absensi-detail")}}/'+idabsensi);
     }
+
 </script>
 @endsection
 <style>

@@ -95,6 +95,7 @@ Route::get('getmateri/{id}','MateriController@getmateri');
 
 /* Bekas Batch Pelatihan */
 Route::get('absensi-instruktur/{id}','BatchpelatihanController@absensi_instrktur');
+Route::get('buku-peserta/{id}','BatchpelatihanController@buku_peserta');
 Route::get('absensi-peserta/{id}','BatchpelatihanController@absensi_peserta');
 Route::get('name-tag/{id}','BatchpelatihanController@name_tag');
 Route::get('nama-meja/{id}','BatchpelatihanController@nama_meja');
@@ -125,4 +126,4 @@ Route::get('by-provinsi/{idprop}', 'KabupatenkotaController@byprovinsi');
 Route::get('by-kota/{idkota}', 'KecamatanController@bykota');
 Route::get('by-kecamatan/{idkec}', 'KelurahanController@bykecamatan');
 
-
+Route::post('simpan-nomor-sertifikat','BatchpelatihanController@simpan_nomor_sertifikat');

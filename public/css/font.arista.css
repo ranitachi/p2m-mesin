@@ -14,3 +14,11 @@
     font-family: readventor;
     src: url('../fonts/texgyreadventor-bold.otf');
 }
+@font-face {
+    font-family: monotype;
+    src: url('../fonts/Monotype-Corsiva.ttf');
+}
+@font-face {
+    font-family: copperplate;
+    src: url('../fonts/CopperplateGothicBoldRegular.ttf');
+}

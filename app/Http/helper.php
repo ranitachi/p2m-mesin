@@ -21,6 +21,24 @@ function getMinutes($start_time,$end_time)
     $diff = ($d2-$d1)/60;
     return $diff;
 }
+
+function gabungtgl($date1,$date2,$sep='-')
+{
+	$n1=date('n',strtotime($date1));
+	$n2=date('n',strtotime($date2));
+	if($n1==$n2)
+	{
+		$tgl=date('d',strtotime($date1)).' '.$sep.' '.date('d',strtotime($date2));
+		$tgl.=' '.getBulan(date('n',strtotime($date1))).' '.date('Y',strtotime($date2));
+	}
+	else
+	{
+		$tgl=date('d',strtotime($date1)).' '.getBulan(date('n',strtotime($date1)));
+		$tgl.=' '.$sep.' '.date('d',strtotime($date2)).' '.getBulan(date('n',strtotime($date2))).' '.date('Y',strtotime($date2));
+	}
+	return $tgl;
+}
+
 function hari($day)
 {
     switch($day)

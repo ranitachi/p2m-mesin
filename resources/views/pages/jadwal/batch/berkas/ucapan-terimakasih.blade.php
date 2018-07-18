@@ -3,47 +3,113 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
-	<body onLoad="window.print()">
-        <div class="body" style="page-break-before: always;">
-				        <table border="0" style="width:100%;margin:0 auto;border:1px solid #888;margin-right:30px;margin-bottom:20px;" cellpadding="0" cellspacing="0">
-							<tr>
-								<td style="width:100%;text-align:center;vertical-align:top">
-									<img src="{{asset('img/logo.jpeg')}}" style='height:100px;margin:10px auto;'>
-								</td>
-							
-							</tr>
-							<tr>
-								<td colspan="2" style="text-align:center;background-color:yellow">
-									<h4>Training / Pelatihan</h4>
-									<h3>{{strtoupper($pelatihan->pelatihan->nama)}}</h3>
-									<h3>Tanggal : {{tgl_indo2($pelatihan->start_date)}} s.d. {{tgl_indo2($pelatihan->end_date)}}</h3>
-									<h1 style="font-size:140%">{{$instruktur->instruktur->nama}}</h1>
-								</td>
-								
-							</tr>
-							<tr>
-								<td colspan="2" style="text-align:center;background-color:dodgerblue;color:white">
-									
-								</td>
-								
-							</tr>
-						</table>
+	<body onLoad="window.print()" style="padding:0px !important;margin:0px !important;">
+        <div class="body" style="page-break-before: always;border:4px double darkblue;">
+			<link rel="stylesheet" href="{{asset('css/font.arista.css')}}">
+			<table border="0" style="width:100%;margin:0 auto;" cellpadding="0" cellspacing="0">
+				<tr>
+					<td style="width:100%;text-align:center;vertical-align:top">
+                        <img src="{{asset('img/logo.jpeg')}}" style='height:100px;margin:10px auto 0px;'>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
+						<div style="font-size:30px !important;letter-spacing:3px;font-family:copperplate;color:darkblue;float:left;width:100%;margin-bottom:5px;">P2M - Departemen Teknik Mesin</div>	
+						<div style="font-size:30px !important;letter-spacing:3px;font-family:copperplate;color:darkblue;float:left;width:100%">Fakultas Tekik Universitas Indonesia</div>	
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding-top:5px;text-align:center">
+						<div style="width:80%;vertical-align:top;text-align:center;background:darkblue;margin:0 auto !important;">
+							<div style="color:white;font-size:30px !important;padding:5px 0;font-family:copperplate">Ucapan Terima Kasih</div>
+						</div>
+					</td>
+				</tr>
+			
+				<tr>
+					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
+						@php
+							$nama=$instruktur->instruktur->nama;
+							if($instruktur->instruktur->gelar_s3!='')
+							{
+								$nama.=', '.$instruktur->instruktur->gelar_s3.'.';
+							}
+							if($instruktur->instruktur->gelar_s1!='')
+							{
+								$nama.=', '.$instruktur->instruktur->gelar_s1.'.';
+							}
+							if($instruktur->instruktur->gelar_s2!='')
+							{
+								$nama.=', '.$instruktur->instruktur->gelar_s2.'.';
+							}
+							if($instruktur->instruktur->gelar_lain!='')
+							{
+								$nama.=', '.$instruktur->instruktur->gelar_lain;
+							}
+						@endphp
+						<div style="font-size:20px !important;font-family:copperplate">Disampaikan Kepada :</div>
+						<div style="font-size:40px !important;padding:15px 0px;letter-spacing:5px;font-family:Georgia;font-weight:500">{{$instruktur->instruktur->nama}}</div>
+						<div style="border-top:2px solid #888;width:80%;margin:0 auto;">&nbsp;</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:100%;vertical-align:top;text-align:center;">
+						<div style="font-size:20px !important;font-family:copperplate;">Atas Partisipanya Sebagai</div>	
+						<div style="font-size:25px !important;font-family:copperplate;">STAF PENGAJAR</div>	
+						<div style="width:80%;vertical-align:top;text-align:center;background:darkblue;margin:10px auto !important;">
+							<div style="color:white;font-size:30px !important;padding:5px 0;font-family:monospace">{{strtoupper($pelatihan->pelatihan->nama)}}</div>
+							<div style="color:white;font-size:15px !important;padding:0 0 10px;font-family:fantasy">Tanggal, {{gabungtgl($pelatihan->start_date,$pelatihan->end_date,'s/d')}}</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
+						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Dilaksanakan oleh</div>
+						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">P2M - Departemen Teknik Mesin</div>
+						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Fakultas Teknik Universitas Indonesia</div>
+						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Jl. Salemba Raya 4</div>
+						<div style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;width:80%;margin:0 auto;font-size:17px !important;padding-bottom:4px;border-bottom:2px solid #888">Jakarta - 10430<br>
+						
+						</div>
+
+					</td>
+				</tr>
+				<tr>
+					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
+						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Jakarta, {{tgl_indo(date('Y-m-d'))}}</div>
+						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">P2M - Departemen Teknik Mesin</div>
+						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Fakultas Teknik Universitas Indonesia</div>
+						<div style="font-size:18px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top:45px;text-decoration:underline">{{$direktur->nama}}</div>
+						<div style="font-size:14px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Direktur<br>
+						
+						</div>
+
+					</td>
+				</tr>
+			</table>
                         
         </div>
     </body>
 </html>
 <style type="text/css" media="print">
-  @page { 
-  	size: Legal landscape; 
-  }
+  @page {
+    size: A4 landscape;
+	margin:0px !important;
+	padding:0px !important;
+	
+}
   @media print {
   html, body {
-    width: 330mm;
-    height: 210mm;
+    height:100%;
+  	width:100%;
+	left: 0;
+    top: 0;
+    right: 0;
   }
   .body
   {
-      height: 210mm;
+      height: 99%;
   }
   /* ... the rest of the rules ... */
 }
@@ -53,6 +119,7 @@
 {
 	line-height: 22px;
 	font-size : 15px;
+	font-family: Arial, Helvetica, sans-serif;
 }
 table td div
 {

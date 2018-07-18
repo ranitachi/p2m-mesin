@@ -6,14 +6,14 @@
         </div>
          <div class="block-content">
             <div class="row" style="">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <table class="table table-striped table-bordered" id="datatable">
                         <thead>
                             <tr>
-                                <th style="width:40px;">No</th>
+                                <th>No</th>
                                 <th>Nama Instruktur</th>
                                 <th>Nilai</th>
-                                <th style="width:100px;">#</th>
+                                <th style="">#</th>
                             </tr>
                         </thead>                                    
                         <tbody>
@@ -57,7 +57,7 @@
                                 else
                                     $n_tot=0;
 
-                                $avg=array_sum($n_avg) / count($n_avg);
+                                $avg=array_sum($n_avg) / (count($n_avg)==0 ? 1 : count($n_avg));
 
                             @endphp 
                             <tr>
@@ -65,13 +65,14 @@
                                 <td class="text-left">{{$nama}}</td>
                                 <td class="text-center">{{number_format($avg,2) }}</td>
                                 <td class="text-center">
-                                    <a href="javascript:hasilquisioner('{{$item->instruktur_id}}','{{$item->batch_pelatihan_id}}')" class="btn btn-xs btn-info"><i class="fa fa-bar-chart"></i> Hasil Quisioner</a>
+                                    <a href="javascript:hasilquisioner('{{$item->instruktur_id}}','{{$item->batch_pelatihan_id}}')" class="btn btn-xs btn-info"><i class="fa fa-bar-chart"></i></a>
                                 </td>
                             </tr>
                         @endforeach                                 
                         </tbody>
                     </table>
                 </div>
+                <div class="col-md-1">&nbsp;</div>
                 <div class="col-md-8">
                     
                     <div id="hasil"></div>
