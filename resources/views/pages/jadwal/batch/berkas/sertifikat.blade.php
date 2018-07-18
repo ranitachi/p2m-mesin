@@ -4,12 +4,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
 	<body onLoad="window.print()">
-        <div class="body" style="page-break-before: always;">
+        <div class="body" style="page-break-before: always;margin-left:30px;">
 			<link rel="stylesheet" href="{{asset('css/font.arista.css')}}">
 			<table border="0" style="width:100%;margin:0 auto;" cellpadding="0" cellspacing="0">
 				<tr>
 					<td style="width:100%;vertical-align:top;text-align:center;padding-top:150px;">
-						<h1 style="font-size:40px !important;letter-spacing:25px;font-family:Arial, Helvetica, sans-serif;margin:0 auto;">SERTIFIKAT</h1>	
+						<h1 style="font-size:40px !important;letter-spacing:25px;font-family:Arial, Helvetica, sans-serif;margin:0 auto;padding-top:50px;">SERTIFIKAT</h1>	
 					</td>
 				</tr>
 				<tr>
