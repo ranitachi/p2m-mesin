@@ -5,6 +5,9 @@
 	</head>
 	<body onLoad="window.print()" style="padding:0px !important;margin:0px !important;">
         <div class="body" style="page-break-before: always;">
+				@php
+					$x=0;
+				@endphp
 				@foreach ($peserta as $idx=>$item)
 					
                         <table border="0" style="width:380px;height:230px;margin:0 auto;border:1px solid #888;margin-right:5px;margin-bottom:50px;float:left" cellpadding="0" cellspacing="0">
@@ -43,7 +46,14 @@
 								
 							</tr>
 						</table>
-                        
+                        @php
+							$x++;
+							if($x==10)
+							{
+								echo '<div class="pisah"></div>';
+								$x=0;
+							}
+						@endphp
 				@endforeach 
         </div>
     </body>
@@ -63,6 +73,7 @@
 	  	padding:0px !important;
 		margin:0px !important;
   }
+  .pisah {page-break-before: always;border:0px !important;}
   /* ... the rest of the rules ... */
 }
 </style>
@@ -112,11 +123,11 @@ h6,h3
 }
 div
 {
-	font-size: 12px !important;
+	/* font-size: 12px !important;
 	padding-top:0px;
 	padding-bottom:0px;
 	margin-top:-1px !important;
-	margin-bottom:0px;
+	margin-bottom:0px; */
 }
 ol li 
 {
