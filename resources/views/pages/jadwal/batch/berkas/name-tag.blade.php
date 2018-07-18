@@ -7,7 +7,7 @@
         <div class="body" style="page-break-before: always;">
 				@foreach ($peserta as $idx=>$item)
 					
-                        <table border="0" style="width:385px;height:245px;margin:0 auto;border:1px solid #888;margin-right:5px;margin-bottom:50px;float:left" cellpadding="0" cellspacing="0">
+                        <table border="0" style="width:380px;height:230px;margin:0 auto;border:1px solid #888;margin-right:5px;margin-bottom:50px;float:left" cellpadding="0" cellspacing="0">
 							<tr>
 								<td style="width:20%;text-align:right;vertical-align:top">
 									<img src="{{asset('img/logo.jpeg')}}" style='height:55px;margin:11px auto 0px auto;'>
@@ -59,9 +59,9 @@
   }
   .body
   {
-      height: 297mm;
+      	height: 297mm;
 	  	padding:0px !important;
-	margin:0px !important;
+		margin:0px !important;
   }
   /* ... the rest of the rules ... */
 }
