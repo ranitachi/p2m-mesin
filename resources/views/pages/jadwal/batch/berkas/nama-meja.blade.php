@@ -7,6 +7,9 @@
 	<body onLoad="window.print()" style="padding:0px !important;margin:0px !important;">
         <link rel="stylesheet" href="{{asset('css/font.arista.css')}}">
         <div class="body" style="page-break-before: always;">
+				@php
+					$x=0;
+				@endphp
 				@foreach ($peserta as $idx=>$item)
 					
                         <table border="0" style="width:100%;margin-left:0px !important;border:3px solid #888;;margin-right:0px;margin-bottom:60px;margin-top:10px;" cellpadding="0" cellspacing="0">
@@ -28,7 +31,14 @@
 							</tr>
 							
 						</table>
-                        
+                        @php
+							if($x==2)
+							{
+								echo '<div class="pisah"></div>';
+								$x=0;
+							}
+							$x++;
+						@endphp
 				@endforeach 
         </div>
     </body>
@@ -52,6 +62,7 @@
   {
       /* height: 210mm; */
   }
+  .pisah {page-break-before: always;}
   /* ... the rest of the rules ... */
 }
 </style>
