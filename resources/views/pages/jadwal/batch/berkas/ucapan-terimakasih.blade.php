@@ -21,7 +21,7 @@
 
 				<tr>
 					<td style="padding-top:5px;text-align:center">
-						<div style="width:80%;vertical-align:top;text-align:center;background:darkblue;margin:0 auto !important;">
+						<div style="width:80%;vertical-align:top;text-align:center;background:darkblue;margin:10px auto 0 auto !important;">
 							<div style="color:white;font-size:30px !important;padding:5px 0;font-family:copperplate">Ucapan Terima Kasih</div>
 						</div>
 					</td>
@@ -55,9 +55,9 @@
 				</tr>
 				<tr>
 					<td style="width:100%;vertical-align:top;text-align:center;">
-						<div style="font-size:20px !important;font-family:copperplate;">Atas Partisipanya Sebagai</div>	
-						<div style="font-size:25px !important;font-family:copperplate;">STAF PENGAJAR</div>	
-						<div style="width:80%;vertical-align:top;text-align:center;background:darkblue;margin:10px auto !important;">
+						<div style="font-size:18px !important;font-family:copperplate;">Atas Partisipanya Sebagai</div>	
+						<div style="font-size:20px !important;font-family:copperplate;">STAF PENGAJAR</div>	
+						<div style="width:80%;vertical-align:top;text-align:center;background:darkblue;margin:5px auto !important;">
 							<div style="color:white;font-size:30px !important;padding:5px 0;font-family:monospace">{{strtoupper($pelatihan->pelatihan->nama)}}</div>
 							<div style="color:white;font-size:15px !important;padding:0 0 10px;font-family:fantasy">Tanggal, {{gabungtgl($pelatihan->start_date,$pelatihan->end_date,'s/d')}}</div>
 						</div>
@@ -65,11 +65,11 @@
 				</tr>
 				<tr>
 					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
-						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Dilaksanakan oleh</div>
-						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">P2M - Departemen Teknik Mesin</div>
-						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Fakultas Teknik Universitas Indonesia</div>
-						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Jl. Salemba Raya 4</div>
-						<div style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;width:80%;margin:0 auto;font-size:17px !important;padding-bottom:4px;border-bottom:2px solid #888">Jakarta - 10430<br>
+						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px;">Dilaksanakan oleh</div>
+						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px;">P2M - Departemen Teknik Mesin</div>
+						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px;">Fakultas Teknik Universitas Indonesia</div>
+						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px;">Jl. Salemba Raya 4</div>
+						<div style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;width:80%;margin:0 auto;font-size:15px !important;padding-bottom:4px;border-bottom:2px solid #888">Jakarta - 10430<br>
 						
 						</div>
 
@@ -77,11 +77,11 @@
 				</tr>
 				<tr>
 					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
-						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Jakarta, {{tgl_indo(date('Y-m-d'))}}</div>
-						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">P2M - Departemen Teknik Mesin</div>
-						<div style="font-size:17px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Fakultas Teknik Universitas Indonesia</div>
-						<div style="font-size:18px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top:45px;text-decoration:underline">{{$direktur->nama}}</div>
-						<div style="font-size:14px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Direktur<br>
+						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px">Jakarta, {{tgl_indo(date('Y-m-d'))}}</div>
+						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px">P2M - Departemen Teknik Mesin</div>
+						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px">Fakultas Teknik Universitas Indonesia</div>
+						<div style="font-size:16px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top:70px;text-decoration:underline">{{$direktur->nama}}</div>
+						<div style="font-size:14px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px">Direktur<br>
 						
 						</div>
 

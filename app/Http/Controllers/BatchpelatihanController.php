@@ -547,7 +547,7 @@ class BatchpelatihanController extends Controller
         $pelatihan=Batchpelatihan::where('id',$idbatch)->with('pelatihan')->first();
         $sertifikat=NomorSertifikat::where('batch_id',$idbatch)->first();
         $direktur=Direktur::where('flag',1)->first();
-        $materi=Materi::where('pelatihan_id',$pelatihan->id)->get();
+        $materi=Materi::where('pelatihan_id',$pelatihan->pelatihan_id)->get();
         // dd($peserta);
         return view('pages.jadwal.batch.berkas.sertifikat-materi')
             ->with('peserta',$peserta)
