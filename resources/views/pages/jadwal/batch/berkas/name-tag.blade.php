@@ -5,12 +5,10 @@
 	</head>
 	<body onLoad="window.print()" style="padding:0px !important;margin:0px !important;">
         <div class="body" style="page-break-before: always;">
-				@php
-					$x=0;
-				@endphp
+				
 				@foreach ($peserta as $idx=>$item)
 					
-                        <table border="0" style="width:380px;height:230px;margin:0 auto;border:1px solid #888;margin-right:5px;margin-bottom:50px;float:left" cellpadding="0" cellspacing="0">
+                        <table border="0" style="width:380px;height:230px;margin:0 auto;border:1px solid #888;margin-right:5px;margin-bottom:55px;float:left" cellpadding="0" cellspacing="0">
 							<tr>
 								<td style="width:20%;text-align:right;vertical-align:top">
 									<img src="{{asset('img/logo.jpeg')}}" style='height:55px;margin:11px auto 0px auto;'>
@@ -46,14 +44,7 @@
 								
 							</tr>
 						</table>
-                        @php
-							$x++;
-							if($x==10)
-							{
-								echo '<div class="pisah"></div>';
-								$x=0;
-							}
-						@endphp
+                        
 				@endforeach 
         </div>
     </body>
@@ -69,7 +60,7 @@
   }
   .body
   {
-      	height: 297mm;
+      	height: 100%;
 	  	padding:0px !important;
 		margin:0px !important;
   }
@@ -123,11 +114,11 @@ h6,h3
 }
 div
 {
-	/* font-size: 12px !important;
+	font-size: 12px !important;
 	padding-top:0px;
 	padding-bottom:0px;
 	margin-top:-1px !important;
-	margin-bottom:0px; */
+	margin-bottom:0px;
 }
 ol li 
 {
