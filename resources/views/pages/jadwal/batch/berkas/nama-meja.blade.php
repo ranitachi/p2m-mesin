@@ -19,7 +19,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:center;padding:10px 0;height:20mm">
+								<td style="text-align:center;padding:10px 0;height:10mm">
 									@if (isset($item->peserta->perusahaan->nama_perusahaan))
 									
 										<h3 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:25px">{{strtoupper($item->peserta->perusahaan->nama_perusahaan)}}</h3>
