@@ -26,7 +26,7 @@
 									<h4>Training / Pelatihan</h4>
 									<div style="margin-bottom:-5px;float:left;width:100%;font-weight:bold">{{strtoupper($pelatihan->pelatihan->nama)}}</div>
 									<div style="margin-bottom:10px;float:left;width:100%;font-weight:bold">Tanggal : {{tgl_indo2($pelatihan->start_date)}} s.d. {{tgl_indo2($pelatihan->end_date)}}</div>
-									<h1 style="font-size:140%;font-family:Arial, Helvetica, sans-serif">{{strtoupper($item->peserta->nama_lengkap)}}</h1>
+									<h1 style="font-size:140%;font-family:Arial, Helvetica, sans-serif;{{(strlen($item->peserta->nama_lengkap) >=28 ? 'letter-spacing:-2px;font-size:120% !important;' : '')}}">{{strtoupper($item->peserta->nama_lengkap)}}</h1>
 								</td>
 								
 							</tr>
@@ -122,5 +122,10 @@ ol li
 {
 	margin-top:3px !important;
 	margin-bottom:0px !important;
+}
+.ellipses {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

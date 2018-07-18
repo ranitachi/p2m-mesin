@@ -51,7 +51,7 @@
 							$gelar=gelar($nama,$s1,$s2,$s3,$lain);
 						@endphp
 						<div style="font-size:20px !important;font-family:copperplate">Disampaikan Kepada :</div>
-						<div style="font-size:40px !important;padding:15px 0px;letter-spacing:5px;font-family:Georgia;font-weight:500">{{$gelar}}</div>
+						<div style="font-size:35px !important;padding:15px 0px;letter-spacing:3px;font-family:Georgia;font-weight:500">{{$gelar}}</div>
 						<div style="border-top:2px solid #888;width:80%;margin:0 auto;">&nbsp;</div>
 					</td>
 				</tr>
