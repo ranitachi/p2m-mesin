@@ -30,10 +30,13 @@
 						@endphp
 						<ol>
 						@for ($i=0;$i<10;$i++)
+							@if (isset($mat[$i]))
+								
 							<li style="font-size:15px !important;padding-bottom:15px;">
 								{{$mat[$i]->materi}}<br>
 								<i>{{$mat[$i]->materi_en}}</i>
 							</li>
+							@endif
 						@endfor
 						</ol>
 						</div>
@@ -42,10 +45,12 @@
 						<div>
 							<ol start="10">
 								@for ($j=10;$j<count($mat);$j++)
+								@if (isset($mat[$j]))
 									<li style="font-size:15px !important;padding-bottom:15px;">
 										{{$mat[$j]->materi}}<br>
 										<i>{{$mat[$j]->materi_en}}</i>
 									</li>
+								@endif
 								@endfor
 								</ol>	
 						</div>
