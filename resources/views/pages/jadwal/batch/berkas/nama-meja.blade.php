@@ -60,9 +60,9 @@
   }
   .body
   {
-      /* height: 210mm; */
+      height: 99%;
   }
-  .pisah {page-break-before: always;}
+  .pisah {page-break-before: always;border:0px !important;}
   /* ... the rest of the rules ... */
 }
 </style>
@@ -111,11 +111,11 @@ h6,h3
 }
 div
 {
-	font-size: 12px !important;
+	/* font-size: 12px !important;
 	padding-top:0px;
 	padding-bottom:0px;
 	margin-top:-1px !important;
-	margin-bottom:0px;
+	margin-bottom:0px; */
 }
 ol li 
 {
