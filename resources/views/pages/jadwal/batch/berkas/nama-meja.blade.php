@@ -19,7 +19,7 @@
 								<td style="text-align:center;padding:10px 0;height:15mm">
 									@if (isset($item->peserta->perusahaan->nama_perusahaan))
 									
-										<h3 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:25px">{{$item->peserta->jabatan=='' ? '&nbsp;':strtoupper(($item->peserta->perusahaan->nama_perusahaan))}}</h3>
+										<h3 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:25px">{{strtoupper($item->peserta->perusahaan->nama_perusahaan)}}</h3>
 									@else
 										<h3 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:25px">{{$item->peserta->jabatan=='' ? '&nbsp;':strtoupper($item->peserta->jabatan)}}</h3>
 									@endif
