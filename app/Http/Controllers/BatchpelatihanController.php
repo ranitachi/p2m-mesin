@@ -303,7 +303,110 @@ class BatchpelatihanController extends Controller
         }
         return redirect('batch-detail/'.$idbatch.'/peserta')->with($type,$ps);
     }
+    public function jadwal_add_batch(Request $request, $idbatch, $id)
+    {
+        // dd($request->all());
+        
+        $cek=Skedulpelatihan::where('batch_id','=',$idbatch);
+        // dd($cek);
+        if($cek->get()->count()!=0)
+        {
+            $cek->forceDelete();
+            Skedulpelatihandetail::where('batch_id',$idbatch)->forceDelete();
+        }
 
+        $start_time=$request->detail__start_time;
+        $end_time=$request->detail__end_time;
+        $materi_id=$request->detail__materi_id;
+        $materi=$request->detail__materi;
+        $instruktur=$request->detail__instruktur_id;
+        $staf=$request->detail__staf_id;
+
+        // foreach($request->all() as $k =>$v)
+        // {
+        //     $tbl=strtok($k,'__');
+        //     // echo $tbl.'<br>';
+        //     $kolom=str_replace($tbl.'__','',$k);
+        //     if($tbl=='skedul')
+        //     {
+        //         $skedul[$kolom]=$v;
+        //     }
+        //     elseif($tbl=='detail')
+        //     {
+        //         // $detail[$kolom]=$v;
+        //     }
+        
+            $sk=array();
+            
+            // if(isset($skedul['date']))
+            // {
+                // if(count($skedul['date'])!=0)
+                // {
+                    foreach($request->skedul__date as $ks=>$vs)
+                    {
+                        if(!is_null($vs))
+                        {
+                            list($tg,$bl,$th)=explode('/',$vs);
+                            $sk['date']=$date=$th.'-'.$bl.'-'.$tg;
+                            $timestamp = strtotime($date);
+                            $day = date('D', $timestamp);
+                            $sk['weekday']=$day;
+                            $sk['batch_id']=$idbatch;
+                            $skd=Skedulpelatihan::create($sk);
+                            $skedul_id=$skd->id;
+                            // echo '<pre>';
+                            // print_r($sk);
+                            // echo '</pre>';
+                            foreach($start_time[$ks] as $ktm=>$vtm)
+                            {
+                                if(!is_null($vtm))
+                                {
+                                    $mat=Materi::find($materi_id[$ks][$ktm]);
+                                    if(is_null($mat))
+                                        $mtr=$materi[$ks][$ktm];
+                                    else
+                                        $mtr=$mat->materi;
+
+                                    $detail['skedul_id']=$skedul_id;
+                                    $detail['batch_id']=$idbatch;
+                                    $detail['start_time']=$vtm;
+                                    $detail['end_time']=$end_time[$ks][$ktm];
+                                    $detail['materi_id']=$materi_id[$ks][$ktm];
+                                    $detail['materi']=$mtr;
+                                    $detail['staf_id']=$staf[$ks][$ktm];
+                                    $detail['instruktur_id']=$instruktur[$ks][$ktm];
+
+                                    // echo '<pre>';
+                                    // print_r($detail);
+                                    // echo '</pre>';
+                                    $add=Skedulpelatihandetail::create($detail);
+                                    if($add)
+                                    {
+                                        $ps='Data Jadwal Pelatihan Berhasil Ditambahkan';
+                                        $type='success';
+                                    }
+                                    else
+                                    {
+                                        $ps='Data Jadwal Pelatihan Tidak Berhasil Ditambahkan';
+                                        $type='fail';
+                                    }
+        
+
+        
+        
+                                }
+                            }
+                            
+                        }
+                    }
+                    return redirect('batch-detail/'.$idbatch.'/jadwal')->with($type,$ps);
+                // }
+            // }
+        // }
+        
+        // dd($request->all());
+
+    }
     public function jadwal_add(Request $request,$idbatch,$id)
     {
         $skedul=$detail=array();

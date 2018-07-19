@@ -50,6 +50,7 @@
                                 <ul>
                                     <li class="{{$jenis=='jadwal' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/jadwal')}}">Daftar Jadwal</a></li>
                                     <li class="{{$jenis=='jadwal-add' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/jadwal-add__0')}}">Tambah Jadwal</a></li>
+                                    <li class="{{$jenis=='jadwal-add-batch' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/jadwal-add-batch__0')}}">Tambah Jadwal Semua</a></li>
                                 </ul>
                             </li>
                             <li class="{{strpos($jenis,'absensi')!==false ? 'active' : ''}}">
@@ -123,6 +124,8 @@
                     @include('pages.jadwal.batch.jadwal')    
                 @elseif($jenis=='jadwal-add')
                     @include('pages.jadwal.batch.jadwal-add')    
+                @elseif($jenis=='jadwal-add-batch')
+                    @include('pages.jadwal.batch.jadwal-add-batch')    
                 @elseif($jenis=='absensi')
                     @include('pages.jadwal.batch.absensi')    
                 @elseif($jenis=='absensi-add')
@@ -161,6 +164,15 @@
                  format:'DD/MM/YYYY',
                  disabledDates: [new Date()]
         });
+        $('input#tanggal_batch').each(function(i){
+            $(this).datetimepicker({  
+                minDate:'{{$jadwal->start_date}}',
+                maxDate:'{{$jadwal->end_date}}',
+                format:'DD/MM/YYYY',
+                defaultDate:false ,
+                useCurrent: false
+            });
+        });
         setTimeout(function(){
             $('div.alert-success').fadeOut();
             $('div.alert-danger').fadeOut();
@@ -194,6 +206,8 @@
 
         $("input#start_time").mask('99:99');
         $("input#end_time").mask('99:99');
+        $("input#start_time_batch").mask('99:99');
+        $("input#end_time_batch").mask('99:99');
         $("input#nomor_sertifikat").mask('999/UN2.F4.P2M-DTM/***/9999');
         $('#btnSimpanJadwal').on('click',function(){
             var tanggal=$('#tanggal').val();

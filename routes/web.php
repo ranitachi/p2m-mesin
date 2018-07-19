@@ -84,6 +84,7 @@ Route::get('batch-detail/{id}/{jenis}', 'BatchpelatihanController@detail');
 Route::post('peserta-add/{idbatch}', 'BatchpelatihanController@peserta_add');
 Route::get('peserta-hapus/{id}/{idbatch}', 'BatchpelatihanController@peserta_hapus');
 
+Route::post('jadwal-add-batch/{idbatch}/{id}', 'BatchpelatihanController@jadwal_add_batch');
 Route::post('jadwal-add/{idbatch}/{id}', 'BatchpelatihanController@jadwal_add');
 Route::get('jadwal-hapus/{id}/{idbatch}', 'BatchpelatihanController@jadwal_hapus');
 
