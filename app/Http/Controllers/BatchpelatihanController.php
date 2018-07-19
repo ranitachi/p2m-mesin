@@ -311,8 +311,8 @@ class BatchpelatihanController extends Controller
         // dd($cek);
         if($cek->get()->count()!=0)
         {
-            $cek->forceDelete();
-            Skedulpelatihandetail::where('batch_id',$idbatch)->forceDelete();
+            // $cek->forceDelete();
+            // Skedulpelatihandetail::where('batch_id',$idbatch)->forceDelete();
         }
 
         $start_time=$request->detail__start_time;
