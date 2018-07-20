@@ -12,7 +12,7 @@
 				@endphp
 				@foreach ($peserta as $idx=>$item)
 					
-                        <table border="0" style="width:100%;height:30%;margin-left:0px !important;border:3px solid #888;;margin-right:0px;margin-bottom:17px;margin-top:0px;" cellpadding="0" cellspacing="0">
+                        <table border="0" style="width:100%;height:32%;margin-left:0px !important;border:3px solid #888;;margin-right:0px;margin-bottom:17px;margin-top:0px;" cellpadding="0" cellspacing="0">
 							<tr>
 								<td style="text-align:center;vertical-align:middle;height:70% !important;border-bottom:3px solid lightblue;">
                                     <div style="font-size:70px !important;font-family:readventor !important;white-space: nowrap;">{{strtoupper($item->peserta->nama_lengkap)}}</div>
