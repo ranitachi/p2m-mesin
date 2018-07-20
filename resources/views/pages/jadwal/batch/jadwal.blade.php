@@ -47,7 +47,7 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="{{url('batch-detail/'.$id.'/jadwal-add__'.$item[0]->idp)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="edit Data"><i class="fa fa-edit" ></i></a>    
-                                    <a href="javascript:hapusjadwal({{$item[0]->id}},{{$id}})" class="btn btn-xs btn-danger btn-rounded" data-toggle="tooltip" title="Hapus Data"><i class="fa fa-trash" ></i></a>    
+                                    <a href="javascript:hapusjadwal({{$item[0]->idp}},{{$id}})" class="btn btn-xs btn-danger btn-rounded" data-toggle="tooltip" title="Hapus Data"><i class="fa fa-trash" ></i></a>    
                                 </td>    
                             </tr> 
                             @foreach ($item as $idx=>$ii)
@@ -66,7 +66,7 @@
                                             @endif
                                         <td class="text-center">
                                             <a href="{{url('batch-detail/'.$id.'/jadwal-add__'.$ii->idp)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="edit Data"><i class="fa fa-edit" ></i></a> 
-                                            <a href="javascript:hapusjadwal({{$ii->id}},{{$id}})" class="btn btn-xs btn-danger btn-rounded" data-toggle="tooltip" title="Hapus Data"><i class="fa fa-trash" ></i></a>    
+                                            <a href="javascript:hapusjadwal({{$ii->idp}},{{$id}})" class="btn btn-xs btn-danger btn-rounded" data-toggle="tooltip" title="Hapus Data"><i class="fa fa-trash" ></i></a>    
                                         </td>    
                                     </tr> 
                                 @endif
