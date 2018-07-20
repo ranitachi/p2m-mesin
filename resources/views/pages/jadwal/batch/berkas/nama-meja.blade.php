@@ -15,7 +15,7 @@
                         <table border="0" style="width:100%;height:32%;margin-left:0px !important;border:3px solid #888;;margin-right:0px;margin-bottom:17px;margin-top:0px;" cellpadding="0" cellspacing="0">
 							<tr>
 								<td style="text-align:center;vertical-align:middle;height:70% !important;border-bottom:3px solid lightblue;">
-                                    <div style="font-size:70px !important;font-family:readventor !important;white-space: nowrap;">{{strtoupper($item->peserta->nama_lengkap)}}</div>
+                                    <div style="font-size:{{strlen($item->peserta->nama_lengkap)>=30 ? '80px !important;letter-spacing:-5px;' : '100px !important'}} ;font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;white-space: nowrap;font-weight:600">{{strtoupper($item->peserta->nama_lengkap)}}</div>
 								</td>
 							</tr>
 							<tr>
