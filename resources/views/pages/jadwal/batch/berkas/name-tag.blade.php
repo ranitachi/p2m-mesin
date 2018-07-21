@@ -5,7 +5,9 @@
 	</head>
 	<body onLoad="window.print()" style="padding:0px !important;margin:0px !important;">
         <div class="body" style="page-break-before: always;">
-				
+				@php
+					$x=0;
+				@endphp
 				@foreach ($peserta as $idx=>$item)
 					
                         <table border="0" style="width:360px;height:230px;margin:0 auto;border:1px solid #888;margin-right:5px;margin-bottom:60px;float:left" cellpadding="0" cellspacing="0">

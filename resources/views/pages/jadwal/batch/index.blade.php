@@ -313,6 +313,22 @@
         $('#detabsen').load('{{url("absensi-detail")}}/'+idabsensi);
     }
 
+    function cetaksertifikat(item_id,id)
+    {
+        var nomor=$('#nomor_sertifikat').val();
+        if(nomor=='')
+        {
+            pesanNoty('Nomor Sertifikat Belum Di Isi','error');
+        }
+        else
+        {
+            // $('#simpan-nomor-sertifikat').submit();
+            window.open(
+                '{{url("cetak-sertifikat")}}/'+item_id+'/'+id,
+                '_blank'
+            );
+        }
+    }
 </script>
 @endsection
 <style>

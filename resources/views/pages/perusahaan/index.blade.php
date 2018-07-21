@@ -29,7 +29,7 @@
                                         <div class="heading-elements">
                                             <a href="{{url('perusahaan/-1')}}" class="btn btn-xs btn-primary"><i class="fa fa-plus-circle"></i>&nbsp;Tambah Data</a>
                                             <a href="{{url('peserta-import')}}" class="btn btn-xs btn-success"><i class="fa fa-file-excel-o"></i>&nbsp;Import Excel</a>
-                                            <a href="{{url('cetak-label-perusahaan')}}" class="btn btn-xs btn-info"><i class="fa fa-print"></i>&nbsp;Cetak Label</a>
+                                            <a href="javascript:cetaklabel()" class="btn btn-xs btn-info"><i class="fa fa-print"></i>&nbsp;Cetak Label</a>
                                         </div>
                                     </div>
                                     @if(Session::has('status'))
@@ -76,6 +76,17 @@
         $('#submit-primary').on('click',function(){
             location.href='{{url("perusahaan-hapus")}}/'+id;
         });
+    }
+    function cetaklabel()
+    {
+        $('#cetak-label').submit();
+        // alert('a');
+    }
+    function add_id(val)
+    {
+        var id=$('#perusahaan_id').val();
+        var d=val+','+id;
+        $('#perusahaan_id').val(d);
     }
 </script>
 @endsection

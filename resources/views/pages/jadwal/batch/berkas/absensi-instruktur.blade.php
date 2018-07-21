@@ -8,10 +8,17 @@
         // $end = \Carbon\Carbon::parse($pelatihan->end_date);
         // $start = \Carbon\Carbon::parse($pelatihan->start_date);
         // $lama = $end->diffInDays($start);
-        $date=$pelatihan->start_date;
-        $end_date=$pelatihan->end_date;
+        // $date=$pelatihan->start_date;
+        // $end_date=$pelatihan->end_date;
                 //echo "$date\n";
                 //$date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));
+        ksort($jadwal);
+        // echo count($jadwal);
+        $date = \Carbon\Carbon::parse(key($jadwal));
+        end($jadwal);
+        $key = key($jadwal);
+        $end = \Carbon\Carbon::parse($key);
+        $end_date=$end;
     @endphp
     @while (strtotime($date) <= strtotime($end_date))
    

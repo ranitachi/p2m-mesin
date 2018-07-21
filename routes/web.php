@@ -37,9 +37,10 @@ Route::get('direktur-hapus/{id}', 'DirekturController@destroy');
 Route::resource('instruktur', 'MasterinstrukturController');
 Route::get('instruktur-hapus/{id}', 'MasterinstrukturController@destroy');
 
-/* Instruktur */
+/* Perusahaan */
 Route::resource('perusahaan', 'MasterperusahaanController');
 Route::get('perusahaan-hapus/{id}', 'MasterperusahaanController@destroy');
+Route::post('cetak-label-perusahaan', 'MasterperusahaanController@cetak');
 
 /* PESERTA */
 Route::resource('peserta', 'MasterpesertaController');

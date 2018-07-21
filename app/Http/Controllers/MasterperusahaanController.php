@@ -90,4 +90,22 @@ class MasterperusahaanController extends Controller
         $per=Masterperusahaan::find($id)->delete();
         return redirect('perusahaan')->with('status','Data Perusahaan Berhasil di Hapus');
     }
+
+    public function cetak(Request $request)
+    {
+        // dd($request->perusahaan_id);
+        $perusahaan=Masterperusahaan::all();
+        $per=array();
+        foreach($perusahaan as $k=>$v)
+        {
+            $per[$v->id]=$v;
+        }
+        if($request->perusahaan_id!='')
+        {    
+            $d=explode(',',$request->perusahaan_id);
+            return view('pages.perusahaan.cetak-label',compact('d','per'));
+        }
+        else
+            return redirect('perusahaan')->with('status','Anda Belum Memilih Perusahaan yang akan di cetak');
+    }
 }
