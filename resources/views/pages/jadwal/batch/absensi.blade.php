@@ -1,7 +1,7 @@
 <div class="app-heading app-heading-small">                                
            
             <div class="title">
-                <h1 style="font-size:20px;">Daftar Absensi Pelatihan</h1>
+                <h1 style="font-size:20px;">Daftar Hadir Pelatihan</h1>
             </div>                                
         </div>
          <div class="block-content">
@@ -26,7 +26,7 @@
                                 <td class="text-center">{{++$no}}</td>
                                 <td class="text-center"><a href="javascript:detabsensi({{$val[0]->absensi_id}},{{$id}})">{{date('d-m-Y',strtotime($val[0]->skedul->date))}}</a></td>
                                 <td class="text-left">{{hari($val[0]->skedul->weekday)}}</td>
-                                <td class="text-center">{{$val[0]->skedul->desc}}</td>
+                                <td class="text-center">{{$val[0]->absensi->desc}}</td>
                                 <td class="text-center">
                                     <a href="javascript:detabsensi({{$val[0]->absensi_id}},{{$id}})" class="btn btn-xs btn-primary btn-rounded" data-toggle="tooltip" title="Hapus Data"><i class="fa fa-eye" ></i></a> 
                                     {{-- <a href="{{url('batch-detail/'.$id.'/absensi-add__'.$val[0]->absensi_id)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="edit Data"><i class="fa fa-edit" ></i></a>     --}}

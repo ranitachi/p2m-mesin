@@ -39,7 +39,7 @@
                                                     <div class="alert-icon">
                                                         <span class="icon-checkmark-circle"></span> 
                                                     </div>
-                                                    <strong>Success!</strong> {{ Session::get('status') }} 
+                                                    <strong>Informasi !</strong> {{ Session::get('status') }} 
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span></button>
                                                 </div>
                                             </div>
@@ -74,7 +74,11 @@
         $('#primary-body').html('<h1>Apakah Anda Yakin data yang menghapus Data Ini ?</h1>');
         $('#modal-primary').modal('show');
         $('#submit-primary').on('click',function(){
-            location.href='{{url("perusahaan-hapus")}}/'+id;
+            // location.href='{{url("perusahaan-hapus")}}/'+id;
+            window.open(
+                '{{url("perusahaan-hapus")}}/'+id,
+                '_blank'
+            )
         });
     }
     function cetaklabel()

@@ -19,9 +19,16 @@
         $key = key($jadwal);
         $end = \Carbon\Carbon::parse($key);
         $end_date=$end;
+        // dd($jadwal_ins);
     @endphp
-    @while (strtotime($date) <= strtotime($end_date))
-   
+    {{-- @while (strtotime($date) <= strtotime($end_date)) --}}
+
+    @foreach ($jw as $date=>$item)
+        
+    @if ($item->instruktur_id!=0)
+        
+    
+    
         <div class="body" style="page-break-before: always;">
 			<table border="0" style="width:80%;margin:0 auto;" cellpadding="0" cellspacing="0">
 				<tr>
@@ -46,7 +53,12 @@
                         <th>Nama Instruktur</th>
                         <th>Tanda Tangan</th>
                     </tr>
+                    @php
+                        // dd($date->date);
+                        $no=1;
+                    @endphp
                     @foreach ($instruktur as $i => $ins)
+                    @if (isset($jadwal_ins[strtok($date,' ')][$ins->instruktur_id]))
                     @php
                         
                         $nama=$ins->instruktur->nama;
@@ -68,18 +80,26 @@
                         }
                     @endphp 
                     <tr>
-                        <td style="text-align:center">{{++$i}}</td>
-                        <td style="text-align:center">{{tbt($date)}}</td>
+                        <td style="text-align:center;width:70px;">{{$no}}</td>
+                        <td style="text-align:center;width:250px;">{{tbt($date)}}</td>
                         <td>{{$nama}}</td>
                         <td></td>
                     </tr>
+                    @php
+                        $no++;
+                    @endphp
+                    
+                    @endif
                     @endforeach
                 </table>
             </div>
             @php
                 $date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));
             @endphp
-     @endwhile
+        
+     {{-- @endwhile --}}
+            @endif
+     @endforeach
 	</body>
 </html>
 <style type="text/css" media="print">

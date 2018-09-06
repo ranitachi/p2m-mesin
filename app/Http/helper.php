@@ -16,10 +16,16 @@ function createDateRange($startDate, $endDate, $format = "Y-m-d")
 }
 function getMinutes($start_time,$end_time)
 {
-    $d1 = strtotime($start_time);
-    $d2 = strtotime($end_time);
-    $diff = ($d2-$d1)/60;
-    return $diff;
+	if($end_time!=null && $end_time!='')
+	{
+
+		$d1 = strtotime($start_time);
+		$d2 = strtotime($end_time);
+		$diff = ($d2-$d1)/60;
+	}
+	else
+		$diff='-';	
+	return $diff;
 }
 
 function gabungtgl($date1,$date2,$sep='-')
