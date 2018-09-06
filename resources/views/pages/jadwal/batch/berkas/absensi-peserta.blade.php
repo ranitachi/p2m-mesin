@@ -3,8 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
-	{{-- <body onLoad="window.print()"> --}}
-	<body>
+	<body onLoad="window.print()">
+	{{-- <body> --}}
     @php
         ksort($jadwal);
         // echo count($jadwal);
