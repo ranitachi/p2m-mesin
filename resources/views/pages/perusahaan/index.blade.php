@@ -29,7 +29,7 @@
                                         <div class="heading-elements">
                                             <a href="{{url('perusahaan/-1')}}" class="btn btn-xs btn-primary"><i class="fa fa-plus-circle"></i>&nbsp;Tambah Data</a>
                                             <a href="{{url('peserta-import')}}" class="btn btn-xs btn-success"><i class="fa fa-file-excel-o"></i>&nbsp;Import Excel</a>
-                                            <a href="{{url('cetak-label-perusahaan')}}" class="btn btn-xs btn-info"><i class="fa fa-print"></i>&nbsp;Cetak Label</a>
+                                            <a href="javascript:cetaklabel()" class="btn btn-xs btn-info"><i class="fa fa-print"></i>&nbsp;Cetak Label</a>
                                         </div>
                                     </div>
                                     @if(Session::has('status'))
@@ -39,7 +39,7 @@
                                                     <div class="alert-icon">
                                                         <span class="icon-checkmark-circle"></span> 
                                                     </div>
-                                                    <strong>Success!</strong> {{ Session::get('status') }} 
+                                                    <strong>Informasi !</strong> {{ Session::get('status') }} 
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span></button>
                                                 </div>
                                             </div>
@@ -74,8 +74,23 @@
         $('#primary-body').html('<h1>Apakah Anda Yakin data yang menghapus Data Ini ?</h1>');
         $('#modal-primary').modal('show');
         $('#submit-primary').on('click',function(){
-            location.href='{{url("perusahaan-hapus")}}/'+id;
+            // location.href='{{url("perusahaan-hapus")}}/'+id;
+            window.open(
+                '{{url("perusahaan-hapus")}}/'+id,
+                '_blank'
+            )
         });
+    }
+    function cetaklabel()
+    {
+        $('#cetak-label').submit();
+        // alert('a');
+    }
+    function add_id(val)
+    {
+        var id=$('#perusahaan_id').val();
+        var d=val+','+id;
+        $('#perusahaan_id').val(d);
     }
 </script>
 @endsection

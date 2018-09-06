@@ -3,7 +3,7 @@
         <!-- START PAGE HEADING -->
         <div class="app-heading app-heading-small">                                
             <div class="title">
-                <h1 style="font-size:20px;">Tambah Absensi Pelatihan</h1>
+                <h1 style="font-size:20px;">Tambah Hadir Pelatihan</h1>
             </div>                                
         </div>
          <div class="block-content">
@@ -55,7 +55,7 @@
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                                             <input type="radio" name="status[{{$val->participant_id}}]" value="izin"> Izin
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <input type="radio" name="status[{{$val->participant_id}}]" value="tidak hadir"> Tidak Hadir
+                                                            <input type="radio" name="status[{{$val->participant_id}}]" checked="checked" value="tidak hadir"> Tidak Hadir
                                                         </div>
                                                     </div>
                                                 </td>

@@ -54,10 +54,10 @@
                                 </ul>
                             </li>
                             <li class="{{strpos($jenis,'absensi')!==false ? 'active' : ''}}">
-                                <a href="#"><span class="icon-user-plus"></span> Absensi </a>                
+                                <a href="#"><span class="icon-user-plus"></span> Daftar Hadir </a>                
                                 <ul>
-                                    <li class="{{$jenis=='absensi' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/absensi')}}">Daftar Absensi</a></li>
-                                    <li class="{{$jenis=='absensi-add' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/absensi-add__0')}}">Tambah Absensi</a></li>
+                                    <li class="{{$jenis=='absensi' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/absensi')}}">Data Daftar Hadir</a></li>
+                                    <li class="{{$jenis=='absensi-add' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/absensi-add__0')}}">Tambah Daftar Hadir</a></li>
                                 </ul>
                             </li>
                             <li class="{{strpos($jenis,'unduh')!==false ? 'active' : (strpos($jenis,'sertifikat')!==false ? 'active' : (strpos($jenis,'ucapan-terimakasih')!==false ? 'active' : ''))}}">
@@ -313,6 +313,22 @@
         $('#detabsen').load('{{url("absensi-detail")}}/'+idabsensi);
     }
 
+    function cetaksertifikat(item_id,id)
+    {
+        var nomor=$('#nomor_sertifikat').val();
+        if(nomor=='')
+        {
+            pesanNoty('Nomor Sertifikat Belum Di Isi','error');
+        }
+        else
+        {
+            // $('#simpan-nomor-sertifikat').submit();
+            window.open(
+                '{{url("cetak-sertifikat")}}/'+item_id+'/'+id,
+                '_blank'
+            );
+        }
+    }
 </script>
 @endsection
 <style>

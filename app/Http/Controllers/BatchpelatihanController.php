@@ -173,13 +173,14 @@ class BatchpelatihanController extends Controller
         // dd($skedule);
 
         $skd=array();
-        $detjadwal=$d_jadwal=array();
+        $detjadwal=$d_jadwal=$jadwal_ins=array();
         foreach($skedule as $k => $v)
         {
             $skd[$v->date][]=$v;
             $detjadwal[$v->idp]=$v;
+            $jadwal_ins[strtok($v->date,' ')][$v->instruktur_id]=$v;
         }
-        
+        // dd($jadwal_ins);
         $absensi=Absensipelatihandetail::with('absensi')->with('peserta')->with('skedul')->get();
         $absn=array();
         $nilai=array();
@@ -249,6 +250,7 @@ class BatchpelatihanController extends Controller
             ->with('idjadwal',$idjadwal)
             ->with('peserta',$peserta)
             ->with('dpeserta',$dpeserta)
+            ->with('jadwal_ins',$jadwal_ins)
             ->with('pelatihan',$pelatihan)
             ->with('instruktur',$instruktur)
             ->with('quisioner',$quisioner)
@@ -588,9 +590,21 @@ class BatchpelatihanController extends Controller
     {
         $instruktur=BatchIntruktur::where('batch_pelatihan_id',$id)->with('instruktur')->get();
         $pelatihan=Batchpelatihan::find($id);
+        $jadwal=Skedulpelatihandetail::where('batch_id',$id)->with('skedul')->orderBy('start_time')->get();
+        $jdw=$jadwal_ins=$jw=array();
+        foreach($jadwal as $k=>$v)
+        {
+            $jdw[strtok($v->skedul->date,' ')][]=$v;
+            $jw[strtok($v->skedul->date,' ')]=$v;
+            $jadwal_ins[strtok($v->skedul->date,' ')][$v->instruktur_id]=$v;
+        }
+        // dd($jadwal_ins);
         return view('pages.jadwal.batch.berkas.absensi-instruktur')
             ->with('instruktur',$instruktur)
             ->with('pelatihan',$pelatihan)
+            ->with('jadwal_ins',$jadwal_ins)
+            ->with('jadwal',$jdw)
+            ->with('jw',$jw)
             ->with('id',$id);
     }
     public function buku_peserta($id)
@@ -606,9 +620,18 @@ class BatchpelatihanController extends Controller
     {
         $peserta=BatchParticipant::where('batch_id',$id)->with('peserta')->get();
         $pelatihan=Batchpelatihan::find($id);
+
+        $jadwal=Skedulpelatihandetail::where('batch_id',$id)->with('skedul')->orderBy('start_time')->get();
+        $jdw=array();
+        foreach($jadwal as $k=>$v)
+        {
+            $jdw[strtok($v->skedul->date,' ')][]=$v;
+        }
+        // dd($jdw);
         return view('pages.jadwal.batch.berkas.absensi-peserta')
             ->with('peserta',$peserta)
             ->with('pelatihan',$pelatihan)
+            ->with('jadwal',$jdw)
             ->with('id',$id);
     }
     public function name_tag($id)

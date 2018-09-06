@@ -36,22 +36,26 @@
         
               
                 <table border="1" style="border:1px solid black !important;width:90%;margin:20px auto;"  cellpadding="4" cellspacing="0" class="tabel">
-                   
+                   @php
+                       $no=1;
+                   @endphp
                    @foreach ($peserta as $i => $v)
                        
-                        <tr style="height:87.5mm !important">
+                        <tr style="height:80.5mm !important">
                             <td style="text-align:center;width:30%">
                                 @if ($v->peserta->foto!=null)
-                                    <img src="{{asset($v->peserta->foto)}}" style="width:80%">
+                                    <img src="{{asset($v->peserta->foto)}}" style="width:65%;border:1px solid #888;padding:5px;">
+                                @else
+                                    <img src="{{asset('img/np.gif')}}" style="width:65%;border:1px solid #888;padding:5px;">
                                 @endif
                             </td>
-                            <td style="text-align:left;width:70%;padding:10px 20px;">
+                            <td style="text-align:left;width:70%;padding:4px 20px;">
                                 <div style="margin-bottom:-10px;float:left;width:100%"><h2 style="font-size:20px;padding-left:0px !important;">{{$v->peserta->nama_lengkap}}</h2></div>
                                 <div style="float:left;width:100%"><h3>{{$v->peserta->jabatan}}</h3></div>
                                 <br><br>
                                 @if (isset($v->peserta->perusahaan->nama_perusahaan))
                                     
-                                    <div style="font-family:monotype;text-decoration:underline;font-style:italic;padding-top:15px;">
+                                    <div style="font-family:monotype;text-decoration:underline;font-style:italic;padding-top:0px;">
                                         Alamat Perusahaan:
                                     </div>
                                     <div>
@@ -61,7 +65,7 @@
                                         <div style="padding-left:30px !important;">Fax : {{$v->peserta->perusahaan->fax}}</div>
                                     </div>
                                 @endif
-                                <div style="font-family:monotype;text-decoration:underline;font-style:italic;padding-top:15px;">
+                                <div style="font-family:monotype;text-decoration:underline;font-style:italic;padding-top:2px;">
                                     Alamat Rumah:
                                 </div>
                                 <div>
@@ -72,6 +76,17 @@
                                     </div>
                             </td>
                         </tr>
+                        @if ($no==3)
+                        @php
+                            $no=0;
+                        @endphp
+                        </table>
+                            <div class="pisah">&nbsp;</div>
+                        <table border="1" style="border:1px solid black !important;width:90%;margin:20px auto;"  cellpadding="4" cellspacing="0" class="tabel">
+                        @endif
+                        @php
+                            $no++;
+                        @endphp
                     @endforeach
                     
                 </table>
@@ -94,6 +109,7 @@
   {
       height: 297mm;
   }
+  .pisah {page-break-before: always;border:0px !important;}
   /* ... the rest of the rules ... */
 }
 </style>

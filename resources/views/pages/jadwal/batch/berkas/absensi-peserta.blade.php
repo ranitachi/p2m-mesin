@@ -3,15 +3,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
-	<body onLoad="window.print()">
+	{{-- <body onLoad="window.print()"> --}}
+	<body>
     @php
-        $end = \Carbon\Carbon::parse($pelatihan->end_date);
-        $start = \Carbon\Carbon::parse($pelatihan->start_date);
+        ksort($jadwal);
+        // echo count($jadwal);
+        $start = \Carbon\Carbon::parse(key($jadwal));
+        end($jadwal);
+        $key = key($jadwal);
+        $end = \Carbon\Carbon::parse($key);
         $lama = ($end->diffInDays($start) + 1);
         
-        $end_date=$pelatihan->end_date;
+        $end_date=$end;
+        // echo $end_date;
+        // dd($jadwal);
                 //echo "$date\n";
-                //$date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));
+        // $date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));
     @endphp
     
    
