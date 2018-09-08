@@ -45,21 +45,25 @@
                     <tr>
                         <th rowspan="3">No</th>
                         <th rowspan="3">Nama Peserta</th>
-                        <th colspan="{{$lama}}">Tanggal</th>
+                        <th colspan="{{count($jw)}}">Tanggal</th>
                         
                     </tr>
                     <tr>
                         @php
                             $date=$pelatihan->start_date;
-                            while (strtotime($date) <= strtotime($end_date))
+                            foreach($jw as $ij=>$vj)
                             {
-                                echo '<th>'.tgl_indo2($date).'</th>';
-                                $date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));
+                                echo '<th>'.tgl_indo2($ij).'</th>';
                             }
+                            // while (strtotime($date) <= strtotime($end_date))
+                            // {
+                            //     echo '<th>'.tgl_indo2($date).'</th>';
+                            //     $date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));
+                            // }
                         @endphp
                     </tr>
                     <tr>
-                        <th style="text-align:center" colspan="3">Tanda Tangan</th>
+                        <th style="text-align:center" colspan="{{count($jw)}} ">Tanda Tangan</th>
                     </tr>
                     @foreach ($peserta as $no=>$item)
                         <tr>
@@ -67,10 +71,14 @@
                             <td>{{$item->peserta->nama_lengkap}}</td>                           
                             @php
                                 $date=$pelatihan->start_date;
-                                while (strtotime($date) <= strtotime($end_date))
+                                // while (strtotime($date) <= strtotime($end_date))
+                                // {
+                                //     echo '<td></td>';
+                                //     $date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));
+                                // }
+                                foreach($jw as $ij=>$vj)
                                 {
                                     echo '<td></td>';
-                                    $date = date ("Y-m-d", strtotime("+1 day", strtotime($date)));
                                 }
                             @endphp
                             

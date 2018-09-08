@@ -17,14 +17,18 @@
                     <tbody>
                         <tr>
                             <td class="text-center">1</td>
-                            <td class="text-left">Absensi Peserta</td>
+                            <td class="text-left">Daftar Hadir Peserta</td>
                             <td class="text-center">
-                                <a href="{{url('absensi-peserta/'.$id)}}" target="_blank" class="btn btn-xs btn-danger"><i class="fa fa-print"></i> Unduh</a>
+                                @if (count($jdwl)>6)
+                                    <a href="javascript:pilihjadwal({{$id}})" target="" class="btn btn-xs btn-danger"><i class="fa fa-print"></i> Unduh</a>
+                                @else
+                                    <a href="{{url('absensi-peserta/'.$id)}}" target="_blank" class="btn btn-xs btn-danger"><i class="fa fa-print"></i> Unduh</a>
+                                @endif
                             </td>
                         </tr>
                         <tr>
                             <td class="text-center">2</td>
-                            <td class="text-left">Absensi Instruktur</td>
+                            <td class="text-left">Daftar Hadir Instruktur</td>
                             <td class="text-center">
                                 <a href="{{url('absensi-instruktur/'.$id)}}" target="_blank" class="btn btn-xs btn-danger"><i class="fa fa-print"></i> Unduh</a>
                             </td>
@@ -59,13 +63,6 @@
                             </td>
                         </tr>
                         
-                        <tr>
-                            <td class="text-center">7</td>
-                            <td class="text-left">Unggah Foto Pelatihan</td>
-                            <td class="text-center">
-                                <a href="javascript:unggah({{$id}})" class="btn btn-xs btn-info"><i class="fa fa-upload"></i> Unggah</a>
-                            </td>
-                        </tr>
                         
                     </tbody>
                 </table>

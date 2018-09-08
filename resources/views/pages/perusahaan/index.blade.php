@@ -28,7 +28,7 @@
                                         </div>              
                                         <div class="heading-elements">
                                             <a href="{{url('perusahaan/-1')}}" class="btn btn-xs btn-primary"><i class="fa fa-plus-circle"></i>&nbsp;Tambah Data</a>
-                                            <a href="{{url('peserta-import')}}" class="btn btn-xs btn-success"><i class="fa fa-file-excel-o"></i>&nbsp;Import Excel</a>
+                                            <a href="{{url('perusahaan-import')}}" class="btn btn-xs btn-success"><i class="fa fa-file-excel-o"></i>&nbsp;Import Excel</a>
                                             <a href="javascript:cetaklabel()" class="btn btn-xs btn-info"><i class="fa fa-print"></i>&nbsp;Cetak Label</a>
                                         </div>
                                     </div>
@@ -74,11 +74,11 @@
         $('#primary-body').html('<h1>Apakah Anda Yakin data yang menghapus Data Ini ?</h1>');
         $('#modal-primary').modal('show');
         $('#submit-primary').on('click',function(){
-            // location.href='{{url("perusahaan-hapus")}}/'+id;
-            window.open(
-                '{{url("perusahaan-hapus")}}/'+id,
-                '_blank'
-            )
+            location.href='{{url("perusahaan-hapus")}}/'+id;
+            // window.open(
+            //     '{{url("perusahaan-hapus")}}/'+id,
+            //     '_blank'
+            // )
         });
     }
     function cetaklabel()

@@ -8,6 +8,8 @@ use App\Model\Provinsi;
 use App\Model\Kabupatenkota;
 use App\Model\Kecamatan;
 use App\Model\Kelurahan;
+use App\Model\Masterperusahaan as Perusahaan;
+use Excel;
 class MasterperusahaanController extends Controller
 {
     public function __construct()
@@ -19,6 +21,11 @@ class MasterperusahaanController extends Controller
         $perusahaan=Masterperusahaan::with('provinsi')->with('kabupatenkota')->with('kecamatan')->with('kelurahan')->orderBy('kode')->get();
         return view('pages.perusahaan.index')
             ->with('perusahaan',$perusahaan);
+    }
+    public function import()
+    {
+        // $perusahaan=Masterperusahaan::with('provinsi')->with('kabupatenkota')->with('kecamatan')->with('kelurahan')->orderBy('kode')->get();
+        return view('pages.perusahaan.import');
     }
     public function show($id)
     {
@@ -107,5 +114,68 @@ class MasterperusahaanController extends Controller
         }
         else
             return redirect('perusahaan')->with('status','Anda Belum Memilih Perusahaan yang akan di cetak');
+    }
+
+    public function format_excel()
+	{
+		$file= public_path(). "/files/form-isian.xlsx";
+		$headers = array(
+	       'Content-Type: application/excel',
+	    );
+	    return response()->download($file, 'form-isian.xlsx', $headers);
+    }
+    
+    public function UploadFile(Request $request)
+	{
+		$file = $request->file('import');
+		
+		$read=$file->getRealPath();
+		// echo $read;
+		$results=array();
+		// $vendor_id=$request->input('vendor_id');
+		Excel::load($read, function($reader) {
+			// use Request;
+			$data=array();
+			$i=0;
+			
+			// ->all() is a wrapper for ->get() and will work the same
+			$results = $reader->all();
+            $max=Perusahaan::count();
+            // dd($results);
+            $n=1;
+			foreach($results as $k=>$v)
+			{
+                $maxid=$max+$n;
+                if($maxid<10)
+                    $id='P-0000'.$maxid;
+                elseif($maxid>=10 && $maxid<100)
+                    $id='P-000'.$maxid;
+                elseif($maxid>=100 && $maxid<1000)
+                    $id='P-00'.$maxid;
+                elseif($maxid>=1000 && $maxid<10000)
+                    $id='P-0'.$maxid;
+                else
+                    $id='P-'.$maxid;
+
+                $prsh=new Perusahaan;
+                $prsh->kode=$id;
+                $prsh->nama_perusahaan=$v->nama_perusahaan;
+                $prsh->pimpinan=$v->nama_pimpinan;
+                $prsh->email=$v->email;
+                $prsh->telp=$v->telp;
+                $prsh->fax=$v->fax;
+                $prsh->jenis_usaha=$v->jenis_usaha;
+                $prsh->cp=$v->kontak_person_cp;
+                $prsh->no_cp=$v->nomor_cp;
+                $prsh->email_cp=$v->email_cp;
+                $prsh->bagian_cp=$v->bagian_cp;
+                $prsh->alamat=$v->alamat;
+                $prsh->kode_pos=$v->kode_pos;
+                $prsh->save();
+
+                $n++;
+            }
+        });
+        return redirect('perusahaan')->with('status','Import Data Perusahaan Berhasil');
     }
 }

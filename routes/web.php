@@ -15,7 +15,7 @@
 Route::get('/',function(){
     return view('auth.login');
 });
-Auth::routes();
+
 Route::post('/logout','Usercontroller@performLogout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/utama', 'HomeController@utama')->name('home');
@@ -40,7 +40,10 @@ Route::get('instruktur-hapus/{id}', 'MasterinstrukturController@destroy');
 /* Perusahaan */
 Route::resource('perusahaan', 'MasterperusahaanController');
 Route::get('perusahaan-hapus/{id}', 'MasterperusahaanController@destroy');
+Route::get('perusahaan-import', 'MasterperusahaanController@import');
 Route::post('cetak-label-perusahaan', 'MasterperusahaanController@cetak');
+Route::post('UploadFile', 'MasterperusahaanController@UploadFile');
+Route::get('format-excel-perusahaan','MasterperusahaanController@format_excel');
 
 /* PESERTA */
 Route::resource('peserta', 'MasterpesertaController');
@@ -130,3 +133,11 @@ Route::get('by-kota/{idkota}', 'KecamatanController@bykota');
 Route::get('by-kecamatan/{idkec}', 'KelurahanController@bykecamatan');
 
 Route::post('simpan-nomor-sertifikat','BatchpelatihanController@simpan_nomor_sertifikat');
+Auth::routes();
+Route::post('unggah-foto/{id}','BatchpelatihanController@unggah_foto');
+Route::get('hapus-foto/{id}/{idfoto}','BatchpelatihanController@hapus_foto');
+Route::get('pilih-jadwal/{id}','BatchpelatihanController@pilih_jadwal');
+Route::post('pilih-jadwal-simpan/{id}','BatchpelatihanController@pilih_jadwal_simpan');
+// Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+//      \UniSharp\LaravelFilemanager\Lfm::routes();
+// });

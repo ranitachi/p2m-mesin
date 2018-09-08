@@ -38,7 +38,7 @@
                                     @if (isset($skedul[$itm->instruktur_id]))
                                         @foreach ($skedul[$itm->instruktur_id] as $idx_it=>$it)
                                             @if (isset($ds[$item->participant_id][$itm->instruktur_id]))
-                                                <a href="javascript:input_quisioner({{$item->participant_id}},{{$id}},'{{$it->skedul->date}}',{{$itm->instruktur_id}})" class="btn btn-xs btn-danger btn-rounded" data-toggle="tooltip" title=" Quisioner {{$itm->instruktur->nama}} Tgl : {{date('d/m/Y',strtotime($idx_it))}}"><i class="fa fa-user" ></i> ( {{date('d/m/Y',strtotime($idx_it))}} ) - {{$itm->instruktur->inisial}}</a>    
+                                                <a href="javascript:input_quisioner({{$item->participant_id}},{{$id}},'{{$it->skedul->date}}',{{$itm->instruktur_id}})" class="btn btn-xs btn-primary btn-rounded" data-toggle="tooltip" title=" Quisioner {{$itm->instruktur->nama}} Tgl : {{date('d/m/Y',strtotime($idx_it))}}"><i class="fa fa-check" ></i> ( {{date('d/m/Y',strtotime($idx_it))}} ) - {{$itm->instruktur->inisial}}</a>    
                                             @else
                                                 <a href="javascript:input_quisioner({{$item->participant_id}},{{$id}},'{{$it->skedul->date}}',{{$itm->instruktur_id}})" class="btn btn-xs btn-{{$key%2==0 ? 'info' : 'success'}} btn-rounded" data-toggle="tooltip" title=" Quisioner {{$itm->instruktur->nama}} Tgl : {{date('d/m/Y',strtotime($idx_it))}}"><i class="fa fa-file-o" ></i> ( {{date('d/m/Y',strtotime($idx_it))}} ) - {{$itm->instruktur->inisial}}</a>    
                                             @endif
@@ -80,7 +80,7 @@
                 $('#modal-large').modal('hide');
                 setTimeout(function(){
                     location.href='{{url("batch-detail")}}/'+idbatch+'/quisioner';
-                },1000);
+                },500);
             }).fail(function(data){
                 var ps='<h3><i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Error</h3>Input Quisioner Gagal Disimpan';
                 pesanNoty(ps,'error');

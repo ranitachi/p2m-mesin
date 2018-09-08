@@ -41,8 +41,8 @@
                 @foreach ($quisioner as $ii=>$item)
                     @if ($item->kategori=='pilihan')
                     @php
-                        if(isset($n[$item->id]))
-                            $nilai=array_sum($n[$item->id])/count($n[$item->id]);
+                        if(isset($n2[$item->id]))
+                            $nilai=array_sum($n2[$item->id])/count($n2[$item->id]);
                         else
                             $nilai=0;
                             
@@ -50,9 +50,9 @@
                         
                         $height=ceil($nilai*50);
                     @endphp
-                        <tr class="qtr" style="left:{{(55 * ($no))}};">
+                        <tr class="qtr" style="left:{{(45 * ($no))}};">
                             <th scope="row">Q{{$no}}</th>
-                        <td class="paid" style="height:{{$height}}px;width:45px;color:#000"><p>{{$nilai}}</p></td>
+                        <td class="paid" style="height:{{$height}}px;width:40px;color:#000"><p>{{number_format($nilai,2)}}</p></td>
                         </tr>                            
                         
                     @endif
@@ -90,11 +90,16 @@
             @php
                 if(isset($n[$item->id]))
                 {
+                    // dd($n[$item->id]);
                     $bs=isset($n[$item->id]['BS']) ? count($n[$item->id]['BS']) : 0;
                     $b=isset($n[$item->id]['B']) ? count($n[$item->id]['B']) : 0;
                     $c=isset($n[$item->id]['C']) ? count($n[$item->id]['C']) : 0;
                     $k=isset($n[$item->id]['K'] )? count($n[$item->id]['K']) : 0;
-                    $rata2=array_sum($n[$item->id])/count($n[$item->id]);
+                    // $bs=isset($n[$item->id]['BS']) ? ($n[$item->id]['BS']) : 0;
+                    // $b=isset($n[$item->id]['B']) ? ($n[$item->id]['B']) : 0;
+                    // $c=isset($n[$item->id]['C']) ? ($n[$item->id]['C']) : 0;
+                    // $k=isset($n[$item->id]['K'] )? ($n[$item->id]['K']) : 0;
+                    $rata2=array_sum($n2[$item->id])/count($n2[$item->id]);
                 }
                 else 
                 {

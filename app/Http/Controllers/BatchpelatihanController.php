@@ -20,6 +20,7 @@ use App\Model\Quisionerdata;
 use App\Model\Nilaites;
 use App\Model\NomorSertifikat;
 use App\Model\Direktur;
+use App\Model\FotoKegiatan;
 use DB;
 use Carbon;
 class BatchpelatihanController extends Controller
@@ -158,6 +159,7 @@ class BatchpelatihanController extends Controller
         $materi=Materi::where('pelatihan_id','=',$jadwal->pelatihan_id)->with('pelatihan')->get();
         $pegawai=Masterpegawai::all();
         $quisioner=Masterquesioner::where('flag',1)->orderBy('kategori','desc')->get();
+        $fotokegiatan=FotoKegiatan::where('batch_id',$id)->get();
         $jns=strtok($jenis,'__');
 
         $idjadwal=str_replace($jns.'__','',$jenis);
@@ -173,12 +175,13 @@ class BatchpelatihanController extends Controller
         // dd($skedule);
 
         $skd=array();
-        $detjadwal=$d_jadwal=$jadwal_ins=array();
+        $detjadwal=$d_jadwal=$jadwal_ins=$jdwl=array();
         foreach($skedule as $k => $v)
         {
             $skd[$v->date][]=$v;
             $detjadwal[$v->idp]=$v;
             $jadwal_ins[strtok($v->date,' ')][$v->instruktur_id]=$v;
+            $jdwl[strtok($v->date,' ')]=$v;
         }
         // dd($jadwal_ins);
         $absensi=Absensipelatihandetail::with('absensi')->with('peserta')->with('skedul')->get();
@@ -238,6 +241,7 @@ class BatchpelatihanController extends Controller
         return view('pages.jadwal.batch.index')
             ->with('id',$id)
             ->with('absen',$absn)
+            ->with('jdwl',$jdwl)
             ->with('n_tes',$n_tes)
             ->with('nilai',$nilai)
             ->with('ds',$ds)
@@ -254,6 +258,7 @@ class BatchpelatihanController extends Controller
             ->with('pelatihan',$pelatihan)
             ->with('instruktur',$instruktur)
             ->with('quisioner',$quisioner)
+            ->with('fotokegiatan',$fotokegiatan)
             ->with('n_ser',$n_ser)
             ->with('jenis',$jns);
     }
@@ -622,14 +627,16 @@ class BatchpelatihanController extends Controller
         $pelatihan=Batchpelatihan::find($id);
 
         $jadwal=Skedulpelatihandetail::where('batch_id',$id)->with('skedul')->orderBy('start_time')->get();
-        $jdw=array();
+        $jdw=$jw=array();
         foreach($jadwal as $k=>$v)
         {
             $jdw[strtok($v->skedul->date,' ')][]=$v;
+            $jw[strtok($v->skedul->date,' ')]=$v;
         }
         // dd($jdw);
         return view('pages.jadwal.batch.berkas.absensi-peserta')
             ->with('peserta',$peserta)
+            ->with('jw',$jw)
             ->with('pelatihan',$pelatihan)
             ->with('jadwal',$jdw)
             ->with('id',$id);
@@ -784,19 +791,31 @@ class BatchpelatihanController extends Controller
         $pelatihan=Batchpelatihan::find($batch_id);
         $quisioner=Masterquesioner::where('flag',1)->orderBy('kategori','desc')->get();
         $skedul=Skedulpelatihandetail::where('batch_id',$batch_id)->where('instruktur_id',$instruktur_id)->with('instruktur')->with('pegawai')->with('materi')->with('skedul')->get();
-        $nilai=array();
+        $nilai=$nilai2=array();
         $q_data=Quisionerdata::where('batch_id',$batch_id)->where('instruktur_id',$instruktur_id)->get();
         $q_d=array();
         foreach($q_data as $k => $v)
         {
             if($v->nilai=='BS')
-                $nilai[$v->quisioner_id][$v->nilai]=4;
+            {
+                $nilai[$v->quisioner_id][$v->nilai][]=4;
+                $nilai2[$v->quisioner_id][$v->nilai]=4;
+            }
             elseif($v->nilai=='B')
-                $nilai[$v->quisioner_id][$v->nilai]=3;
+            {
+                $nilai[$v->quisioner_id][$v->nilai][]=3;
+                $nilai2[$v->quisioner_id][$v->nilai]=3;
+            }
             elseif($v->nilai=='C')
-                $nilai[$v->quisioner_id][$v->nilai]=2;
+            {
+                $nilai[$v->quisioner_id][$v->nilai][]=2;
+                $nilai2[$v->quisioner_id][$v->nilai]=2;
+            }
             elseif($v->nilai=='K')
-                $nilai[$v->quisioner_id][$v->nilai]=1;
+            {
+                $nilai[$v->quisioner_id][$v->nilai][]=1;
+                $nilai2[$v->quisioner_id][$v->nilai]=1;
+            }
         }
         return view('pages.jadwal.batch.quisioner-grafik')
                 ->with('instruktur_id',$instruktur_id)
@@ -804,6 +823,7 @@ class BatchpelatihanController extends Controller
                 ->with('instruktur',$instruktur)
                 ->with('pelatihan',$pelatihan)
                 ->with('n',$nilai)
+                ->with('n2',$nilai2)
                 ->with('skedul',$skedul)
                 ->with('quisioner',$quisioner);
     }
@@ -875,5 +895,86 @@ class BatchpelatihanController extends Controller
             $ck->save();
         }
         return redirect('batch-detail/'.$batch_id.'/sertifikat')->with('status','Nomor Sertifikat Berhasil Di Simpan');
+    }
+
+    public function unggah_foto(Request $request,$id)
+    {
+        // dd($id);
+        $foto=new FotoKegiatan;
+        $foto->file_path=$request->filepath;
+        $foto->title=$request->title;
+        $foto->batch_id=$request->id;
+        $foto->save();
+        
+        return redirect('batch-detail/'.$id.'/unggah-foto')->with('success','Foto Berhasil Di Tambah');
+    }
+
+    public function hapus_foto($id,$idfoto)
+    {
+        // dd($id);
+        FotoKegiatan::find($idfoto)->delete();
+        return redirect('batch-detail/'.$id.'/unggah-foto')->with('success','Foto Berhasil Di Hapus');
+    }
+
+    public function pilih_jadwal($id)
+    {
+        $skedul=Skedulpelatihandetail::where('batch_id',$id)->with('instruktur')->with('pegawai')->with('materi')->with('skedul')->get();
+        $sch=array();
+        foreach($skedul as $k=>$v)
+        {
+            $sch[strtok($v->skedul->date,' ')]=$v;
+        }
+        return view('pages.jadwal.batch.pilih-jadwal')
+            ->with('id',$id)
+            ->with('sch',$sch);
+    }
+
+    public function pilih_jadwal_simpan(Request $request,$id)
+    {
+        // dd($request->all());
+        // $this->absensi_peserta_pilih($id,$request->jadwal);
+        // redirect('absensi_peserta_pilih');
+        $j_dw=$request->jadwal;
+
+        $peserta=BatchParticipant::where('batch_id',$id)->with('peserta')->get();
+        $pelatihan=Batchpelatihan::find($id);
+
+        $jadwal=Skedulpelatihandetail::where('batch_id',$id)->with('skedul')->orderBy('start_time')->get();
+        $jdw=$jw=array();
+        foreach($jadwal as $k=>$v)
+        {
+            $dt=strtok($v->skedul->date,' ');
+            $jdw[strtok($v->skedul->date,' ')][]=$v;
+            if(in_array($dt,$j_dw))
+                $jw[strtok($v->skedul->date,' ')]=$v;
+        }
+        // dd($jdw);
+        return view('pages.jadwal.batch.berkas.absensi-peserta-pilih')
+            ->with('peserta',$peserta)
+            ->with('jw',$jw)
+            ->with('pelatihan',$pelatihan)
+            ->with('jadwal',$jdw)
+            ->with('id',$id);
+    }
+    public function absensi_peserta_pilih($id,$jdwl)
+    {
+        // dd($jdwl);
+        // $peserta=BatchParticipant::where('batch_id',$id)->with('peserta')->get();
+        // $pelatihan=Batchpelatihan::find($id);
+
+        // $jadwal=Skedulpelatihandetail::where('batch_id',$id)->with('skedul')->orderBy('start_time')->get();
+        // $jdw=$jw=array();
+        // foreach($jadwal as $k=>$v)
+        // {
+        //     $jdw[strtok($v->skedul->date,' ')][]=$v;
+        //     $jw[strtok($v->skedul->date,' ')]=$v;
+        // }
+        // // dd($jdw);
+        // return view('pages.jadwal.batch.berkas.absensi-peserta-pilih')
+        //     ->with('peserta',$peserta)
+        //     ->with('jw',$jw)
+        //     ->with('pelatihan',$pelatihan)
+        //     ->with('jadwal',$jdw)
+        //     ->with('id',$id);
     }
 }

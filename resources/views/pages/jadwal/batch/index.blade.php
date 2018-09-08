@@ -60,12 +60,13 @@
                                     <li class="{{$jenis=='absensi-add' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/absensi-add__0')}}">Tambah Daftar Hadir</a></li>
                                 </ul>
                             </li>
-                            <li class="{{strpos($jenis,'unduh')!==false ? 'active' : (strpos($jenis,'sertifikat')!==false ? 'active' : (strpos($jenis,'ucapan-terimakasih')!==false ? 'active' : ''))}}">
+                            <li class="{{strpos($jenis,'unduh')!==false ? 'active' : (strpos($jenis,'sertifikat')!==false ? 'active' : (strpos($jenis,'ucapan-terimakasih')!==false ? 'active' : (strpos($jenis,'unggah-foto')!==false ? 'active' : '')))}}">
                                 <a href="#"><span class="icon-user-plus"></span> Berkas Pelatihan</a>                
                                 <ul>
-                                    <li class="{{$jenis=='unduh' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/unduh-berkas')}}">Unduh & Unggah Berkas</a></li>
+                                    <li class="{{$jenis=='unduh' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/unduh-berkas')}}">Unduh</a></li>
                                     <li class="{{$jenis=='sertifikat' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/sertifikat')}}">Sertifikat</a></li>
                                     <li class="{{$jenis=='ucapan-terimakasih' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/ucapan-terimakasih')}}">Ucapan Terima Kasih</a></li>
+                                    <li class="{{$jenis=='unggah-foto' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/unggah-foto')}}">Unggah Foto</a></li>
                                 </ul>
                             </li>
                             <li class="{{strpos($jenis,'test')!==false ? 'active' : ''}}">
@@ -132,6 +133,8 @@
                     @include('pages.jadwal.batch.absensi-add')    
                 @elseif($jenis=='unduh-berkas')
                     @include('pages.jadwal.batch.unduh-berkas')    
+                @elseif($jenis=='unggah-foto')
+                    @include('pages.jadwal.batch.unggah-foto')    
                 @elseif($jenis=='test')
                     @include('pages.jadwal.batch.test')    
                 @else
@@ -155,9 +158,13 @@
 <script type="text/javascript" src="{{asset('build/js/vendor/bootstrap-select/bootstrap-select.js')}}"></script>
 <script type="text/javascript" src="{{asset('build/js/vendor/select2/select2.full.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('build/js/vendor/multiselect/jquery.multi-select.js')}}"></script>
+<script src="{{asset('vendor/laravel-filemanager/js/lfm.js')}}"></script>
 <script>
     $(document).ready(function(){
         //loaddata();
+        var domain = "{{url('/laravel-filemanager')}}";
+        $('#lfm').filemanager('image', {prefix: domain});
+        $('#lfm2').filemanager('image', {prefix: domain});
         $('#tanggal').datetimepicker({  
                  minDate:'{{$jadwal->start_date}}',
                  maxDate:'{{$jadwal->end_date}}',
@@ -262,6 +269,8 @@
                 $('#simpan-nomor-sertifikat').submit();
             }
         });
+
+        
     });
     function getmateri(val)
     {
@@ -328,6 +337,21 @@
                 '_blank'
             );
         }
+    }
+
+    function pilihjadwal(id)
+    {
+        $("#modal-primary-header-lg").html('Pilih Jadwal');
+        $('#primary-body-lg').load('{{url("pilih-jadwal")}}/'+id,function(){
+            $("#pilihsemua").on('click',function(){
+                $('input:checkbox').not(this).prop('checked', this.checked);
+            });
+        });
+        $('#modal-primary-lg').modal('show');
+        $('#submit-primary-lg').one('click',function(){
+            $('#form-pilih-jadwal').submit();
+            $('#modal-primary-lg').modal('hide');
+        });
     }
 </script>
 @endsection
