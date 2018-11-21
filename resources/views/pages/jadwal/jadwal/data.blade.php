@@ -22,7 +22,7 @@
             @endphp
                 <tr>
                     <td class="text-center" style="width:80px;">{{(++$key)}}</td>    
-                    <td class="text-left"><strong><a href="{{url('batch-detail/'.$item->id)}}/index" target="_blank">{{$item->pelatihan->nama}}</a></strong></td>    
+                    <td class="text-left"><strong><a href="{{url('batch-detail/'.$item->id)}}/index" target="_blank">{{isset($item->pelatihan->nama) ? $item->pelatihan->nama : 'n/a'}}</a></strong></td>    
                     <td class="text-left">{{$item->kode}}</td>    
                     <td class="text-left">
                         <i class="fa fa-clock-o" style="color:blue;"></i>&nbsp;{{date('d-m-Y',strtotime($item->start_date))}} <br>s.d.<br>
