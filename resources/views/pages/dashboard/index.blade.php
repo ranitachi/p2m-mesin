@@ -218,7 +218,7 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td>{{$v->pelatihan->nama}}</td>
+                                                        <td>{{isset($v->pelatihan->nama) ? $v->pelatihan->nama : ''}}</td>
                                                         <td><span class="label label-success label-bordered">{{$v->lokasi}}</span></td>
                                                         @php
                                                         if($x==6)
