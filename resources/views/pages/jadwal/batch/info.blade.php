@@ -10,7 +10,7 @@
         <div class="block-content" style="padding:0px 30px;">
             <div class="row">
                 <div class="col-md-2">Kategori Pelatihan</div>
-                <div class="col-md-10">: &nbsp;<b>{{$pelatihan->kategori->kategori}}</b></div>
+                <div class="col-md-10">: &nbsp;<b>{{isset($pelatihan->kategori->kategori) ? $pelatihan->kategori->kategori : 'n/a'}}</b></div>
             </div>
             <div class="row">
                 <div class="col-md-2">Jenis Pelatihan</div>
