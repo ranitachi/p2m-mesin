@@ -22,11 +22,7 @@ class MasterperusahaanController extends Controller
         return view('pages.perusahaan.index')
             ->with('perusahaan',$perusahaan);
     }
-    public function import()
-    {
-        // $perusahaan=Masterperusahaan::with('provinsi')->with('kabupatenkota')->with('kecamatan')->with('kelurahan')->orderBy('kode')->get();
-        return view('pages.perusahaan.import');
-    }
+    
     public function show($id)
     {
         $det=array();
@@ -124,7 +120,11 @@ class MasterperusahaanController extends Controller
 	    );
 	    return response()->download($file, 'form-isian.xlsx', $headers);
     }
-    
+    public function import()
+    {
+        // $perusahaan=Masterperusahaan::with('provinsi')->with('kabupatenkota')->with('kecamatan')->with('kelurahan')->orderBy('kode')->get();
+        return view('pages.perusahaan.import');
+    }
     public function UploadFile(Request $request)
 	{
 		$file = $request->file('import');

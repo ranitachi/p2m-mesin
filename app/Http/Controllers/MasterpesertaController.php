@@ -10,6 +10,7 @@ use App\Model\Provinsi;
 use App\Model\Kabupatenkota;
 use App\Model\Kecamatan;
 use App\Model\Kelurahan;
+use Excel;
 class MasterpesertaController extends Controller
 {
     public function __construct()
@@ -236,5 +237,85 @@ class MasterpesertaController extends Controller
         // print_r($name);
         // echo '</pre>';
         return redirect('peserta')->with('status','Foto Peserta Berhasil di Simpan');
+    }
+
+    public function import()
+    {
+        // $perusahaan=Masterperusahaan::with('provinsi')->with('kabupatenkota')->with('kecamatan')->with('kelurahan')->orderBy('kode')->get();
+        return view('pages.peserta.import');
+    }
+    public function UploadFile(Request $request)
+	{
+		$file = $request->file('import');
+		
+		$read=$file->getRealPath();
+		// echo $read;
+		$results=array();
+		// $vendor_id=$request->input('vendor_id');
+		Excel::load($read, function($reader) {
+			// use Request;
+			$data=array();
+			$i=0;
+			
+			// ->all() is a wrapper for ->get() and will work the same
+			$results = $reader->all();
+            $kd=Masterpeserta::max('kode');
+            if(is_null($kd))
+            {
+                $kdb=1;
+            }
+            else
+            {
+                $kdb=((int)substr($kd,-4) + 1);
+                // $kdd=$kdb;
+                // $kdd=$kdb;
+            }
+            
+            // dd($results);
+            $n=1;
+			foreach($results as $k=>$v)
+			{
+                // $kdb=((int)substr($kd,-4) + 1);
+                if($kdb<10)
+                    $kdd='000'.$kdb;
+                elseif($kdb>=10 && $kdb<100)
+                    $kdd='00'.$kdb;
+                elseif($kdb>=100 && $kdb<1000)
+                    $kdd='0'.$kdb;
+                else
+                    $kdd=$kdb;
+
+                $bln=($v->bulan==null ? date('n') : getBulanReverseFull($v->bulan));
+                $thn=($v->tahun==null ? date('Y') : $v->tahun);
+
+                $bln = ($bln<10 ? '0'.$bln : $bln);
+
+                $kode=$thn.$bln.date('d').$kdd;
+
+                $peserta=new Masterpeserta;
+                $peserta->kode=$kode;
+                $peserta->nama_lengkap=$v->nama_peserta;
+                $peserta->email=$v->email;
+                $peserta->telp=$v->telp_peserta;
+                $peserta->hp=$v->hp;
+                $peserta->flag=1;
+                $peserta->created_at=date('Y-m-d');
+                $peserta->updated_at=date('Y-m-d');
+                $peserta->save();
+
+                $n++;
+                $kdb++;
+            }
+        });
+        return redirect('peserta')->with('status','Import Data Peserta Berhasil');
+    }
+
+    public function format_excel()
+	{
+		$file= public_path(). "/files/form-peserta.xlsx";
+		$headers = array(
+	       'Content-Type: application/excel',
+	    );
+	    return response()->download($file, 'form-peserta.xlsx', $headers);
     }
 }

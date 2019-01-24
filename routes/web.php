@@ -45,12 +45,16 @@ Route::post('cetak-label-perusahaan', 'MasterperusahaanController@cetak');
 Route::post('UploadFile', 'MasterperusahaanController@UploadFile');
 Route::get('format-excel-perusahaan','MasterperusahaanController@format_excel');
 
+
 /* PESERTA */
 Route::resource('peserta', 'MasterpesertaController');
 Route::get('peserta-hapus/{id}', 'MasterpesertaController@destroy');
 Route::get('by-perusahaan/{idperu}', 'MasterpesertaController@byperusahaan');
 Route::get('foto/{id}', 'MasterpesertaController@foto');
 Route::post('foto-simpan', 'MasterpesertaController@fotosimpan');
+Route::get('peserta-import', 'MasterpesertaController@import');
+Route::post('UploadFilePeserta', 'MasterpesertaController@UploadFile');
+Route::get('format-excel-peserta','MasterpesertaController@format_excel');
 
 /* Quisioner */
 Route::resource('quisioner', 'MasterquesionerController');
