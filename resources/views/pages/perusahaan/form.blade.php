@@ -44,7 +44,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Kode</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" name="kode" id="kode" class="form-control" value="{{$id==-1 ? '0' : $det->kode_pos}}" placeholder="Kode">
+                                                            <input type="text" name="kode" id="kode" class="form-control" value="{{$id==-1 ? $kode : $det->kode}}" placeholder="Kode">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -121,7 +121,7 @@
                                                      <div class="form-group">
                                                         <label class="col-md-4 control-label">Kode Pos</label>
                                                         <div class="col-md-4">
-                                                            <input type="text" name="kode_pos" class="form-control" value="{{$id==-1 ? '' : $det->kode_pos}}" placeholder="Kode Pos">
+                                                            <input type="text" name="kode_pos" class="form-control" value="{{$id==-1 ? '0' : $det->kode_pos}}" placeholder="Kode Pos">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
