@@ -34,7 +34,9 @@
                     @if (isset($b_ins[$item->id]))
                         <ul>
                             @foreach ($b_ins[$item->id] as $ii)
-                                <li>{{$ii->instruktur->nama}}</li>  
+                                @if (isset($ii->instruktur->nama))
+                                    <li>{{$ii->instruktur->nama}}</li>  
+                                @endif
                             @endforeach                        
                         </ul>
                     @endif    
