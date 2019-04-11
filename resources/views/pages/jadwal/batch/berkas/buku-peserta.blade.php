@@ -70,7 +70,7 @@
                                 </div>
                                 <div>
                                         <h2 style="padding-left:30px !important;margin-left:0px !important;">{{$v->peserta->alamat}}</h2>
-                                        <div style="padding-left:30px !important;">{{$v->peserta->perusahaan->alamat}}</div>
+                                        <div style="padding-left:30px !important;"></div>
                                         <div style="padding-left:30px !important;">Telp : {{$v->peserta->telp}}</div>
                                         <div style="padding-left:30px !important;">Email : {{$v->peserta->email}}</div>
                                     </div>
