@@ -10,9 +10,7 @@
                 <th>Nama</th>
                 <th>Bidang Keahlian</th>
                 <th>Afiliasi</th>
-                <th>Email</th>
-                <th>Telp/HP</th>
-                <th>Alamat</th>
+                <th>Email<br>Telp/HP<br>Alamat</th>
                 <th>#</th>
             </tr>
         </thead>                                    
@@ -38,19 +36,35 @@
                 }
             @endphp
                 <tr>
-                    <td class="text-center">{{(++$key)}}</td>    
-                    <td class="text-center">{{$item->inisial}}</td>    
-                    <td class="text-center">{{$item->nip==0 ? '':$item->nip}}</td>    
-                    <td class="text-left">{{$nama}}</td>    
-                    <td class="text-left">{{$item->bidang_keahlian}}</td>    
-                    <td class="text-left">{{$item->afiliasi}}</td>    
-                    <td class="text-left">{{$item->email}}</td>    
-                    <td class="text-center">{{$item->hp}}</td>    
-                    <td class="text-center">{{$item->alamat}}</td>    
-                    <td class="text-center">
-                        <a href="{{url('instruktur/'.$item->id)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="Edit Data"><i class="fa fa-edit" ></i></a> 
-                           
-                        <a href="javascript:hapus({{$item->id}})" class="btn btn-xs btn-danger btn-rounded" data-toggle="tooltip" title="Hapus Data"><i class="fa fa-trash" ></i></a>    
+                    <td style="vertical-align:top;" class="text-center">{{(++$key)}}</td>    
+                    <td style="vertical-align:top;" class="text-center">{{$item->inisial}}</td>    
+                    <td style="vertical-align:top;" class="text-center">{{$item->nip==0 ? '':$item->nip}}</td>    
+                    <td style="vertical-align:top;" class="text-left">
+                        <div style="width:150px;">
+                            <b>{{$nama}}</b>
+                            <br>
+                            <a href="{{url('riwayat-pelatihan-instruktur/'.$item->id)}}" target="_blank" class="btn btn-xs btn-primary">Riwayat Pelatihan</a>
+                        </div>
+                    </td>    
+                    <td style="vertical-align:top;" class="text-left">{{$item->bidang_keahlian}}</td>    
+                    <td style="vertical-align:top;" class="text-left">{{$item->afiliasi}}</td>    
+                    <td style="vertical-align:top;" class="text-left">
+                        @if ($item->email!='')
+                            <i>Email</i>:<br><b>{{$item->email}}</b><br><br>
+                        @endif
+                        @if ($item->alamat!='')
+                            <i>Alamat</i>:<br><b>{{$item->alamat}}</b><br><br>
+                        @endif
+                        @if ($item->hp!='')
+                            <i>Telp/HP</i>:<br><b>{{$item->hp}}</b></td>    
+                        @endif
+                    
+                    <td style="vertical-align:top;" class="text-center">
+                        <div style="width:80px;">
+                            <a href="{{url('instruktur/'.$item->id)}}" class="btn btn-xs btn-info btn-rounded" data-toggle="tooltip" title="Edit Data"><i class="fa fa-edit" ></i></a> 
+                            
+                            <a href="javascript:hapus({{$item->id}})" class="btn btn-xs btn-danger btn-rounded" data-toggle="tooltip" title="Hapus Data"><i class="fa fa-trash" ></i></a>    
+                        </div>
                     </td>    
                 </tr>    
             @endforeach                                       

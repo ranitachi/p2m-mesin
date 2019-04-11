@@ -36,6 +36,7 @@ Route::get('direktur-hapus/{id}', 'DirekturController@destroy');
 /* Instruktur */
 Route::resource('instruktur', 'MasterinstrukturController');
 Route::get('instruktur-hapus/{id}', 'MasterinstrukturController@destroy');
+Route::get('riwayat-pelatihan-instruktur/{id}','MasterinstrukturController@riwayat_pelatihan');
 
 /* Perusahaan */
 Route::resource('perusahaan', 'MasterperusahaanController');
@@ -55,6 +56,7 @@ Route::post('foto-simpan', 'MasterpesertaController@fotosimpan');
 Route::get('peserta-import', 'MasterpesertaController@import');
 Route::post('UploadFilePeserta', 'MasterpesertaController@UploadFile');
 Route::get('format-excel-peserta','MasterpesertaController@format_excel');
+Route::get('riwayat-pelatihan/{id}','MasterpesertaController@riwayat_pelatihan');
 
 /* Quisioner */
 Route::resource('quisioner', 'MasterquesionerController');

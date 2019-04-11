@@ -213,7 +213,7 @@ class BatchpelatihanController extends Controller
             $ds[$v->peserta_id][$v->instruktur_id]=$v;
         }
         $q_data=Quisionerdata::where('batch_id',$id)->get();
-        $q_d=array();
+        $q_d=$kritik=array();
         foreach($q_data as $k => $v)
         {
             if($v->nilai=='BS')
@@ -224,6 +224,11 @@ class BatchpelatihanController extends Controller
                 $nilai[$v->instruktur_id][$v->quisioner_id][$v->nilai]=2;
             elseif($v->nilai=='K')
                 $nilai[$v->instruktur_id][$v->quisioner_id][$v->nilai]=1;
+
+            if($v->usulan!=NULL)
+            {
+                $kritik[$v->instruktur_id][$v->peserta_id]=$v;
+            }
         }   
 
         $nilaites=Nilaites::where('batch_id',$id)->get();
@@ -238,7 +243,9 @@ class BatchpelatihanController extends Controller
         if($nomor->count() !=0)
             $n_ser=$nomor[0]->nomor_sertifikat;
 
+        // return $kritik;
         return view('pages.jadwal.batch.index')
+            ->with('kritik',$kritik)
             ->with('id',$id)
             ->with('absen',$absn)
             ->with('jdwl',$jdwl)
@@ -793,9 +800,13 @@ class BatchpelatihanController extends Controller
         $skedul=Skedulpelatihandetail::where('batch_id',$batch_id)->where('instruktur_id',$instruktur_id)->with('instruktur')->with('pegawai')->with('materi')->with('skedul')->get();
         $nilai=$nilai2=array();
         $q_data=Quisionerdata::where('batch_id',$batch_id)->where('instruktur_id',$instruktur_id)->get();
-        $q_d=array();
+        $q_d=$kritik=array();
         foreach($q_data as $k => $v)
         {
+            if($v->usulan!=NULL)
+            {
+                $kritik[$v->instruktur_id][]=$v;
+            }
             if($v->nilai=='BS')
             {
                 $nilai[$v->quisioner_id][$v->nilai][]=4;
@@ -817,6 +828,7 @@ class BatchpelatihanController extends Controller
                 $nilai2[$v->quisioner_id][$v->nilai]=1;
             }
         }
+        
         return view('pages.jadwal.batch.quisioner-grafik')
                 ->with('instruktur_id',$instruktur_id)
                 ->with('batch_id',$batch_id)

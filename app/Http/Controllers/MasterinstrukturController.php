@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Masterinstruktur;
+use App\Model\Batchpelatihan;
+use App\Model\BatchIntruktur;
+use App\Model\Masterpelatihan;
 class MasterinstrukturController extends Controller
 {
     public function __construct()
@@ -62,5 +65,25 @@ class MasterinstrukturController extends Controller
     {
         $peg=Masterinstruktur::find($id)->delete();
         return redirect('instruktur')->with('status','Data Instruktur Berhasil di Hapus');
+    }
+
+    public function riwayat_pelatihan($id)
+    {
+        $instruktur=Masterinstruktur::find($id);
+        $participant=BatchIntruktur::where('instruktur_id',$id)->pluck('batch_pelatihan_id');
+        $batchpelatihan=Batchpelatihan::whereIn('id',$participant)->get();
+        $batch=$batch_id=$batch_pelatihan_id=array();
+        foreach($batchpelatihan as $item)
+        {
+            $batch[$item->pelatihan_id]=$item;
+            $batch_id[]=$item->pelatihan_id;
+            $batch_pelatihan_id[]=$item->id;
+        }
+        $pelatihan=Masterpelatihan::whereIn('id',$batch_id)->get();
+        // return $batchpelatihan;
+        return view('pages.instruktur.riwayat')
+            ->with('pelatihan',$pelatihan)
+            ->with('instruktur',$instruktur)
+            ->with('batch',$batch);
     }
 }

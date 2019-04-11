@@ -80,6 +80,7 @@
                                 <ul>
                                     <li class="{{$jenis=='quisioner' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/quisioner')}}">Form Quisioner</a></li>
                                     <li class="{{$jenis=='quisioner-hasil' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/quisioner-hasil')}}">Hasil Quisioner</a></li>
+                                    <li class="{{$jenis=='quisioner-saran' ? 'active' : ''}}"><a href="{{url('batch-detail/'.$id.'/quisioner-saran')}}">Kritik/Saran Quisioner</a></li>
                                 </ul>
                             </li>
                         </ul>

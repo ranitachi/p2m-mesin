@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Masterpeserta;
 use App\Model\Masterpesertadata;
+use App\Model\BatchParticipant;
+use App\Model\BatchIntruktur;
+use App\Model\Batchpelatihan;
 use App\Model\Masterperusahaan;
+use App\Model\Masterpelatihan;
 use App\Model\Provinsi;
 use App\Model\Kabupatenkota;
 use App\Model\Kecamatan;
@@ -317,5 +321,28 @@ class MasterpesertaController extends Controller
 	       'Content-Type: application/excel',
 	    );
 	    return response()->download($file, 'form-peserta.xlsx', $headers);
+    }
+
+    public function riwayat_pelatihan($id)
+    {
+        $peserta=Masterpeserta::find($id);
+        $participant=BatchParticipant::where('participant_id',$id)->pluck('batch_id');
+        $batchpelatihan=Batchpelatihan::whereIn('id',$participant)->get();
+        $batch=$batch_id=$batch_pelatihan_id=array();
+        foreach($batchpelatihan as $item)
+        {
+            $batch[$item->pelatihan_id]=$item;
+            $batch_id[]=$item->pelatihan_id;
+            $batch_pelatihan_id[]=$item->id;
+        }
+        $pelatihan=Masterpelatihan::whereIn('id',$batch_id)->get();
+        $instruktur=BatchIntruktur::whereIn('batch_pelatihan_id',$batch_pelatihan_id)->with('instruktur')->get();
+        // return $pelatihan;
+        // return $instruktur;
+        return view('pages.peserta.riwayat')
+            ->with('pelatihan',$pelatihan)
+            ->with('instruktur',$instruktur)
+            ->with('batch',$batch)
+            ->with('peserta',$peserta);
     }
 }
