@@ -633,14 +633,23 @@ class BatchpelatihanController extends Controller
         $peserta=BatchParticipant::where('batch_id',$id)->with('peserta')->get();
         $pelatihan=Batchpelatihan::find($id);
 
-        $jadwal=Skedulpelatihandetail::where('batch_id',$id)->with('skedul')->orderBy('start_time')->get();
+        $jdwls=Skedulpelatihan::where('batch_id',$id)->orderBy('date')->get();
+        $jdwl=array();
+        foreach($jdwls as $k)
+        {
+            $jdwl[]=$k->id;
+        }
+        // return $jdwl;
+        // $jadwal=Skedulpelatihandetail::where('batch_id',$id)->with('skedul')->orderBy('start_time')->get();
+        $jadwal=Skedulpelatihandetail::whereIn('skedul_id',$jdwl)->with('skedul')->orderBy('id')->orderBy('start_time')->get();
         $jdw=$jw=array();
         foreach($jadwal as $k=>$v)
         {
             $jdw[strtok($v->skedul->date,' ')][]=$v;
             $jw[strtok($v->skedul->date,' ')]=$v;
         }
-        // dd($jdw);
+        // rsort($jw);
+        // dd($jw);
         return view('pages.jadwal.batch.berkas.absensi-peserta')
             ->with('peserta',$peserta)
             ->with('jw',$jw)
