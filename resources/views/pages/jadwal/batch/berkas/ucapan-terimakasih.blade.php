@@ -57,7 +57,7 @@
 				</tr>
 				<tr>
 					<td style="width:100%;vertical-align:top;text-align:center;">
-						<div style="font-size:18px !important;font-family:copperplate;">Atas Partisipanya Sebagai</div>	
+						<div style="font-size:18px !important;font-family:copperplate;">Atas Partisipasinya Sebagai</div>	
 						<div style="font-size:20px !important;font-family:copperplate;">STAF PENGAJAR</div>	
 						<div style="width:80%;vertical-align:top;text-align:center;background:darkblue;margin:5px auto !important;">
 							<div style="color:white;font-size:30px !important;padding:5px 0;font-family:monospace">{{strtoupper($pelatihan->pelatihan->nama)}}</div>
