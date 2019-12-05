@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
 	<body onLoad="window.print()" style="padding:0px !important;margin:0px !important;">
-        <div class="body" style="page-break-before: always;border:4px double darkblue;margin:5px 0px;">
+        <div class="body" style="page-break-before: always;border:4px double darkblue;margin:3px 0px;">
 			<link rel="stylesheet" href="{{asset('css/font.arista.css')}}">
 			<table border="0" style="width:100%;margin:0 auto;" cellpadding="0" cellspacing="0">
 				<tr>
@@ -13,14 +13,14 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
+					<td style="width:100%;vertical-align:top;text-align:center;padding-top:3px;">
 						<div style="font-size:30px !important;letter-spacing:3px;font-family:copperplate;color:darkblue;float:left;width:100%;margin-bottom:5px;">P2M - Departemen Teknik Mesin</div>	
 						<div style="font-size:30px !important;letter-spacing:3px;font-family:copperplate;color:darkblue;float:left;width:100%">Fakultas Tekik Universitas Indonesia</div>	
 					</td>
 				</tr>
 
 				<tr>
-					<td style="padding-top:5px;text-align:center">
+					<td style="padding-top:3px;text-align:center">
 						<div style="width:80%;vertical-align:top;text-align:center;background:darkblue;margin:10px auto 0 auto !important;">
 							<div style="color:white;font-size:30px !important;padding:5px 0;font-family:copperplate">Ucapan Terima Kasih</div>
 						</div>
@@ -28,7 +28,7 @@
 				</tr>
 			
 				<tr>
-					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
+					<td style="width:100%;vertical-align:top;text-align:center;padding-top:3px;">
 						@php
 							$nama=$instruktur->instruktur->nama;
 							$s1=$s2=$s3=$lain='';
@@ -51,22 +51,22 @@
 							$gelar=gelar($nama,$s1,$s2,$s3,$lain);
 						@endphp
 						<div style="font-size:20px !important;font-family:copperplate">Disampaikan Kepada :</div>
-						<div style="font-size:35px !important;padding:15px 0px;letter-spacing:3px;font-family:Georgia;font-weight:500">{{$gelar}}</div>
+						<div style="font-size:32px !important;padding:15px 0px;letter-spacing:3px;font-family:Georgia;font-weight:500">{{$gelar}}</div>
 						<div style="border-top:2px solid #888;width:80%;margin:0 auto;">&nbsp;</div>
 					</td>
 				</tr>
 				<tr>
 					<td style="width:100%;vertical-align:top;text-align:center;">
-						<div style="font-size:18px !important;font-family:copperplate;">Atas Partisipasinya Sebagai</div>	
-						<div style="font-size:20px !important;font-family:copperplate;">STAF PENGAJAR</div>	
-						<div style="width:80%;vertical-align:top;text-align:center;background:darkblue;margin:5px auto !important;">
-							<div style="color:white;font-size:30px !important;padding:5px 0;font-family:monospace">{{strtoupper($pelatihan->pelatihan->nama)}}</div>
+						<div style="font-size:15px !important;font-family:copperplate;">Atas Partisipasinya Sebagai</div>	
+						<div style="font-size:18px !important;font-family:copperplate;">STAF PENGAJAR</div>	
+						<div style="width:80%;vertical-align:top;text-align:center;background:darkblue;margin:3px auto !important;">
+							<div style="color:white;font-size:25px !important;padding:5px 0;font-family:monospace">{{strtoupper($pelatihan->pelatihan->nama)}}</div>
 							<div style="color:white;font-size:15px !important;padding:0 0 10px;font-family:fantasy">Tanggal, {{gabungtgl($pelatihan->start_date,$pelatihan->end_date,'s/d')}}</div>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
+					<td style="width:100%;vertical-align:top;text-align:center;padding-top:3px;">
 						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px;">Dilaksanakan oleh</div>
 						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px;">P2M - Departemen Teknik Mesin</div>
 						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px;">Fakultas Teknik Universitas Indonesia</div>
@@ -78,12 +78,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="width:100%;vertical-align:top;text-align:center;padding-top:5px;">
+					<td style="width:100%;vertical-align:top;text-align:center;padding-top:3px;">
 						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px">Jakarta, {{tgl_indo(date('Y-m-d'))}}</div>
 						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px">P2M - Departemen Teknik Mesin</div>
 						<div style="font-size:15px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px">Fakultas Teknik Universitas Indonesia</div>
-						<div style="font-size:16px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top:70px;text-decoration:underline">{{$direktur->nama}}</div>
-						<div style="font-size:14px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-3px">Direktur<br>
+						<div style="font-size:16px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding-top:65px;text-decoration:underline">{{$direktur->nama}}</div>
+						<div style="font-size:14px !important;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom:-8px">Direktur<br>
 						
 						</div>
 
